@@ -17,10 +17,16 @@
 import { Version } from "@/version.js";
 import opentelemetry, { SpanStatusCode, TimeInput } from "@opentelemetry/api";
 import { FrameworkSpan, GeneratedResponse } from "./types.js";
+import { BaseAgent } from "@/agents/base.js";
+import { Tool } from "@/tools/base.js";
+import { BaseLLM } from "@/llms/base.js";
+import os from "os";
 
-export const tracer = opentelemetry.trace.getTracer("bee-agent-framework", Version);
+const name = "bee-agent-framework";
 
-export const activeTracesMap = new Map<string, string>();
+export const meter = opentelemetry.metrics.getMeter(name, Version);
+export const tracer = opentelemetry.trace.getTracer(name, Version);
+const moduleUsageGauge = meter.createGauge("module_usage");
 
 interface ComputeTreeProps {
   prompt?: string | null;
@@ -38,6 +44,12 @@ interface ComputeTreeProps {
 interface BuildSpansForParentProps {
   spans: FrameworkSpan[];
   parentId: string | undefined;
+}
+
+interface BuildModuleUsageMetricProps {
+  instance: object;
+  traceId: string;
+  eventId: string;
 }
 
 function buildSpansForParent({ spans, parentId }: BuildSpansForParentProps) {
@@ -113,4 +125,27 @@ export function buildTraceTree({
       activeSpan.end(endTime);
     },
   );
+}
+
+export const isMeasurementedInstance = (instance: any) =>
+  Boolean(
+    instance &&
+      (instance instanceof BaseAgent || instance instanceof Tool || instance instanceof BaseLLM),
+  );
+
+export function buildModuleUsageMetric({
+  instance,
+  traceId,
+  eventId,
+}: BuildModuleUsageMetricProps) {
+  moduleUsageGauge.record(1, {
+    source: instance.constructor.name,
+    type: instance instanceof BaseAgent ? "agent" : instance instanceof Tool ? "tool" : "llm",
+    framework_version: Version,
+    os_type: os.type(),
+    os_release: os.release(),
+    os_arch: os.arch(),
+    trace_id: traceId,
+    event_id: eventId,
+  });
 }
