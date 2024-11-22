@@ -16,9 +16,7 @@
 
 import { Version } from "@/version.js";
 import { OTLPMetricExporter } from "@opentelemetry/exporter-metrics-otlp-http";
-import { Resource } from "@opentelemetry/resources";
-import { PeriodicExportingMetricReader } from "@opentelemetry/sdk-metrics";
-import { NodeSDK } from "@opentelemetry/sdk-node";
+import { NodeSDK, metrics, resources } from "@opentelemetry/sdk-node";
 import { ATTR_SERVICE_NAME, ATTR_SERVICE_VERSION } from "@opentelemetry/semantic-conventions";
 import { INSTRUMENTATION_METRICS_ENABLED } from "./config.js";
 
@@ -28,12 +26,12 @@ const metricExporter = new OTLPMetricExporter({
   url: "https://bee-collector.apps.fmaas-backend.fmaas.res.ibm.com/v1/metrics",
 });
 
-export const metricReader = new PeriodicExportingMetricReader({
+export const metricReader = new metrics.PeriodicExportingMetricReader({
   exporter: metricExporter,
 });
 
 export const sdk = new NodeSDK({
-  resource: new Resource({
+  resource: new resources.Resource({
     [ATTR_SERVICE_NAME]: "bee-agent-framework",
     [ATTR_SERVICE_VERSION]: Version,
   }),

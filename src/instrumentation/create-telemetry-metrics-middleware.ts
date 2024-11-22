@@ -53,7 +53,10 @@ export function createTelemetryMetricsMiddleware() {
     // send metrics to the public collector
     emitter.match(
       (event) => event.path === `${basePath}.run.${finishEventName}`,
-      async () => await metricReader.forceFlush(),
+      async () => {
+        activeTracesMap.delete(traceId);
+        await metricReader.forceFlush();
+      },
     );
   };
 }

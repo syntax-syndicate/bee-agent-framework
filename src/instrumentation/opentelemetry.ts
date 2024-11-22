@@ -15,7 +15,7 @@
  */
 
 import { Version } from "@/version.js";
-import opentelemetry, { SpanStatusCode, TimeInput } from "@opentelemetry/api";
+import { api } from "@opentelemetry/sdk-node";
 import { FrameworkSpan, GeneratedResponse } from "./types.js";
 import { BaseAgent } from "@/agents/base.js";
 import { Tool } from "@/tools/base.js";
@@ -24,8 +24,8 @@ import os from "os";
 
 const name = "bee-agent-framework";
 
-export const meter = opentelemetry.metrics.getMeter(name, Version);
-export const tracer = opentelemetry.trace.getTracer(name, Version);
+export const meter = api.metrics.getMeter(name, Version);
+export const tracer = api.trace.getTracer(name, Version);
 const moduleUsageGauge = meter.createGauge("module_usage");
 
 interface ComputeTreeProps {
@@ -36,8 +36,8 @@ interface ComputeTreeProps {
   traceId: string;
   version: string;
   runErrorSpanKey: string;
-  startTime: TimeInput;
-  endTime: TimeInput;
+  startTime: api.TimeInput;
+  endTime: api.TimeInput;
   source: string;
 }
 
@@ -115,7 +115,7 @@ export function buildTraceTree({
       if (runErrorSpan) {
         activeSpan.setStatus(runErrorSpan.status);
       } else {
-        activeSpan.setStatus({ code: SpanStatusCode.OK });
+        activeSpan.setStatus({ code: api.SpanStatusCode.OK });
       }
 
       // set nested spans

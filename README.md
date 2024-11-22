@@ -154,7 +154,7 @@ All content in these repositories including code has been provided by IBM under 
 
 ## Telemetry
 
-Some metrics are collected by default. See the [Native Telemetry](./docs/native-telemetry.md) for more detail.
+Some metrics are collected by default. See the [Native Telemetry](/docs/native-telemetry.md) for more detail.
 
 ## Contributors
 

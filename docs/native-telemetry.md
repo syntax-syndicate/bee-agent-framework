@@ -22,5 +22,5 @@ We value your privacy and ensure that **no sensitive data** is collected through
 We understand that not all users want to send telemetry data. You can easily disable this feature by setting an environment variable:
 
 ```bash
-BEE_FRAMEWORK_INSTRUMENTATION_METRICS_DISABLED=true
+BEE_FRAMEWORK_INSTRUMENTATION_METRICS_ENABLED=false
 ```
