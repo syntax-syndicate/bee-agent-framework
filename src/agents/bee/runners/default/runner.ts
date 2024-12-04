@@ -79,9 +79,10 @@ export class DefaultRunner extends BaseRunner {
         }
       },
       executor: async () => {
-        await emitter.emit("start", { meta });
+        const tools = this.input.tools.slice();
+        await emitter.emit("start", { meta, tools, memory: this.memory });
 
-        const { parser, parserRegex } = this.createParser(this.input.tools);
+        const { parser, parserRegex } = this.createParser(tools);
         const llmOutput = await this.input.llm
           .generate(this.memory.messages.slice(), {
             signal,
