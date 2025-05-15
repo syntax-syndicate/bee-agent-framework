@@ -70,7 +70,7 @@ beeai-platform = ["acp-sdk", "uvicorn"]
 
 [tool.mypy]
 mypy_path = "$MYPY_CONFIG_FILE_DIR/beeai_framework"
-exclude = "^build/$"
+exclude = ["^build/$", "^examples/playground/"]
 check_untyped_defs = true
 plugins = ["pydantic.mypy"]
 strict = true
