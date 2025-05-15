@@ -56,6 +56,8 @@ exclude = list(
             "tools/custom/sandbox.py" if os.getenv("CODE_INTERPRETER_URL") is None else None,
             # Requires custom prompt
             "workflows/travel_advisor.py",
+            # Local playground
+            "playground/**/*.py",
         ],
     )
 )
