@@ -12,6 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from beeai_framework.adapters.mcp.serve.server import MCPServer, MCPServerConfig
 
-__all__ = ["MCPServer", "MCPServerConfig"]
+from acp_sdk.models.models import Event
+from pydantic import BaseModel, InstanceOf
+
+from beeai_framework.backend.message import AnyMessage
+
+
+class BeeAIPlatformAgentRunOutput(BaseModel):
+    result: InstanceOf[AnyMessage]
+    event: Event

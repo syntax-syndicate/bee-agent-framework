@@ -12,6 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from beeai_framework.adapters.mcp.serve.server import MCPServer, MCPServerConfig
+from typing import Any
 
-__all__ = ["MCPServer", "MCPServerConfig"]
+from pydantic import BaseModel
+
+
+class BeeAIPlatformAgentUpdateEvent(BaseModel):
+    key: str
+    value: dict[str, Any]
+
+
+class BeeAIPlatformAgentErrorEvent(BaseModel):
+    message: str
+
+
+beeai_platform_agent_event_types: dict[str, type] = {
+    "update": BeeAIPlatformAgentUpdateEvent,
+    "error": BeeAIPlatformAgentErrorEvent,
+}

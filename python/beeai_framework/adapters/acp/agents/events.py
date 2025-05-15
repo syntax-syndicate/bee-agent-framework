@@ -12,16 +12,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from beeai_framework.agents.experimental.remote.agent import RemoteAgent
-from beeai_framework.agents.experimental.remote.events import (
-    RemoteAgentErrorEvent,
-    RemoteAgentUpdateEvent,
-)
-from beeai_framework.agents.experimental.remote.types import RemoteAgentRunOutput
+from typing import Any
 
-__all__ = [
-    "RemoteAgent",
-    "RemoteAgentErrorEvent",
-    "RemoteAgentRunOutput",
-    "RemoteAgentUpdateEvent",
-]
+from pydantic import BaseModel
+
+
+class ACPAgentUpdateEvent(BaseModel):
+    key: str
+    value: dict[str, Any]
+
+
+class ACPAgentErrorEvent(BaseModel):
+    message: str
+
+
+acp_agent_event_types: dict[str, type] = {
+    "update": ACPAgentUpdateEvent,
+    "error": ACPAgentErrorEvent,
+}

@@ -19,11 +19,6 @@ from pydantic import BaseModel, InstanceOf
 from beeai_framework.backend.message import AnyMessage
 
 
-class RemoteAgentRunOutput(BaseModel):
+class ACPAgentRunOutput(BaseModel):
     result: InstanceOf[AnyMessage]
     event: Event
-
-
-class RemoteAgentInput(BaseModel):
-    agent_name: str
-    url: str

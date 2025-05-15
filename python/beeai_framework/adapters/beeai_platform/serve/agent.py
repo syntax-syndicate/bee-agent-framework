@@ -12,6 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from beeai_framework.adapters.mcp.serve.server import MCPServer, MCPServerConfig
 
-__all__ = ["MCPServer", "MCPServerConfig"]
+from beeai_framework.adapters.acp.serve.server import ACPServerConfig
+
+
+class BeeAIPlatformServerConfig(ACPServerConfig):
+    """Configuration for the Beeai Server."""
+
+    self_registration: bool | None = True

@@ -12,6 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from beeai_framework.adapters.mcp.serve.server import MCPServer, MCPServerConfig
+from beeai_framework.adapters.acp.agents.agent import ACPAgent
+from beeai_framework.adapters.acp.agents.events import ACPAgentErrorEvent, ACPAgentUpdateEvent
+from beeai_framework.adapters.acp.agents.types import ACPAgentRunOutput
 
-__all__ = ["MCPServer", "MCPServerConfig"]
+__all__ = [
+    "ACPAgent",
+    "ACPAgentErrorEvent",
+    "ACPAgentRunOutput",
+    "ACPAgentUpdateEvent",
+]
