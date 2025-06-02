@@ -16,26 +16,27 @@
 
 import { removeFromArray } from "@/internals/helpers/array.js";
 
+type ServerFactory<TInput, TInternal> = (input: TInput) => Promise<TInternal>;
+export type FactoryMember<TInput> = abstract new (
+  ...args: any[]
+) => TInput | (new (...args: any[]) => TInput) | ((...args: any[]) => TInput);
+
 export abstract class Server<
   TInput extends object = object,
   TInternal extends object = object,
   TConfig extends object = object,
 > {
   // @ts-expect-error
-  private static readonly factories = new Map<TInput, (input: TInput) => TInternal>();
+  public static readonly factories = new Map<object, ServerFactory<TInput, TInternal>>();
 
   public readonly members: TInput[] = [];
 
   constructor(protected config: TConfig) {}
 
-  public static registerFactory<
-    TInput2 extends object,
-    TInternal2 extends object,
-    TConfig2 extends object,
-  >(
-    this: typeof Server<TInput2, TInternal2, TConfig2>,
-    ref: TInput2,
-    factory: (input: TInput2) => TInternal2,
+  public static registerFactory<TInput2 extends object, TInternal2 extends object>(
+    this: typeof Server<TInput2, TInternal2, any>,
+    ref: FactoryMember<TInput2>,
+    factory: ServerFactory<TInput2, TInternal2>,
     override = false,
   ): void {
     if (!this.factories.get(ref) || override) {
@@ -64,8 +65,8 @@ export abstract class Server<
     return this;
   }
 
-  protected getFactory(input: TInput): (input: TInput) => TInternal {
-    const factory = Object.getPrototypeOf(this).factories.get(input);
+  protected getFactory(input: TInput): ServerFactory<TInput, TInternal> {
+    const factory = (this.constructor as typeof Server).factories.get(input);
     if (!factory) {
       throw new Error(`No factory registered for ${input.constructor.name}.`);
     }
