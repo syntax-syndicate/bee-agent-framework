@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.15](https://github.com/i-am-bee/beeai-framework/compare/typescript_v0.1.14...typescript_v0.1.15) (2025-06-03)
+
+### Features
+
+- **adapters:** add MCP serve integration ([#855](https://github.com/i-am-bee/beeai-framework/issues/855)) ([40a00d4](https://github.com/i-am-bee/beeai-framework/commit/40a00d43c6492097689fae08349176457ce5087e))
+- **agents:** replace RemoteAgent with ACP and BeeAIPlatform serve integration ([#850](https://github.com/i-am-bee/beeai-framework/issues/850)) ([866be8c](https://github.com/i-am-bee/beeai-framework/commit/866be8c6069a6cd9d107e27197af6bd399d05151))
+
 ## [0.1.14](https://github.com/i-am-bee/beeai-framework/compare/typescript_v0.1.13...typescript_v0.1.14) (2025-05-06)
 
 ### Features
