@@ -3958,7 +3958,7 @@ __metadata:
     typescript: "npm:^5.8.2"
     typescript-eslint: "npm:^8.26.1"
     vite-tsconfig-paths: "npm:^5.1.4"
-    vitest: "npm:^2.1.8"
+    vitest: "npm:^2.1.9"
     wikipedia: "npm:^2.1.2"
     yaml: "npm:^2.6.1"
     zod: "npm:^3.24.2"
@@ -13800,7 +13800,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest@npm:^2.1.8":
+"vitest@npm:^2.1.9":
   version: 2.1.9
   resolution: "vitest@npm:2.1.9"
   dependencies:

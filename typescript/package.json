@@ -346,7 +346,7 @@
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.26.1",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^2.1.8",
+    "vitest": "^2.1.9",
     "yaml": "^2.6.1"
   },
   "resolutions": {
