@@ -1,3 +1,9 @@
+## python_v0.1.23 (2025-06-03)
+
+### Bug Fixes
+
+- update import in GlobalTrajectoryMiddleware
+
 ## python_v0.1.22 (2025-06-03)
 
 ### Bug Fixes
