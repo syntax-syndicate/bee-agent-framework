@@ -16,8 +16,6 @@ import sys
 from collections.abc import Callable
 from typing import Any, Protocol, runtime_checkable
 
-from langchain_core.tools import BaseTool
-
 from beeai_framework.agents import BaseAgent
 from beeai_framework.agents.experimental.requirements.requirement import Requirement
 from beeai_framework.backend import AnyMessage, ChatModel
@@ -131,7 +129,7 @@ class GlobalTrajectoryMiddleware(RunMiddleware):
 
         if isinstance(target, BaseAgent):
             return f"{prefix}{class_name}[{target.meta.name}][{meta.name}]"
-        elif isinstance(target, BaseTool | Requirement):
+        elif isinstance(target, Tool | Requirement):
             return f"{prefix}{class_name}[{target.name}][{meta.name}]"
 
         return f"{prefix}{class_name}[{meta.name}]"
