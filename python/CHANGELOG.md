@@ -1,3 +1,16 @@
+## python_v0.1.22 (2025-06-03)
+
+### Bug Fixes
+
+- **agent**: Enable parser options in python like they are enabled in typescript (#856)
+
+### Features
+
+- **agents**: add experimental RequirementAgent (#852)
+- **providers**: add session support for ACP (#854)
+- **adapters**: add A2A remote agent (#845)
+- **adapters**: Add initial EmbeddingModel adapters (#814)
+
 ## python_v0.1.21 (2025-05-15)
 
 ### Features
