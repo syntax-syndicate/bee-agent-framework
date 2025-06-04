@@ -202,7 +202,7 @@ The `BeeAIPlatformServer` class exposes agents built with the BeeAI Framework as
 
 	```py Python
 	from beeai_framework.adapters.beeai_platform.serve.server import BeeAIPlatformServer
-	from beeai_framework.agents.tool_calling.agent import ToolCallingAgent
+	from beeai_framework.agents.experimental import RequirementAgent
 	from beeai_framework.backend import ChatModel
 	from beeai_framework.memory import UnconstrainedMemory
 	from beeai_framework.tools.search.duckduckgo import DuckDuckGoSearchTool
@@ -211,7 +211,7 @@ The `BeeAIPlatformServer` class exposes agents built with the BeeAI Framework as
 	
 	def main() -> None:
 	    llm = ChatModel.from_name("ollama:granite3.3:8b")
-	    agent = ToolCallingAgent(llm=llm, tools=[DuckDuckGoSearchTool(), OpenMeteoTool()], memory=UnconstrainedMemory())
+	    agent = RequirementAgent(llm=llm, tools=[DuckDuckGoSearchTool(), OpenMeteoTool()], memory=UnconstrainedMemory())
 	
 	    # Register the agent with the Beeai platform and run the HTTP server
 	    # For the ToolCallingAgent and ReActAgent, we dont need to specify BeeAIPlatformAgent factory method
