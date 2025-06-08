@@ -58,7 +58,7 @@ agent = RequirementAgent(
 
 # Run with execution logging
 response = await agent.run("What to do in Boston?").middleware(GlobalTrajectoryMiddleware())
-print(response.result.text)
+print(response.answer.text)
 ```
 
 This agent will:
