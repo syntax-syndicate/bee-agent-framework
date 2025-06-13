@@ -50,6 +50,7 @@ class ConditionalRequirement(Generic[TInput], Requirement[TInput]):
         only_before: MultiTargetType | None = None,
         only_after: MultiTargetType | None = None,
         force_after: MultiTargetType | None = None,
+        force_prevent_stop: bool = True,
         min_invocations: int | None = None,
         max_invocations: int | None = None,
         only_success_invocations: bool = True,
@@ -77,6 +78,7 @@ class ConditionalRequirement(Generic[TInput], Requirement[TInput]):
         self._only_success_invocations = only_success_invocations
         self._consecutive_allowed = consecutive_allowed
         self._custom_checks = list(custom_checks or [])
+        self._force_prevent_stop = force_prevent_stop
 
         self._check_invariant()
 
@@ -171,7 +173,7 @@ class ConditionalRequirement(Generic[TInput], Requirement[TInput]):
                     allowed=allowed,
                     forced=forced,
                     hidden=False,
-                    prevent_stop=(self._min_invocations > invocations) or forced,
+                    prevent_stop=(self._min_invocations > invocations) or (forced and self._force_prevent_stop),
                 )
             ]
 
@@ -215,4 +217,5 @@ class ConditionalRequirement(Generic[TInput], Requirement[TInput]):
         instance._consecutive_allowed = self._consecutive_allowed
         instance.source = self.source
         instance._source_tool = self._source_tool
+        instance._force_prevent_stop = self._force_prevent_stop
         return instance

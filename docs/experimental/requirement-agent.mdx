@@ -181,6 +181,7 @@ ConditionalRequirement(
   only_success_invocations=True, # (optional) Whether 'force_at_step' counts only successful invocations
   priority=10, # (optional) Higher number means higher priority for requirement enforcement
   can_be_used_in_row=True, # (optional) Whether the tool can be invoked twice in a row
+  force_prevent_stop=False,  # (optional) If True, prevents the agent from giving a final answer when a forced target_tool call occurs.
   enabled=True, # (optional) Whether to skip this requirement’s execution
   custom_checks=[
      # (optional) Custom callbacks; all must pass for the tool to be used
