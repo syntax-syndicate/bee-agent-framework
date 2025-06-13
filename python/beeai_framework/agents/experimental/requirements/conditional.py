@@ -151,7 +151,8 @@ class ConditionalRequirement(Generic[TInput], Requirement[TInput]):
         invocations = sum(1 if step.tool is source_tool else 0 for step in steps)
 
         def resolve(allowed: bool) -> list[Rule]:
-            if not allowed and self._force_at_step == (len(steps) + 1):
+            current_step = len(steps) + 1
+            if not allowed and self._force_at_step == current_step:
                 raise RequirementError(
                     f"Tool '{source_tool.name}' cannot be executed at step {self._force_at_step} "
                     f"because it has not met all requirements.",
@@ -159,7 +160,7 @@ class ConditionalRequirement(Generic[TInput], Requirement[TInput]):
                 )
 
             forced = bool(
-                _target_seen_in(last_step_tool, self._force_after) or self._force_at_step == len(steps)
+                _target_seen_in(last_step_tool, self._force_after) or self._force_at_step == current_step
                 if allowed
                 else False
             )
