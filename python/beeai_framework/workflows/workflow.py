@@ -14,7 +14,7 @@
 
 from collections.abc import Sequence
 from functools import cached_property
-from typing import ClassVar, Final, Generic, Literal, Any
+from typing import Any, ClassVar, Final, Generic, Literal
 
 from pydantic import BaseModel
 from typing_extensions import TypeVar
