@@ -12,11 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import asyncio
-import inspect
 from collections.abc import Sequence
 from functools import cached_property
-from typing import ClassVar, Final, Generic, Literal
+from typing import ClassVar, Final, Generic, Literal, Any
 
 from pydantic import BaseModel
 from typing_extensions import TypeVar
@@ -24,6 +22,7 @@ from typing_extensions import TypeVar
 from beeai_framework.context import Run, RunContext, RunMiddlewareType
 from beeai_framework.emitter.emitter import Emitter
 from beeai_framework.errors import FrameworkError
+from beeai_framework.utils.asynchronous import ensure_async
 from beeai_framework.utils.models import ModelLike, check_model, to_model, to_model_optional
 from beeai_framework.utils.strings import to_safe_word
 from beeai_framework.workflows.errors import WorkflowError
@@ -144,10 +143,7 @@ class Workflow(Generic[T, K]):
                     step_res = WorkflowStepRes[T, K](name=next, state=run.state.model_copy(deep=True))
                     run.steps.append(step_res)
 
-                    if inspect.iscoroutinefunction(step.handler):
-                        step_next = await step.handler(step_res.state)  # , handlers)
-                    else:
-                        step_next = await asyncio.to_thread(step.handler, step_res.state)  # handlers)
+                    step_next: Any = await ensure_async(step.handler)(step_res.state)
 
                     check_model(step_res.state)
                     run.state = step_res.state
