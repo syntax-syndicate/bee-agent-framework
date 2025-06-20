@@ -42,7 +42,7 @@ wikipedia-api = {version = "^0.8.1", optional = true}
 [tool.poetry.group.dev.dependencies]
 commitizen = "^4.2.1"
 deepeval = "2.9.7"
-mypy = "^1.15.0"
+mypy = "^1.16.1"
 nbstripout = "^0.8.1"
 poethepoet = "^0.33.1"
 pydantic-settings = "^2.7"
@@ -70,6 +70,7 @@ mcp = ["mcp"]
 acp = ["acp-sdk", "uvicorn"]
 beeai-platform = ["acp-sdk", "uvicorn"]
 a2a = ["a2a-sdk", "uvicorn"]
+all = ["langchain", "huggingface", "search", "duckduckgo", "wikipedia", "mcp", "acp", "beeai-platform", "a2a"]
 
 
 [tool.mypy]

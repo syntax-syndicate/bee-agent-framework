@@ -62,6 +62,7 @@ class BaseA2AAgentExecutor(a2a_agent_execution.AgentExecutor):
         if not context.current_task:
             context.current_task = a2a_utils.new_task(context.message)
             updater.submit()
+        assert context.current_task is not None
 
         self._agent.memory.reset()
         await self._agent.memory.add_many(
@@ -108,6 +109,7 @@ class TollCallingAgentExecutor(BaseA2AAgentExecutor):
         if not context.current_task:
             context.current_task = a2a_utils.new_task(context.message)
             updater.submit()
+        assert context.current_task is not None
 
         self._agent.memory.reset()
         await self._agent.memory.add_many(
