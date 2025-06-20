@@ -123,7 +123,7 @@ class GlobalTrajectoryMiddleware(RunMiddlewareProtocol):
         if isinstance(target, RunContext):
             target = target.instance
 
-        class_name = type(target).__qualname__
+        class_name = type(target).__name__
 
         prefix = next((v for k, v in self._prefix_by_type.items() if isinstance(target, k)), "")
 
