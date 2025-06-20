@@ -25,15 +25,15 @@ typing-extensions = ">=4.13.2"
 
 [[package]]
 name = "acp-sdk"
-version = "0.10.1"
+version = "0.12.1"
 description = "Agent Communication Protocol SDK"
 optional = true
 python-versions = "<4.0,>=3.11"
 groups = ["main"]
 markers = "extra == \"acp\" or extra == \"beeai-platform\""
 files = [
-    {file = "acp_sdk-0.10.1-py3-none-any.whl", hash = "sha256:8e8c23e866f8432d7d4ba110331a88a667d3737edfdff2f0bcdf037a5000bf0f"},
-    {file = "acp_sdk-0.10.1.tar.gz", hash = "sha256:27a8b041badea34755d28b55ef5fbc011de54f64475b8421d3bd905fa8d928d1"},
+    {file = "acp_sdk-0.12.1-py3-none-any.whl", hash = "sha256:b45ceb38d7c40c88f4292c32014564a013f485215ffe82c7432a494614a0b040"},
+    {file = "acp_sdk-0.12.1.tar.gz", hash = "sha256:ed1b5fe477849515b4d98aadaf6c9af28e1db49ecb2b68ef97bc26a3745eb662"},
 ]
 
 [package.dependencies]
@@ -42,6 +42,7 @@ fastapi = {version = ">=0.115", extras = ["standard"]}
 httpx = ">=0.26"
 httpx-sse = ">=0.4"
 janus = ">=2.0"
+obstore = ">=0.6"
 opentelemetry-api = ">=1.31"
 opentelemetry-exporter-otlp-proto-http = ">=1.31"
 opentelemetry-instrumentation-fastapi = ">=0.52b1"
@@ -820,7 +821,7 @@ files = [
     {file = "Deprecated-1.2.18-py2.py3-none-any.whl", hash = "sha256:bd5011788200372a32418f888e326a09ff80d0214bd961147cfed01b5c018eec"},
     {file = "deprecated-1.2.18.tar.gz", hash = "sha256:422b6f6d859da6f2ef57857761bfb392480502a64c3028ca9bbe86085d72115d"},
 ]
-markers = {main = "extra == \"acp\" or extra == \"beeai-platform\" or extra == \"a2a\""}
+markers = {main = "extra == \"a2a\" or extra == \"acp\" or extra == \"beeai-platform\""}
 
 [package.dependencies]
 wrapt = ">=1.10,<2"
@@ -1502,7 +1503,7 @@ description = "Consume Server-Sent Event (SSE) messages with HTTPX."
 optional = true
 python-versions = ">=3.8"
 groups = ["main"]
-markers = "extra == \"acp\" or extra == \"beeai-platform\" or extra == \"a2a\" or extra == \"langchain\" or extra == \"mcp\""
+markers = "extra == \"a2a\" or extra == \"acp\" or extra == \"beeai-platform\" or extra == \"langchain\" or extra == \"mcp\""
 files = [
     {file = "httpx-sse-0.4.0.tar.gz", hash = "sha256:1e81a3a3070ce322add1d3529ed42eb5f70817f45ed6ec915ab753f961139721"},
     {file = "httpx_sse-0.4.0-py3-none-any.whl", hash = "sha256:f329af6eae57eaa2bdfd962b42524764af68075ea87370a2de920af5341e318f"},
@@ -2084,14 +2085,14 @@ pytest = ["pytest (>=7.0.0)", "rich (>=13.9.4,<14.0.0)"]
 
 [[package]]
 name = "litellm"
-version = "1.72.4"
+version = "1.69.3"
 description = "Library to easily interface with LLM API providers"
 optional = false
 python-versions = "!=2.7.*,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,!=3.7.*,>=3.8"
 groups = ["main"]
 files = [
-    {file = "litellm-1.72.4-py3-none-any.whl", hash = "sha256:f98ca994420ed649c466d423655a6e0f2aeecab4564ed372b3378a949e491dc2"},
-    {file = "litellm-1.72.4.tar.gz", hash = "sha256:8855de30f78bcb1f37af244519b37a37faaaf579401b1414400b5b5e5b616d57"},
+    {file = "litellm-1.69.3-py3-none-any.whl", hash = "sha256:31f17024d06824aa8c1798e2c6ac44b69d4f721cefbc3bcd0d53a4568831075e"},
+    {file = "litellm-1.69.3.tar.gz", hash = "sha256:748fe9dffea743bf683c9e28e4632c14894863e62c3fbf057560ea7324d89390"},
 ]
 
 [package.dependencies]
@@ -2101,17 +2102,15 @@ httpx = ">=0.23.0"
 importlib-metadata = ">=6.8.0"
 jinja2 = ">=3.1.2,<4.0.0"
 jsonschema = ">=4.22.0,<5.0.0"
-openai = ">=1.68.2"
+openai = ">=1.68.2,<1.76.0"
 pydantic = ">=2.0.0,<3.0.0"
 python-dotenv = ">=0.2.0"
 tiktoken = ">=0.7.0"
 tokenizers = "*"
 
 [package.extras]
-caching = ["diskcache (>=5.6.1,<6.0.0)"]
 extra-proxy = ["azure-identity (>=1.15.0,<2.0.0)", "azure-keyvault-secrets (>=4.8.0,<5.0.0)", "google-cloud-kms (>=2.21.3,<3.0.0)", "prisma (==0.11.0)", "redisvl (>=0.4.1,<0.5.0) ; python_version >= \"3.9\" and python_version < \"3.14\"", "resend (>=0.8.0,<0.9.0)"]
-proxy = ["PyJWT (>=2.8.0,<3.0.0)", "apscheduler (>=3.10.4,<4.0.0)", "backoff", "boto3 (==1.34.34)", "cryptography (>=43.0.1,<44.0.0)", "fastapi (>=0.115.5,<0.116.0)", "fastapi-sso (>=0.16.0,<0.17.0)", "gunicorn (>=23.0.0,<24.0.0)", "litellm-enterprise (==0.1.7)", "litellm-proxy-extras (==0.2.3)", "mcp (==1.5.0) ; python_version >= \"3.10\"", "orjson (>=3.9.7,<4.0.0)", "pynacl (>=1.5.0,<2.0.0)", "python-multipart (>=0.0.18,<0.0.19)", "pyyaml (>=6.0.1,<7.0.0)", "rich (==13.7.1)", "rq", "uvicorn (>=0.29.0,<0.30.0)", "uvloop (>=0.21.0,<0.22.0) ; sys_platform != \"win32\"", "websockets (>=13.1.0,<14.0.0)"]
-utils = ["numpydoc"]
+proxy = ["PyJWT (>=2.8.0,<3.0.0)", "apscheduler (>=3.10.4,<4.0.0)", "backoff", "boto3 (==1.34.34)", "cryptography (>=43.0.1,<44.0.0)", "fastapi (>=0.115.5,<0.116.0)", "fastapi-sso (>=0.16.0,<0.17.0)", "gunicorn (>=23.0.0,<24.0.0)", "litellm-enterprise (==0.1.3)", "litellm-proxy-extras (==0.1.21)", "mcp (==1.5.0) ; python_version >= \"3.10\"", "orjson (>=3.9.7,<4.0.0)", "pynacl (>=1.5.0,<2.0.0)", "python-multipart (>=0.0.18,<0.0.19)", "pyyaml (>=6.0.1,<7.0.0)", "rich (==13.7.1)", "rq", "uvicorn (>=0.29.0,<0.30.0)", "uvloop (>=0.21.0,<0.22.0) ; sys_platform != \"win32\"", "websockets (>=13.1.0,<14.0.0)"]
 
 [[package]]
 name = "lxml"
@@ -2737,6 +2736,97 @@ files = [
 ]
 
 [[package]]
+name = "obstore"
+version = "0.6.0"
+description = "The simplest, highest-throughput interface to Amazon S3, Google Cloud Storage, Azure Blob Storage, and S3-compliant APIs like Cloudflare R2."
+optional = true
+python-versions = ">=3.9"
+groups = ["main"]
+markers = "extra == \"acp\" or extra == \"beeai-platform\""
+files = [
+    {file = "obstore-0.6.0-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:aade2aff0b1b3c45e46303f275e002dcc925a63ec59e3a8e440818aa0086cdb0"},
+    {file = "obstore-0.6.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:0a4bbb7d5b1ad49e11afbc0a19e71fa5181fd564355d1ff38495eebfa2db6a14"},
+    {file = "obstore-0.6.0-cp310-cp310-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:ca42b8404a481f07cb3642e437ac471ca2c3ac19979d73601c8124dac8eae521"},
+    {file = "obstore-0.6.0-cp310-cp310-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:b9bb1a83670554d5fc8435cbd87d33dad01c695b1bb8c70f97252991c443bc61"},
+    {file = "obstore-0.6.0-cp310-cp310-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:95029ec6de5dbab860afb68420dff0df7cd0878291bda05c38f999bea4391f2a"},
+    {file = "obstore-0.6.0-cp310-cp310-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:97f7b63bd562e637e536f38e38839e9b570cae0d505ed89fe0f12871fc945384"},
+    {file = "obstore-0.6.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0bf574dd119b0fba2d2c25053a22379a2350610037532cd2d2d51b3a4b851f22"},
+    {file = "obstore-0.6.0-cp310-cp310-manylinux_2_24_aarch64.whl", hash = "sha256:e42b76d68487b857a8a06f141f24286faf53bcf1e68a792b4ad41ac1108162ce"},
+    {file = "obstore-0.6.0-cp310-cp310-musllinux_1_2_aarch64.whl", hash = "sha256:6c9244ca4f4dde1b612ee007f12b830bd2f8e39c3a351fc392c8b6d11a3f85da"},
+    {file = "obstore-0.6.0-cp310-cp310-musllinux_1_2_armv7l.whl", hash = "sha256:aa97b848f19732290c0945941ee5e7984ead4456b537901e793a6f48ebe5679f"},
+    {file = "obstore-0.6.0-cp310-cp310-musllinux_1_2_i686.whl", hash = "sha256:0dec80f35a0ca1f311f0d2eaf677e14bc17f9942f208b72b69a07242bf7ef756"},
+    {file = "obstore-0.6.0-cp310-cp310-musllinux_1_2_x86_64.whl", hash = "sha256:c3ab667634939487b12a3bc3aa41bf10f5142895017c33117542011fd300aacf"},
+    {file = "obstore-0.6.0-cp310-cp310-win_amd64.whl", hash = "sha256:5340fce294f88990223e028068d8779ea4dd866b43fc18f9da192cb7fd5ba03a"},
+    {file = "obstore-0.6.0-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:d2da9f9ed59b52ef389c71096745d6fbf5551796282b4d324517a63a94c0e64d"},
+    {file = "obstore-0.6.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:c67ca501c5402b6cd32e5cce9f8b08552145fca4faf699729c752f56dc4ad0bd"},
+    {file = "obstore-0.6.0-cp311-cp311-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:d347b56ffbabda1392f072c7dfdab2c6b73d4757590459916b02b3ab45bf72ff"},
+    {file = "obstore-0.6.0-cp311-cp311-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:c2c154a1574a6fad07c19ea48d7416e5e22e00c165f544ba8395869a88861e91"},
+    {file = "obstore-0.6.0-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:a8dc7d1178f38e189d2c0b5bb95e07825635e536be9003d413185530b40a62d1"},
+    {file = "obstore-0.6.0-cp311-cp311-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:69523e513ba9ff72a05e1ea8ece9becbfaa3b1b0614a1c87f97a0db01ac461f3"},
+    {file = "obstore-0.6.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:960e9ee1065951d917c1a278f32f7e39333ef9f61800c18bb6a81e8cc4fb1995"},
+    {file = "obstore-0.6.0-cp311-cp311-manylinux_2_24_aarch64.whl", hash = "sha256:7e4a901ef233e86639114303f204fa66fb8a5b4b5d5ae8761c762531e1526cd4"},
+    {file = "obstore-0.6.0-cp311-cp311-musllinux_1_2_aarch64.whl", hash = "sha256:037c78c4f366c07e91f6fdc2bc83c949bf954e2ddb9706a51afa1c0f303af148"},
+    {file = "obstore-0.6.0-cp311-cp311-musllinux_1_2_armv7l.whl", hash = "sha256:22c32e96f1fc173638fcbd8e75e61d5a2a2bc8a823e908dffa7abbf345455e9b"},
+    {file = "obstore-0.6.0-cp311-cp311-musllinux_1_2_i686.whl", hash = "sha256:4bfc1e15a3cc438af6f840a73dacba1a6458755e5c3a556bf70aa60e45adffb8"},
+    {file = "obstore-0.6.0-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:5adffb65220c3aa9799f0119af1f6847dbc7b1f0ae8de57580b2c1226a2f9587"},
+    {file = "obstore-0.6.0-cp311-cp311-win_amd64.whl", hash = "sha256:84b3e5e076ac4ec514a644afb914f6bb1ec55c1a558f9332896f162a139a0ffa"},
+    {file = "obstore-0.6.0-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:df26abb21acb61eb3d62731c4b0dd5f89e84ec71de2463cb6b357cd60fdeca11"},
+    {file = "obstore-0.6.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:a92549e6e3f56733125d789cac65ef1e9c27b15262fd73e354636f6b1d9ea9a0"},
+    {file = "obstore-0.6.0-cp312-cp312-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:65db8c3bee4884593629e9287028f106a7690ed88bd11b60eb892574414b6b96"},
+    {file = "obstore-0.6.0-cp312-cp312-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:0b2adaadd1f80aaadfb93ceaa713f890aeb4fe95f07343055eb7da70aaeff259"},
+    {file = "obstore-0.6.0-cp312-cp312-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:aa0ae7b848b161f03d91c081724a3b5f2560411d3b7abbffcab76bc59ef1c265"},
+    {file = "obstore-0.6.0-cp312-cp312-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:b9c093a2bced27ab9bf190faa4703a4993506e3a18393d57a9f77b9fdc19d481"},
+    {file = "obstore-0.6.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:bbef509f49a7443f6acddb7313aee8ce6983d9ed189d012df0d3c07a4f45ac70"},
+    {file = "obstore-0.6.0-cp312-cp312-manylinux_2_24_aarch64.whl", hash = "sha256:18cedb9adaceed5f9bcc75f1ec4da9f8753c6eed716775bb0235f036aba6315c"},
+    {file = "obstore-0.6.0-cp312-cp312-musllinux_1_2_aarch64.whl", hash = "sha256:1c10e9db12195b00c96d0f5845a78d8bb9e0f4646d446a0d31da73e64f787034"},
+    {file = "obstore-0.6.0-cp312-cp312-musllinux_1_2_armv7l.whl", hash = "sha256:2b02b4e939b9095783a5582a947ed07687d1b3acc31b154d8e9a9ee40b4ef6fd"},
+    {file = "obstore-0.6.0-cp312-cp312-musllinux_1_2_i686.whl", hash = "sha256:c67007c226c6c0e9f3376c087c330ab76510ad11d365939d3039b32954e78cd9"},
+    {file = "obstore-0.6.0-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:d8ce9eaaacaa262c57255fd452ecfab311c6e5783632d4dd749dfb3f19b282d0"},
+    {file = "obstore-0.6.0-cp312-cp312-win_amd64.whl", hash = "sha256:e97e8d03d2010979a2d773363009826bd6aea3e41cd03ed4a23d91ffd6cf861b"},
+    {file = "obstore-0.6.0-cp313-cp313-macosx_10_12_x86_64.whl", hash = "sha256:49a2a8eb340a9f1d827ed16000e1f16775166e2291646c6d339dd5549461b4f5"},
+    {file = "obstore-0.6.0-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:127853549da668ab89ee8d7ccb4e671faf7781e879d05deb8ca635a5ca12d929"},
+    {file = "obstore-0.6.0-cp313-cp313-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:52080174fc48e4b1ba8860b6a2b0d7937d903b133e42c3a3784adc744ffce9ad"},
+    {file = "obstore-0.6.0-cp313-cp313-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:ea887fb0d995e500db7398288684f7fd08088f204e376afb6c9b57b0e2037f7c"},
+    {file = "obstore-0.6.0-cp313-cp313-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:bfba02d8259d4415cddfa7091b0a4f964678f54b17752374b416995c2354a8bb"},
+    {file = "obstore-0.6.0-cp313-cp313-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:fc2864ef21b157f9c543b2cfb3bd77b2734adfeb91b3b2875604a2f1bb51af35"},
+    {file = "obstore-0.6.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:adf294b232927697297d7142649444e8ed74284b8d6a8b4bbba1d4b5ed726854"},
+    {file = "obstore-0.6.0-cp313-cp313-manylinux_2_24_aarch64.whl", hash = "sha256:044d4b125a5cd63fd3fe8772d7ada7dc19b61b5763ec3d7f757a77425cab80bb"},
+    {file = "obstore-0.6.0-cp313-cp313-musllinux_1_2_aarch64.whl", hash = "sha256:fead1c226d8c4dfcaaec8441d9cf713cd46ce774561a7f12f512c60cbb319ccf"},
+    {file = "obstore-0.6.0-cp313-cp313-musllinux_1_2_armv7l.whl", hash = "sha256:6bd2f93287240d6812abcfb65207b81e6fd53e1aa641d4aa638053a2e34d991d"},
+    {file = "obstore-0.6.0-cp313-cp313-musllinux_1_2_i686.whl", hash = "sha256:8d6f7d607599ff9e019433736b940497f320f5cac0956a1ff360b15deed8af1f"},
+    {file = "obstore-0.6.0-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:40e659ed0b1b4db447dd41b1b47f06f7ca2df1df119200ce815f7aa64616d083"},
+    {file = "obstore-0.6.0-cp313-cp313-win_amd64.whl", hash = "sha256:bec5e38903ea6e8f24a327c07db45b3d3ce8979a98170e6097636bb5dfc07f75"},
+    {file = "obstore-0.6.0-cp39-cp39-macosx_10_12_x86_64.whl", hash = "sha256:8643223c50dc12f8bf4fd768f175e5cb307c40380bd26bece0565ae8c19baff5"},
+    {file = "obstore-0.6.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:22ff29597d5c471a16f04eb104de8cdcfef75e3310be290c6e8bbea684ffa951"},
+    {file = "obstore-0.6.0-cp39-cp39-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:4814044fc7b3e63158c4b0822a221c1a25bd977691d505ce968cced9199a15da"},
+    {file = "obstore-0.6.0-cp39-cp39-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:418e9664ce72b4f97cc70812e0809b302e725904f15640f3cd4c8a2785f7fa6e"},
+    {file = "obstore-0.6.0-cp39-cp39-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:7d55d87b04e2916238d21ff90d2b05ca04deada403acac5c796ba1bb7f4d4e69"},
+    {file = "obstore-0.6.0-cp39-cp39-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:d43e6e913fbb9b3271dfad1df662512f3a3d2db4394b09644c670c5873d15c73"},
+    {file = "obstore-0.6.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:64d1912b36b9181df86a080a86fe58a1f6d0936848ea22c03ecdfd50bdb5c801"},
+    {file = "obstore-0.6.0-cp39-cp39-manylinux_2_24_aarch64.whl", hash = "sha256:7dea40ac516eb04e8858356fbbe0f3d44c49cad78ae2541e624028b9d67edee5"},
+    {file = "obstore-0.6.0-cp39-cp39-musllinux_1_2_aarch64.whl", hash = "sha256:b0fa5861756c14703c970b6f19ff07064320d5a3e2772fd159b3fdce7152625a"},
+    {file = "obstore-0.6.0-cp39-cp39-musllinux_1_2_armv7l.whl", hash = "sha256:ea3d241b57a6cd2fc04d77387bd5d2f98322995eb2d5633e6f0bca70159edc54"},
+    {file = "obstore-0.6.0-cp39-cp39-musllinux_1_2_i686.whl", hash = "sha256:9349a400d2e4e5a55420f51b1472f632240ec0b19d3a96e09df3adc9703dfa73"},
+    {file = "obstore-0.6.0-cp39-cp39-musllinux_1_2_x86_64.whl", hash = "sha256:5ac2792c71b4d3b538cf04328f05fb8adb091a6773363f93b8353bbb7bb04873"},
+    {file = "obstore-0.6.0-cp39-cp39-win_amd64.whl", hash = "sha256:4a513cf77cd71ae2771ae0d7a9593df198da8fe184d1c8aeb68d3d6dbc41155d"},
+    {file = "obstore-0.6.0-pp310-pypy310_pp73-macosx_10_12_x86_64.whl", hash = "sha256:480e0d2308bf40fa6c0383a9b91cb3c8826f382983a7df3e409310af1959598c"},
+    {file = "obstore-0.6.0-pp310-pypy310_pp73-macosx_11_0_arm64.whl", hash = "sha256:5d5e165d71bef5d99d788550dee1496c36a0e1a7f26d4487d5598ff827ba4f7e"},
+    {file = "obstore-0.6.0-pp310-pypy310_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:4c66cf62f19d80bd5ec6e63e79dcf5e56312ae5246b3443bbe6653342eed4784"},
+    {file = "obstore-0.6.0-pp310-pypy310_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:81f917827608a9f4b142f87c06b5b49c3001955f2028ce2ff9a13b706a007fd9"},
+    {file = "obstore-0.6.0-pp310-pypy310_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:0d6d2e529917729ce46c5f8b955c7717155f2a03f7a0a5792684a1721c7ea076"},
+    {file = "obstore-0.6.0-pp310-pypy310_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:93535ab94a86f975dbc530bb2d9a7992ccf30012fd1ba47da36214221779729b"},
+    {file = "obstore-0.6.0-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a25b2af8318e1a5579f6e80b676aa18eac9d34a1d120b5cddfe3e14b7c5a8d7c"},
+    {file = "obstore-0.6.0-pp310-pypy310_pp73-manylinux_2_24_aarch64.whl", hash = "sha256:ef910286325f485822f444eb362e1f8de39a9c5c5c3ff2a6274f85f6c7fc3c69"},
+    {file = "obstore-0.6.0-pp310-pypy310_pp73-musllinux_1_2_aarch64.whl", hash = "sha256:340ad9e35d1f319d5e741e4b13a343efbee0085b82ebdbcdbbb500ec4424a9bb"},
+    {file = "obstore-0.6.0-pp310-pypy310_pp73-musllinux_1_2_armv7l.whl", hash = "sha256:13df87a699dd50affc2825fc3ed7f3df264fb77464e862b3c64bec773ce6504b"},
+    {file = "obstore-0.6.0-pp310-pypy310_pp73-musllinux_1_2_i686.whl", hash = "sha256:9cc487e965f9a791deee00e61a1ac495102907c1bc9241647007a62a36694726"},
+    {file = "obstore-0.6.0-pp310-pypy310_pp73-musllinux_1_2_x86_64.whl", hash = "sha256:5c351f1be70040a0399138d6273b9e384e35f60d780b8fecedf8bbcce70b2aba"},
+]
+
+[package.dependencies]
+typing-extensions = {version = "*", markers = "python_full_version < \"3.12.0\""}
+
+[[package]]
 name = "ollama"
 version = "0.4.8"
 description = "The official Python client for Ollama."
@@ -2755,14 +2845,14 @@ pydantic = ">=2.9.0,<3.0.0"
 
 [[package]]
 name = "openai"
-version = "1.76.0"
+version = "1.75.0"
 description = "The official Python library for the openai API"
 optional = false
 python-versions = ">=3.8"
 groups = ["main", "dev"]
 files = [
-    {file = "openai-1.76.0-py3-none-any.whl", hash = "sha256:a712b50e78cf78e6d7b2a8f69c4978243517c2c36999756673e07a14ce37dc0a"},
-    {file = "openai-1.76.0.tar.gz", hash = "sha256:fd2bfaf4608f48102d6b74f9e11c5ecaa058b60dad9c36e409c12477dfd91fb2"},
+    {file = "openai-1.75.0-py3-none-any.whl", hash = "sha256:fe6f932d2ded3b429ff67cc9ad118c71327db32eb9d32dd723de3acfca337125"},
+    {file = "openai-1.75.0.tar.gz", hash = "sha256:fb3ea907efbdb1bcfd0c44507ad9c961afd7dce3147292b54505ecfd17be8fd1"},
 ]
 
 [package.dependencies]
@@ -2791,7 +2881,7 @@ files = [
     {file = "opentelemetry_api-1.33.1-py3-none-any.whl", hash = "sha256:4db83ebcf7ea93e64637ec6ee6fabee45c5cbe4abd9cf3da95c43828ddb50b83"},
     {file = "opentelemetry_api-1.33.1.tar.gz", hash = "sha256:1c6055fc0a2d3f23a50c7e17e16ef75ad489345fd3df1f8b8af7c0bbf8a109e8"},
 ]
-markers = {main = "extra == \"acp\" or extra == \"beeai-platform\" or extra == \"a2a\""}
+markers = {main = "extra == \"a2a\" or extra == \"acp\" or extra == \"beeai-platform\""}
 
 [package.dependencies]
 deprecated = ">=1.2.6"
@@ -2974,7 +3064,7 @@ files = [
     {file = "opentelemetry_sdk-1.33.1-py3-none-any.whl", hash = "sha256:19ea73d9a01be29cacaa5d6c8ce0adc0b7f7b4d58cc52f923e4413609f670112"},
     {file = "opentelemetry_sdk-1.33.1.tar.gz", hash = "sha256:85b9fcf7c3d23506fbc9692fd210b8b025a1920535feec50bd54ce203d57a531"},
 ]
-markers = {main = "extra == \"acp\" or extra == \"beeai-platform\" or extra == \"a2a\""}
+markers = {main = "extra == \"a2a\" or extra == \"acp\" or extra == \"beeai-platform\""}
 
 [package.dependencies]
 opentelemetry-api = "1.33.1"
@@ -2992,7 +3082,7 @@ files = [
     {file = "opentelemetry_semantic_conventions-0.54b1-py3-none-any.whl", hash = "sha256:29dab644a7e435b58d3a3918b58c333c92686236b30f7891d5e51f02933ca60d"},
     {file = "opentelemetry_semantic_conventions-0.54b1.tar.gz", hash = "sha256:d1cecedae15d19bdaafca1e56b29a66aa286f50b5d08f036a145c7f3e9ef9cee"},
 ]
-markers = {main = "extra == \"acp\" or extra == \"beeai-platform\" or extra == \"a2a\""}
+markers = {main = "extra == \"a2a\" or extra == \"acp\" or extra == \"beeai-platform\""}
 
 [package.dependencies]
 deprecated = ">=1.2.6"
@@ -4695,7 +4785,7 @@ description = "The little ASGI library that shines."
 optional = true
 python-versions = ">=3.9"
 groups = ["main"]
-markers = "extra == \"acp\" or extra == \"beeai-platform\" or extra == \"a2a\" or extra == \"mcp\""
+markers = "extra == \"a2a\" or extra == \"mcp\" or extra == \"acp\" or extra == \"beeai-platform\""
 files = [
     {file = "starlette-0.46.2-py3-none-any.whl", hash = "sha256:595633ce89f8ffa71a015caed34a5b2dc1c0cdb3f0f1fbd1e69339cf2abeec35"},
     {file = "starlette-0.46.2.tar.gz", hash = "sha256:7f7361f34eed179294600af672f565727419830b54b7b084efe44bb82d2fccd5"},
@@ -5464,7 +5554,7 @@ files = [
     {file = "wrapt-1.17.2-py3-none-any.whl", hash = "sha256:b18f2d1533a71f069c7f82d524a52599053d4c7166e9dd374ae2136b7f40f7c8"},
     {file = "wrapt-1.17.2.tar.gz", hash = "sha256:41388e9d4d1522446fe79d3213196bd9e3b301a336965b9e27ca2788ebd122f3"},
 ]
-markers = {main = "extra == \"acp\" or extra == \"beeai-platform\" or extra == \"a2a\""}
+markers = {main = "extra == \"a2a\" or extra == \"acp\" or extra == \"beeai-platform\""}
 
 [[package]]
 name = "xxhash"
@@ -5867,4 +5957,4 @@ wikipedia = ["wikipedia-api"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">= 3.11,<4.0"
-content-hash = "e35493edf8ca1b0343880464670f9ed80fb82be7cfa575a76f69131621011e32"
+content-hash = "629a784d3334fd3fbf822f4fb6c932226eacb995bfaa59c6d5d73697cc142e94"
