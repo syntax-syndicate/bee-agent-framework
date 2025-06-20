@@ -1503,7 +1503,7 @@ description = "Consume Server-Sent Event (SSE) messages with HTTPX."
 optional = true
 python-versions = ">=3.8"
 groups = ["main"]
-markers = "extra == \"a2a\" or extra == \"acp\" or extra == \"beeai-platform\" or extra == \"langchain\" or extra == \"mcp\""
+markers = "extra == \"a2a\" or extra == \"acp\" or extra == \"beeai-platform\" or extra == \"langchain\" or extra == \"mcp\" or extra == \"all\""
 files = [
     {file = "httpx-sse-0.4.0.tar.gz", hash = "sha256:1e81a3a3070ce322add1d3529ed42eb5f70817f45ed6ec915ab753f961139721"},
     {file = "httpx_sse-0.4.0-py3-none-any.whl", hash = "sha256:f329af6eae57eaa2bdfd962b42524764af68075ea87370a2de920af5341e318f"},
@@ -2395,7 +2395,7 @@ description = "Model Context Protocol SDK"
 optional = true
 python-versions = ">=3.10"
 groups = ["main"]
-markers = "extra == \"mcp\""
+markers = "extra == \"mcp\" or extra == \"all\""
 files = [
     {file = "mcp-1.6.0-py3-none-any.whl", hash = "sha256:7bd24c6ea042dbec44c754f100984d186620d8b841ec30f1b19eda9b93a634d0"},
     {file = "mcp-1.6.0.tar.gz", hash = "sha256:d9324876de2c5637369f43161cd71eebfd803df5a95e46225cab8d280e366723"},
@@ -4777,7 +4777,7 @@ description = "SSE plugin for Starlette"
 optional = true
 python-versions = ">=3.9"
 groups = ["main"]
-markers = "extra == \"a2a\" or extra == \"mcp\""
+markers = "extra == \"a2a\" or extra == \"mcp\" or extra == \"all\""
 files = [
     {file = "sse_starlette-2.3.3-py3-none-any.whl", hash = "sha256:8b0a0ced04a329ff7341b01007580dd8cf71331cc21c0ccea677d500618da1e0"},
     {file = "sse_starlette-2.3.3.tar.gz", hash = "sha256:fdd47c254aad42907cfd5c5b83e2282be15be6c51197bf1a9b70b8e990522072"},
@@ -4798,7 +4798,7 @@ description = "The little ASGI library that shines."
 optional = true
 python-versions = ">=3.9"
 groups = ["main"]
-markers = "extra == \"a2a\" or extra == \"mcp\" or extra == \"acp\" or extra == \"beeai-platform\""
+markers = "extra == \"a2a\" or extra == \"mcp\" or extra == \"all\" or extra == \"acp\" or extra == \"beeai-platform\""
 files = [
     {file = "starlette-0.46.2-py3-none-any.whl", hash = "sha256:595633ce89f8ffa71a015caed34a5b2dc1c0cdb3f0f1fbd1e69339cf2abeec35"},
     {file = "starlette-0.46.2.tar.gz", hash = "sha256:7f7361f34eed179294600af672f565727419830b54b7b084efe44bb82d2fccd5"},
@@ -5178,7 +5178,7 @@ description = "The lightning-fast ASGI server."
 optional = true
 python-versions = ">=3.9"
 groups = ["main"]
-markers = "extra == \"acp\" or extra == \"beeai-platform\" or extra == \"mcp\" or extra == \"a2a\""
+markers = "extra == \"acp\" or extra == \"beeai-platform\" or extra == \"mcp\" or extra == \"all\" or extra == \"a2a\""
 files = [
     {file = "uvicorn-0.34.2-py3-none-any.whl", hash = "sha256:deb49af569084536d269fe0a6d67e3754f104cf03aba7c11c40f01aadf33c403"},
     {file = "uvicorn-0.34.2.tar.gz", hash = "sha256:0e929828f6186353a80b58ea719861d2629d766293b6d19baf086ba31d4f3328"},
@@ -5959,6 +5959,7 @@ cffi = ["cffi (>=1.11)"]
 [extras]
 a2a = ["a2a-sdk", "uvicorn"]
 acp = ["acp-sdk", "uvicorn"]
+all = ["mcp"]
 beeai-platform = ["acp-sdk", "uvicorn"]
 duckduckgo = ["duckduckgo-search"]
 huggingface = []
@@ -5970,4 +5971,4 @@ wikipedia = ["wikipedia-api"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">= 3.11,<4.0"
-content-hash = "ad3e7f0d584ed140a297f67225c0a90b54059f471a49acf7606cb8e90c9ec676"
+content-hash = "f2a2332082f2ecf2912d2c61bbc6d69977ecfb09a396ae4b3f26eddc52665b16"
