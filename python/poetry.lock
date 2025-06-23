@@ -893,15 +893,15 @@ wmi = ["wmi (>=1.5.1)"]
 
 [[package]]
 name = "duckduckgo-search"
-version = "8.0.2"
+version = "8.0.4"
 description = "Search for words, documents, images, news, maps and text translation using the DuckDuckGo.com search engine."
 optional = true
 python-versions = ">=3.9"
 groups = ["main"]
 markers = "extra == \"search\" or extra == \"duckduckgo\""
 files = [
-    {file = "duckduckgo_search-8.0.2-py3-none-any.whl", hash = "sha256:b5ff8b6b8f169b8e1b15a788a5749aa900ebcefd6e1ab485787582f8d5b4f1ef"},
-    {file = "duckduckgo_search-8.0.2.tar.gz", hash = "sha256:3109a99967b29cab8862823bbe320d140d5c792415de851b9d6288de2311b3ec"},
+    {file = "duckduckgo_search-8.0.4-py3-none-any.whl", hash = "sha256:22490e83c0ca885998d6623d8274f24934faffc43dac3c3482fe24ea4f6799bb"},
+    {file = "duckduckgo_search-8.0.4.tar.gz", hash = "sha256:02aee731d05056a6bbf217c51faddd0b9565c5ce1e94d0278cbd2fbcc0e41b95"},
 ]
 
 [package.dependencies]
@@ -5971,4 +5971,4 @@ wikipedia = ["wikipedia-api"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">= 3.11,<4.0"
-content-hash = "f2a2332082f2ecf2912d2c61bbc6d69977ecfb09a396ae4b3f26eddc52665b16"
+content-hash = "8550009e6686e7f95664b9445fb927897380eadb15555d0058834b726651142f"
