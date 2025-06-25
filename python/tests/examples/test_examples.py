@@ -28,6 +28,7 @@ exclude = list(
     filter(
         None,
         [
+            "_*.py",
             "helpers/io.py",
             "backend/providers/watsonx.py" if os.getenv("WATSONX_API_KEY") is None else None,
             "backend/providers/ollama.py" if os.getenv("OLLAMA_BASE_URL") is None else None,
