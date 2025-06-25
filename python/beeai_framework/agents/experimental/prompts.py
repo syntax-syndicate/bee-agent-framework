@@ -124,9 +124,7 @@ This is the expected criteria for your output:
 {{.}}
 
 {{/expected_output}}
-
-Your task: {{prompt}}
-""",
+Your task: {{prompt}}""",
     )
 )
 
