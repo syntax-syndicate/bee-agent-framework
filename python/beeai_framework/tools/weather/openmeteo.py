@@ -19,7 +19,7 @@ from urllib.parse import urlencode
 
 import httpx
 import requests
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from beeai_framework.context import RunContext
 from beeai_framework.emitter.emitter import Emitter
@@ -44,6 +44,14 @@ class OpenMeteoToolInput(BaseModel):
     temperature_unit: Literal["celsius", "fahrenheit"] = Field(
         description="The unit to express temperature", default="celsius"
     )
+
+    @classmethod
+    @field_validator("temperature_unit", mode="before")
+    def _to_lower(cls, value: Any) -> Any:
+        if isinstance(value, str):
+            return value.lower()
+        else:
+            return value
 
 
 class OpenMeteoTool(Tool[OpenMeteoToolInput, ToolRunOptions, JSONToolOutput[dict[str, Any]]]):
