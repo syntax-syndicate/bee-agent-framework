@@ -1,7 +1,6 @@
 import asyncio
 
 from beeai_framework.agents.experimental import RequirementAgent
-from beeai_framework.agents.experimental.requirements import Requirement
 from beeai_framework.agents.experimental.requirements.conditional import ConditionalRequirement
 from beeai_framework.backend import ChatModel
 from beeai_framework.middleware.trajectory import GlobalTrajectoryMiddleware
