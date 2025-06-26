@@ -41,7 +41,7 @@ jobs:
       - name: Code Format
         run: poe format
       - name: Commits Lint
-        run: cz check --rev-range HEAD~1..HEAD
+        run: poetry run cz check --rev-range HEAD~1..HEAD
       - name: Build
         run: poetry build
       - name: Unit Tests
