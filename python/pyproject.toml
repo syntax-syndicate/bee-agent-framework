@@ -12,7 +12,7 @@ maintainers = [
 requires-python = ">=3.11,<4.0"
 
 [project.urls]
-homepage = "https://iambee.ai"
+homepage = "https://framework.beeai.dev/"
 repository = "https://github.com/i-am-bee/beeai-framework"
 documentation = "https://i-am-bee.github.io/beeai-framework/#/python/"
 
