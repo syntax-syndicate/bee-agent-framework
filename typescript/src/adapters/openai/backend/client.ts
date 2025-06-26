@@ -15,26 +15,15 @@
  */
 
 import { createOpenAI, OpenAIProvider, OpenAIProviderSettings } from "@ai-sdk/openai";
-import { getEnv, parseEnv } from "@/internals/env.js";
-import { z } from "zod";
+import { getEnv } from "@/internals/env.js";
 import { BackendClient } from "@/backend/client.js";
-import { vercelFetcher } from "@/adapters/vercel/backend/utils.js";
+import { parseHeadersFromEnv, vercelFetcher } from "@/adapters/vercel/backend/utils.js";
 
 export type OpenAIClientSettings = OpenAIProviderSettings;
 
 export class OpenAIClient extends BackendClient<OpenAIClientSettings, OpenAIProvider> {
   protected create(): OpenAIProvider {
-    const extraHeaders = parseEnv(
-      "OPENAI_API_HEADERS",
-      z.preprocess((value) => {
-        return Object.fromEntries(
-          String(value || "")
-            .split(",")
-            .filter((pair) => pair.includes("="))
-            .map((pair) => pair.split("=")),
-        );
-      }, z.record(z.string())),
-    );
+    const extraHeaders = parseHeadersFromEnv("OPENAI_API_HEADERS");
 
     const baseURL = this.settings?.baseURL || getEnv("OPENAI_API_ENDPOINT");
     let compatibility: string | undefined =

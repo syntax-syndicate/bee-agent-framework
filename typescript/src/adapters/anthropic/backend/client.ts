@@ -16,25 +16,14 @@
 
 import { createAnthropic, AnthropicProvider, AnthropicProviderSettings } from "@ai-sdk/anthropic";
 import { BackendClient } from "@/backend/client.js";
-import { getEnv, parseEnv } from "@/internals/env.js";
-import { z } from "zod";
-import { vercelFetcher } from "@/adapters/vercel/backend/utils.js";
+import { getEnv } from "@/internals/env.js";
+import { parseHeadersFromEnv, vercelFetcher } from "@/adapters/vercel/backend/utils.js";
 
 export type AnthropicClientSettings = AnthropicProviderSettings;
 
 export class AnthropicClient extends BackendClient<AnthropicClientSettings, AnthropicProvider> {
   protected create(): AnthropicProvider {
-    const extraHeaders = parseEnv(
-      "ANTHROPIC_API_HEADERS",
-      z.preprocess((value) => {
-        return Object.fromEntries(
-          String(value || "")
-            .split(",")
-            .filter((pair) => pair.includes("="))
-            .map((pair) => pair.split("=")),
-        );
-      }, z.record(z.string())),
-    );
+    const extraHeaders = parseHeadersFromEnv("ANTHROPIC_API_HEADERS");
 
     return createAnthropic({
       ...this.settings,

@@ -1,4 +1,5 @@
 /**
+ import { parseEnv } from "@/internals/env.js";
  * Copyright 2025 © BeeAI a Series of LF Projects, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +19,8 @@ import { CustomMessage, Role, UserMessage } from "@/backend/message.js";
 import { isPlainObject, isString, isTruthy } from "remeda";
 import { getProp } from "@/internals/helpers/object.js";
 import { TextPart } from "ai";
+import { z } from "zod";
+import { parseEnv } from "@/internals/env.js";
 
 export function encodeCustomMessage(msg: CustomMessage): UserMessage {
   return new UserMessage([
@@ -87,4 +90,18 @@ export function vercelFetcher(customFetch?: typeof fetch): typeof fetch {
     const fetcher = customFetch ?? fetch;
     return await fetcher(url, options);
   };
+}
+
+export function parseHeadersFromEnv(env: string): Record<string, any> {
+  return parseEnv(
+    env,
+    z.preprocess((value) => {
+      return Object.fromEntries(
+        String(value || "")
+          .split(",")
+          .filter((pair) => pair.includes("="))
+          .map((pair) => pair.split("=")),
+      );
+    }, z.record(z.string())),
+  );
 }
