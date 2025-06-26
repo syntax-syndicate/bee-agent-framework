@@ -1,3 +1,23 @@
+## python_v0.1.26 (2025-06-26)
+
+### Bug Fixes
+
+- **agents**: remove extra new lines in the system prompt (RequirementAgent)
+- **backend**: remove non-supported tool choice for strict environments
+- set value for aliases in embedding model (#888)
+
+### Features
+
+- **adapters**: add Mistral AI backend provider
+- **tools**: switch to httpx from requests in OpenMeteoTool, add proxy support
+- **tools**: update description of the ThinkTool
+- **tools**: ignore case sensitivity for OpenMeteoTool's temperature_unit parameter
+- **tools**: update description of the WikipediaTool
+- **agents**: update cycle prevention mechanism
+- **adapters**: update ACP
+- **backend**: allow to set headers for Ollama via ENV
+- update logging in TrajectoryMiddleware
+
 ## python_v0.1.25 (2025-06-13)
 
 ### Bug Fixes
