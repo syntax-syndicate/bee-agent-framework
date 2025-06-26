@@ -40,8 +40,13 @@ jobs:
         run: poetry build
       - name: Run E2E Tests
         run: poe test --type e2e -- --ignore tests/examples/test_examples.py
+        env:
+          OLLAMA_API_BASE: ${{ secrets.OLLAMA_API_BASE }}
+          OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+          BEEAI_OPEN_METEO_TOOL_PROXY: ${{ secrets.PROXY }}
       - name: Run Examples
         run: poe test --type e2e -- tests/examples/test_examples.py
         env:
           OLLAMA_API_BASE: ${{ secrets.OLLAMA_API_BASE }}
           OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+          BEEAI_OPEN_METEO_TOOL_PROXY: ${{ secrets.PROXY }}
