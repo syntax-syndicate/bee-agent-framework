@@ -5,9 +5,9 @@ license = "Apache-2.0"
 readme = "README.md"
 authors = [{ name = "IBM Corp." }]
 maintainers = [
-    { name = "Michael Desmond", email = "michael.desmond@gmail.com" },
+    { name = "Tomas Dvorak", email = "toomas2d@gmail.com" },
     { name = "Lukáš Janeček", email = "xjacka@gmail.com" },
-    { name = "Tomas Dvorak", email = "toomas2d@gmail.com" }
+    { name = "Michael Desmond", email = "michael.desmond@gmail.com" }
 ]
 requires-python = ">=3.11,<4.0"
 
