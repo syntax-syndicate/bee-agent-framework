@@ -27,7 +27,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install poetry
-        run: pipx install poetry
+        run: pipx install poetry==2.1.1
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -37,9 +37,9 @@ jobs:
       - name: Build
         run: poetry build
       - name: Run E2E Tests
-        run: poetry run poe test --type e2e --ignore tests/examples/test_examples.py
+        run: poe test --type e2e -- --ignore tests/examples/test_examples.py
       - name: Run Examples
-        run: poetry run poe test --type e2e --include tests/examples/test_examples.py
+        run: poe test --type e2e -- tests/examples/test_examples.py
         env:
           OLLAMA_API_BASE: ${{ secrets.OLLAMA_API_BASE }}
           OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
