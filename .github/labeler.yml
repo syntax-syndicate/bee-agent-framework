@@ -1,0 +1,12 @@
+python:
+  - 'python/**'
+
+typescript:
+  - 'typescript/**'
+
+documentation:
+  - 'docs/**'
+  - 'python/docs/**'
+  - 'typescript/docs/**'
+  - '**/*.md'
+  - '**/*.mdx'
