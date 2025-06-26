@@ -31,6 +31,7 @@ exclude = list(
             "_*.py",
             "helpers/io.py",
             "backend/providers/watsonx.py" if os.getenv("WATSONX_API_KEY") is None else None,
+            "backend/providers/mistralai.py" if os.getenv("MISTRALAI_API_KEY") is None else None,
             "backend/providers/ollama.py" if os.getenv("OLLAMA_BASE_URL") is None else None,
             "backend/embedding.py" if os.getenv("OLLAMA_BASE_URL") is None else None,
             "backend/providers/openai_example.py" if os.getenv("OPENAI_API_KEY") is None else None,

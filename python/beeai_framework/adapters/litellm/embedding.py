@@ -72,7 +72,7 @@ class LiteLLMEmbeddingModel(EmbeddingModel, ABC):
 
     def _transform_input(self, model_input: EmbeddingModelInput) -> dict[str, Any]:
         return {
-            "model": f"{self.provider_id}/{self._model_id}",
+            "model": f"{self._litellm_provider_id}/{self._model_id}",
             "input": model_input.values,
             **self._settings,
         }
