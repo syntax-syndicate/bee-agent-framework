@@ -41,6 +41,7 @@ Building agents that work reliably across multiple LLMs is difficult. Most agent
 This example demonstrates how to create an agent with enforced tool execution order:
 
 ```py
+# Create a requirement agent with conditional tool execution
 from beeai_framework.agents.experimental import RequirementAgent
 from beeai_framework.agents.experimental.requirements.conditional import ConditionalRequirement
 
@@ -116,6 +117,7 @@ The conditional requirement controls when tools can be used based on specific co
 This example forces the agent to use `ThinkTool` for reasoning followed by `DuckDuckGoSearchTool` to retrieve data. This trajectory ensures that even a small model can arrive at the correct answer by preventing it from skipping tool calls entirely.
 
 ```py
+# Force execution order: ThinkTool first, then DuckDuckGoSearchTool
 RequirementAgent(
   llm=ChatModel.from_name("ollama:granite3.3:8b"),
   tools=[ThinkTool(), DuckDuckGoSearchTool()],
@@ -137,6 +139,7 @@ Think -> Use a tool -> Think -> Use a tool -> Think -> ... -> End
 You can achieve this by forcing the execution of the `Think` tool after every other tool:
 
 ```py
+# Create a ReAct agent that forces thinking after tool usage
 RequirementAgent(
   llm=ChatModel.from_name("ollama:granite3.3:8b"),
   tools=[ThinkTool(), WikipediaTool(), OpenMeteoTool()],
@@ -153,6 +156,7 @@ For a more general approach, use `ConditionalRequirement(ThinkTool, force_at_ste
 You may want an agent that works like ReAct but skips the "reasoning" step under certain conditions. This example uses the priority option to tell the agent to send an email after creating an order, while calling `ThinkTool` after every other action.
 
 ```py
+# ReAct agent with custom conditions and priorities
 RequirementAgent(
   llm=ChatModel.from_name("ollama:granite3.3:8b"),
   tools=[ThinkTool(), retrieve_basket(), create_order(), send_email()],
@@ -168,12 +172,14 @@ RequirementAgent(
 The following requirement prevents the agent from providing a final answer before it calls the `my_tool`.
 
 ```py
+# Prevent early termination before tool is called
 ConditionalRequirement(my_tool, min_invocations=1)
 ```
 
 ### Complete Parameter Reference
 
 ```py
+# Complete parameter reference for ConditionalRequirement
 ConditionalRequirement(
   target_tool, # Tool class, instance, or name (can also be specified as `target=...`)
   name="", # (optional) Name, useful for logging
@@ -214,6 +220,7 @@ For these tools, you may want to get **approval from an external system or direc
 The following agent firstly asks the user before it runs the `remove_data` or the `get_data` tool.
 
 ```py
+# Agent that asks for permission before using specific tools
 RequirementAgent(
   llm=ChatModel.from_name("ollama:granite3.3:8b"),
   tools=[get_data, remove_data, update_data],
@@ -229,6 +236,7 @@ By default, the approval process is done as a simple prompt in terminal.
 The framework provides a simple way to provide a custom implementation.
 
 ```py
+# Custom permission handler implementation
 async def handler(tool: Tool, input: dict[str, Any]) -> bool:
   # your implementation
   return True
@@ -239,6 +247,7 @@ AskPermissionRequirement(..., handler=handler)
 ### Complete Parameter Reference
 
 ```py
+# Complete parameter reference for AskPermissionRequirement
 AskPermissionRequirement(
   include=[...], # (optional) List of targets (tool name, instance, or class) requiring explicit approval
   exclude=[...], # (optional) List of targets to exclude
