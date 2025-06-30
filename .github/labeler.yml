@@ -1,8 +1,10 @@
 python:
-  - 'python/**'
+  - changed-files:
+    - any-glob-to-any-file: 'python/**'
 
 typescript:
-  - 'typescript/**'
+  - changed-files:
+    - any-glob-to-any-file: 'typescript/**'
 
 documentation:
   - changed-files:
