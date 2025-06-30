@@ -115,7 +115,7 @@ class JSONSchemaModel(ABC, BaseModel):
                 else:
                     return Union[*target_types], target_field  # type: ignore
             else:
-                target_type: type | Any = type_mapping.get(param["type"])
+                target_type: type | Any = type_mapping.get(param.get("type"))  # type: ignore[arg-type]
                 if is_optional:
                     target_type = Optional[target_type] if target_type else type(None)  # noqa: UP007
 
