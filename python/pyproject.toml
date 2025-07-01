@@ -70,8 +70,22 @@ mcp = ["mcp"]
 acp = ["acp-sdk", "uvicorn"]
 beeai-platform = ["acp-sdk", "uvicorn"]
 a2a = ["a2a-sdk", "uvicorn"]
-all = ["langchain", "huggingface", "search", "duckduckgo", "wikipedia", "mcp", "acp", "beeai-platform", "a2a"]
 watsonx-orchestrate = ["uvicorn", "fastapi"]
+all = [
+    "langchain-core",
+    "langchain-community",
+    "langgraph",
+    "langchain-ollama",
+    "datasets",
+    "transformers",
+    "duckduckgo-search",
+    "wikipedia-api",
+    "mcp",
+    "acp-sdk",
+    "uvicorn",
+    "a2a-sdk",
+    "fastapi",
+]
 
 
 [tool.mypy]
