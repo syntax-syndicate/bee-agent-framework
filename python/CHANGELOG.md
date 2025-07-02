@@ -1,3 +1,9 @@
+## python_v0.1.29 (2025-07-02)
+
+### Bug Fixes
+
+- acp-sdk import
+
 ## python_v0.1.28 (2025-07-02)
 
 ### Bug Fixes
