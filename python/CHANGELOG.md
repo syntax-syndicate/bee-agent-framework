@@ -1,3 +1,9 @@
+## python_v0.1.28 (2025-07-02)
+
+### Bug Fixes
+
+- **adapters**: handle result of the RequirementAgent
+
 ## python_v0.1.27 (2025-07-01)
 
 ### Bug Fixes
