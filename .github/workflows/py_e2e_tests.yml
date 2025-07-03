@@ -50,3 +50,4 @@ jobs:
           OLLAMA_API_BASE: ${{ secrets.OLLAMA_API_BASE }}
           OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
           BEEAI_OPEN_METEO_TOOL_PROXY: ${{ secrets.PROXY }}
+          BEEAI_DDG_TOOL_PROXY: ${{ secrets.PROXY }}
