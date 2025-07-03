@@ -1500,7 +1500,7 @@ zstd = ["zstandard (>=0.18.0)"]
 name = "httpx-sse"
 version = "0.4.1"
 description = "Consume Server-Sent Event (SSE) messages with HTTPX."
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
 markers = "extra == \"a2a\" or extra == \"all\" or extra == \"acp\" or extra == \"beeai-platform\" or extra == \"langchain\" or extra == \"mcp\""
@@ -2394,7 +2394,7 @@ files = [
 name = "mcp"
 version = "1.10.1"
 description = "Model Context Protocol SDK"
-optional = false
+optional = true
 python-versions = ">=3.10"
 groups = ["main"]
 markers = "extra == \"mcp\" or extra == \"all\""
@@ -4015,7 +4015,7 @@ cli = ["click (>=5.0)"]
 name = "python-multipart"
 version = "0.0.20"
 description = "A streaming multipart parser for Python"
-optional = false
+optional = true
 python-versions = ">=3.8"
 groups = ["main"]
 markers = "extra == \"acp\" or extra == \"beeai-platform\" or extra == \"all\" or extra == \"mcp\""
@@ -4747,7 +4747,7 @@ sqlcipher = ["sqlcipher3_binary"]
 name = "sse-starlette"
 version = "2.3.3"
 description = "SSE plugin for Starlette"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
 markers = "extra == \"a2a\" or extra == \"all\" or extra == \"mcp\""
@@ -4768,7 +4768,7 @@ uvicorn = ["uvicorn (>=0.34.0)"]
 name = "starlette"
 version = "0.46.2"
 description = "The little ASGI library that shines."
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
 markers = "extra == \"a2a\" or extra == \"all\" or extra == \"mcp\" or extra == \"acp\" or extra == \"beeai-platform\" or extra == \"watsonx-orchestrate\""
@@ -5148,7 +5148,7 @@ zstd = ["zstandard (>=0.18.0)"]
 name = "uvicorn"
 version = "0.34.2"
 description = "The lightning-fast ASGI server."
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
 markers = "(extra == \"mcp\" or extra == \"all\" or extra == \"acp\" or extra == \"beeai-platform\" or extra == \"a2a\" or extra == \"watsonx-orchestrate\") and sys_platform != \"emscripten\" or (extra == \"mcp\" or extra == \"all\" or extra == \"acp\" or extra == \"beeai-platform\" or extra == \"a2a\" or extra == \"watsonx-orchestrate\") and (extra == \"acp\" or extra == \"beeai-platform\" or extra == \"all\" or extra == \"a2a\" or extra == \"watsonx-orchestrate\")"
@@ -5945,4 +5945,4 @@ wikipedia = ["wikipedia-api"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">= 3.11,<4.0"
-content-hash = "c633dc15dbc8e7cdaf1989a6989c6e8d25193543982ff386d2d2476502f84142"
+content-hash = "7d739d7c57716ff39236ea14139d44487cbb15665c364efe5836cc29acfb08b0"
