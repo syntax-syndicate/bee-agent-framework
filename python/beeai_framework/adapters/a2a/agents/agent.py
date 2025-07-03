@@ -97,6 +97,7 @@ class A2AAgent(BaseAgent[A2AAgentRunOutput]):
                 )
 
                 streaming_request: a2a_types.SendStreamingMessageRequest = a2a_types.SendStreamingMessageRequest(
+                    id=str(uuid4().hex),
                     params=a2a_types.MessageSendParams(message=self._convert_to_a2a_message(input))
                 )
 
