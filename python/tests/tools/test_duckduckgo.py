@@ -14,7 +14,6 @@
 
 
 import pytest
-from dotenv import load_dotenv
 
 pytest.importorskip("duckduckgo_search", reason="Optional module [duckduckgo] not installed.")
 
@@ -55,7 +54,6 @@ E2E Tests
 @pytest.mark.e2e
 @pytest.mark.asyncio
 async def test_output(tool: DuckDuckGoSearchTool) -> None:
-    load_dotenv()
     result = await tool.run(
         input=DuckDuckGoSearchToolInput(query="What is the highest mountain of the Czech Republic?")
     )
