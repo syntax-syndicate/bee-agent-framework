@@ -112,15 +112,15 @@ run = '''
 set -eu -o pipefail
 git fetch origin
 [ "$(git rev-parse @)" = "$(git rev-parse @{u})" ] || { echo "Your branch is not up to date! Pull or push changes."; exit 1; }
-[ -z "$(git status -uno --porcelain)" ] || { echo "Your index contains uncommitted changes! Commit them and try again."; exit 1 }
+[ -z "$(git status -uno --porcelain)" ] || { echo "Your index contains uncommitted changes! Commit them and try again."; exit 1; }
 rm -rf build dist || true
 poetry run cz bump --increment PATCH
 perl -i -pe 's{(\[.*?\]\()(?!https?://)(.*?)(\))}{$1https://github.com/i-am-bee/beeai-framework/tree/main$2$3}g' README.md
 poetry publish --build
-echo git add README.md >/dev/null
-echo git checkout HEAD README.md >/dev/null
-echo git push
-echo git push origin $(git describe --tags --exact-match)
+git add README.md >/dev/null
+git checkout HEAD README.md >/dev/null
+git push
+git push origin $(git describe --tags --exact-match)
 '''
 
 # git hooks
