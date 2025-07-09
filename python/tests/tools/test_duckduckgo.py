@@ -46,5 +46,4 @@ async def test_output(tool: DuckDuckGoSearchTool) -> None:
         input=DuckDuckGoSearchToolInput(query="What is the highest mountain of the Czech Republic?")
     )
     assert type(result) is DuckDuckGoSearchToolOutput
-    print(result.get_text_content())
     assert "Sněžka" in result.get_text_content()

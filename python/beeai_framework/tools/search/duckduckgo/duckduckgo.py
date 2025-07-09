@@ -62,9 +62,10 @@ class DuckDuckGoSearchTool(Tool[DuckDuckGoSearchToolInput, ToolRunOptions, DuckD
         self, input: DuckDuckGoSearchToolInput, options: ToolRunOptions | None, context: RunContext
     ) -> DuckDuckGoSearchToolOutput:
         try:
-            results = DDGS(proxy=os.environ.get("BEEAI_DDG_TOOL_PROXY")).text(
-                input.query, max_results=self.max_results, safesearch=self.safe_search
-            )
+            results = DDGS(
+                proxy=os.environ.get("BEEAI_DDG_TOOL_PROXY"),
+                verify=os.environ.get("BEEAI_DDG_TOOL_PROXY_VERIFY", "").lower() != "false",
+            ).text(input.query, max_results=self.max_results, safesearch=self.safe_search)
             search_results: list[SearchToolResult] = [
                 DuckDuckGoSearchToolResult(
                     title=result.get("title") or "", description=result.get("body") or "", url=result.get("href") or ""
