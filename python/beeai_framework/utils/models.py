@@ -80,45 +80,66 @@ class JSONSchemaModel(ABC, BaseModel):
             "null": None,
         }
 
-        fields: dict[str, tuple[type, Any]] = {}
+        fields: dict[str, tuple[type, FieldInfo]] = {}
         required = set(schema.get("required", []))
 
         def create_field(param_name: str, param: dict[str, Any]) -> tuple[type, Any]:
-            is_optional = param_name not in required
+            any_of = param.get("anyOf")
+            one_of = param.get("oneOf")
+            default = param.get("default")
+            const = param.get("const")
+
             target_field = Field(
                 description=param.get("description"),
-                default=None if is_optional else param["const"] if param.get("const") else ...,
+                default=default if default else const if const else None,
             )
 
-            if "oneOf" in param:
+            if one_of:
                 logger.debug(
                     f"{JSONSchemaModel.__name__}: does not support 'oneOf' modifier found in {param_name} attribute."
                     f" Will use 'anyOf' instead."
                 )
                 return create_field(param_name, remap_key(param, source="oneOf", target="anyOf"))
 
-            if "anyOf" in param:
-                target_types: list[type] = [create_field(f"option_{i}", t)[0] for i, t in enumerate(param["anyOf"])]
+            if any_of:
+                target_types: list[type] = [create_field(param_name, t)[0] for t in param["anyOf"]]
                 if len(target_types) == 1:
                     return create_field(param_name, remap_key(param, source="anyOf", target="type"))
                 else:
                     return Union[*target_types], target_field  # type: ignore
+
             else:
-                target_type: type | Any = type_mapping.get(param.get("type"))  # type: ignore[arg-type]
-                if is_optional:
+                raw_type = param.get("type")
+                enum = param.get("enum")
+
+                target_type: type | Any = type_mapping.get(raw_type)  # type: ignore[arg-type]
+
+                if target_type is dict:
+                    target_type = cls.create(param_name, param)
+
+                if target_type is list:
+                    target_type = list[create_field(param_name, param.get("items"))[0]]  # type: ignore
+
+                is_required = param_name in required
+                explicitly_nullable = (
+                    raw_type == "null"
+                    or (isinstance(raw_type, list) and "null" in raw_type)
+                    or (any_of and any(t.get("type") == "null" for t in any_of))
+                    or (one_of and any(t.get("type") == "null" for t in one_of))
+                )
+                if (not is_required and not default) or explicitly_nullable:
                     target_type = Optional[target_type] if target_type else type(None)  # noqa: UP007
 
-                if isinstance(param.get("const"), str):
-                    target_type = Literal[param["const"]]
+                if enum is not None and isinstance(enum, list):
+                    target_type = Literal[tuple(enum)]
+                if isinstance(const, str):
+                    target_type = Literal[const]
                 if not target_type:
                     logger.debug(
                         f"{JSONSchemaModel.__name__}: Can't resolve a correct type for '{param_name}' attribute."
                         f" Using 'Any' as a fallback."
                     )
                     target_type = type
-
-                if target_type is dict:
-                    target_type = cls.create(param_name, param)
 
             return (
                 target_type,
@@ -133,9 +154,11 @@ class JSONSchemaModel(ABC, BaseModel):
             fields[param_name] = create_field(param_name, param)
 
         model: type[JSONSchemaModel] = create_model(  # type: ignore
-            schema_name, **fields, __base__=cls
+            schema_name, __base__=cls, **fields
         )
+
         model._custom_json_schema = schema
+
         return model
 
 
