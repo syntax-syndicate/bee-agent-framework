@@ -52,7 +52,7 @@ class A2AServerMetadata(TypedDict, total=False):
     capabilities: a2a_types.AgentCapabilities
     skills: list[a2a_types.AgentSkill]
     queue_manager: a2a_server_events.QueueManager | None
-    push_notifier: a2a_server_tasks.PushNotifier | None
+    push_notifier: a2a_server_tasks.PushNotificationSender | None
     request_context_builder: a2a_agent_execution.RequestContextBuilder | None
 
 
@@ -80,7 +80,7 @@ class A2AServer(
             agent_executor=executor,
             task_store=a2a_server.tasks.InMemoryTaskStore(),
             queue_manager=config.get("queue_manager", None),
-            push_notifier=config.get("push_notifier", None),
+            push_sender=config.get("push_sender", config.get("push_notifier", None)),  # type: ignore
             request_context_builder=config.get("request_context_builder", None),
         )
 
