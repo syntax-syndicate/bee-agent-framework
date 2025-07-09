@@ -107,6 +107,7 @@ outputs = { auto = true }
 # release
 
 ["python:release"]
+dir = "{{config_root}}/python"
 run = '''
 #!/bin/bash
 set -eu -o pipefail
