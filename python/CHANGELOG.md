@@ -1,3 +1,23 @@
+## python_v0.1.30 (2025-07-09)
+
+### Bug Fixes
+
+- **internals**: handle optional fields and types correctly in MCP JSON schema parsing (#902)
+- **backend**: add missing usage data during streaming (#910)
+- **tools**: fix session in MCP tool (#901)
+- **adapters**: prevent duplicate registration on module reload
+- **adapters**: ACP invalid type
+
+### Features
+
+- **tools**: allow to disable SSL proxy verify in DDG
+- **adapters**: add async serve version for ACP (#914)
+- switch to Mise (#908)
+- **adapters**: adding Groq adapter embedding and modifiying associated docs (#907)
+- **tools**: allow proxy to be set via environment variable in DDG
+- **adapters**: update A2A integration
+- **adapters**: add RequirementAgent support for A2A
+
 ## python_v0.1.29 (2025-07-02)
 
 ### Bug Fixes
