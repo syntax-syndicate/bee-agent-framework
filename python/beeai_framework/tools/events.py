@@ -4,32 +4,32 @@
 from types import NoneType
 from typing import Any
 
-from pydantic import BaseModel, InstanceOf
+from pydantic import BaseModel, InstanceOf, SerializeAsAny
 
 from beeai_framework.errors import FrameworkError
 from beeai_framework.tools.types import ToolOutput, ToolRunOptions
 
 
 class ToolStartEvent(BaseModel):
-    input: InstanceOf[BaseModel]
+    input: SerializeAsAny[BaseModel]
     options: ToolRunOptions | None = None
 
 
 class ToolSuccessEvent(BaseModel):
     output: InstanceOf[ToolOutput]
-    input: InstanceOf[BaseModel]
+    input: SerializeAsAny[BaseModel]
     options: ToolRunOptions | None = None
 
 
 class ToolErrorEvent(BaseModel):
     error: InstanceOf[FrameworkError]
-    input: InstanceOf[BaseModel] | dict[str, Any]
+    input: SerializeAsAny[BaseModel] | dict[str, Any]
     options: ToolRunOptions | None = None
 
 
 class ToolRetryEvent(BaseModel):
     error: InstanceOf[FrameworkError]
-    input: InstanceOf[BaseModel]
+    input: SerializeAsAny[BaseModel]
     options: ToolRunOptions | None = None
 
 
