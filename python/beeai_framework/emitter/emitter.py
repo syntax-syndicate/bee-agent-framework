@@ -116,6 +116,7 @@ class Emitter:
                 is_blocking=True,
                 once=False,
                 persistent=True,
+                match_nested=False,
             ),
         )
 
