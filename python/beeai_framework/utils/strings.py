@@ -71,7 +71,7 @@ def to_json(input: Any, *, indent: int | None = None, sort_keys: bool = True, ex
     def fallback(value: Any) -> Any:
         return to_json_serializable(value, exclude_none=exclude_none)
 
-    return json.dumps(input, ensure_ascii=False, default=fallback, sort_keys=sort_keys, indent=indent)
+    return json.dumps(fallback(input), ensure_ascii=False, default=fallback, sort_keys=sort_keys, indent=indent)
 
 
 def to_safe_word(phrase: str) -> str:
