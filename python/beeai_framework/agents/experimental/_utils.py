@@ -22,7 +22,7 @@ def _create_system_message(
             ],
             final_answer_name=request.final_answer.name,
             final_answer_schema=to_json(
-                request.final_answer.input_schema.model_json_schema(mode="validation"), indent=2
+                request.final_answer.input_schema.model_json_schema(mode="validation"), indent=2, sort_keys=False
             )
             if request.final_answer.custom_schema
             else None,

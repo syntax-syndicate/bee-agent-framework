@@ -137,7 +137,9 @@ class LiteLLMChatModel(ChatModel, ABC):
                         else {
                             "role": "assistant",
                             "content": to_json(
-                                {"tool_call_id": content.tool_call_id, "result": content.result}, indent=2
+                                {"tool_call_id": content.tool_call_id, "result": content.result},
+                                indent=2,
+                                sort_keys=False,
                             ),
                         }
                     )
@@ -168,7 +170,10 @@ class LiteLLMChatModel(ChatModel, ABC):
                         "role": "assistant",
                         "content": [
                             *msg_text_content,
-                            *[MessageTextContent(text=to_json(t, indent=2)).model_dump() for t in msg_tool_calls],
+                            *[
+                                MessageTextContent(text=to_json(t, indent=2, sort_keys=False)).model_dump()
+                                for t in msg_tool_calls
+                            ],
                         ]
                         or None,
                     }

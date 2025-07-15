@@ -163,7 +163,7 @@ IMPORTANT: You MUST answer with a JSON object that matches the JSON schema above
 
         input_messages = input.messages
         messages: list[AnyMessage] = [
-            SystemMessage(system_template.render({"schema": to_json(json_schema, indent=4)})),
+            SystemMessage(system_template.render({"schema": to_json(json_schema, indent=4, sort_keys=False)})),
             *input_messages,
         ]
 
