@@ -96,7 +96,7 @@ async def watson_tool_calling() -> None:
     watsonx_llm = ChatModel.from_name(
         "watsonx:ibm/granite-3-3-8b-instruct",
     )
-    user_message = UserMessage(f"What is the current weather in Boston? Current date is {datetime.date.today()}.")
+    user_message = UserMessage(f"What is the current weather in Boston? Current date is {datetime.datetime.today()}.")
     weather_tool = OpenMeteoTool()
     response = await watsonx_llm.create(messages=[user_message], tools=[weather_tool])
     tool_call_msg = response.get_tool_calls()[0]

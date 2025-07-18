@@ -167,7 +167,7 @@ lint.select = [
     "ASYNC", # async
 ]
 force-exclude = true
-lint.ignore = ["ANN401", "B904", "RUF001"]
+lint.ignore = ["ANN401", "B904", "RUF001", "DTZ002"]
 lint.fixable = ["ALL"]
 lint.unfixable = []
 line-length = 120
