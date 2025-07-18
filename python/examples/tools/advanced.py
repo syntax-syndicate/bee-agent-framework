@@ -11,7 +11,7 @@ async def main() -> None:
     tool = OpenMeteoTool()
     result = await tool.run(
         input=OpenMeteoToolInput(
-            location_name="New York", start_date=date(2025, 1, 1), end_date=date(2025, 1, 2), temperature_unit="celsius"
+            location_name="New York", start_date=date.today(), end_date=date.today(), temperature_unit="celsius"
         )
     )
     print(result.get_text_content())
