@@ -22,7 +22,6 @@ lychee \
   --verbose \
   --no-progress \
   --exclude '(github)\.com' \
-  --include-fragments \
   --max-concurrency 10 \
   --max-retries 0 \
   --exclude-path python \
