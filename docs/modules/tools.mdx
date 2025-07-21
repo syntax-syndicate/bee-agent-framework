@@ -77,7 +77,7 @@ import { OpenMeteoTool } from "beeai-framework/tools/weather/openMeteo";
 
 const tool = new OpenMeteoTool();
 
-const today = new Date().toISOString().split('T')[0];
+const today = new Date().toISOString().split("T")[0];
 const result = await tool.run({
   location: { name: "New York" },
   start_date: today,
@@ -145,7 +145,7 @@ console.log(tool.inputSchema()); // (zod/json schema)
 
 await tool.cache.clear();
 
-const today = new Date().toISOString().split('T')[0]
+const today = new Date().toISOString().split("T")[0];
 const result = await tool.run({
   location: { name: "New York" },
   start_date: today,
@@ -387,7 +387,7 @@ import { OpenMeteoTool } from "beeai-framework/tools/weather/openMeteo";
 
 const tool = new OpenMeteoTool();
 
-const today = new Date().toISOString().split('T')[0];
+const today = new Date().toISOString().split("T")[0];
 const result = await tool.run({
   location: { name: "New York" },
   start_date: today,
@@ -485,7 +485,7 @@ console.info(response);
 Leverage the Model Context Protocol (MCP) to define, initialize, and utilize tools on compatible MCP servers. These servers expose executable functionalities, enabling AI models to perform tasks such as computations, API calls, or system operations.
 
 <Tip>
-Check out the [MCP Slack integration tutorial](/guides/slack-integration)
+Check out the [MCP Slack integration tutorial](/guides/mcp-slackbot)
 </Tip>
 
 <CodeGroup>

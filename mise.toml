@@ -10,7 +10,6 @@ yarn = "4.9.1"
 # Misc
 fd = "latest"
 "ubi:google/addlicense" = "1.1.1"
-"ubi:lycheeverse/lychee" = "lychee-v0.19.1"
 
 [settings]
 experimental = true # for hooks
