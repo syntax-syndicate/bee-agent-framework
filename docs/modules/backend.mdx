@@ -235,7 +235,7 @@ import { z } from "zod";
 import { OpenMeteoTool } from "beeai-framework/tools/weather/openMeteo";
 
 const llm = new WatsonxChatModel(
-  "meta-llama/llama-3-1-70b-instruct",
+  "ibm/granite-3-3-8b-instruct",
   // {
   //   apiKey: "WATSONX_API_KEY",
   //   baseUrl: "WATSONX_BASE_URL",
@@ -251,7 +251,7 @@ llm.config({
 });
 
 async function watsonxFromName() {
-  const watsonxLLM = await ChatModel.fromName("watsonx:meta-llama/llama-3-1-8b-instruct");
+  const watsonxLLM = await ChatModel.fromName("watsonx:ibm/granite-3-3-8b-instruct");
   const response = await watsonxLLM.create({
     messages: [new UserMessage("what states are part of New England?")],
   });
@@ -296,7 +296,7 @@ async function watsonxAbort() {
     console.info(response.getTextContent());
   } catch (err) {
     if (err instanceof AbortError) {
-      console.error("Aborted", { err });
+      console.log("Aborted", { err });
     }
   }
 }
@@ -975,7 +975,7 @@ async function langchainAbort() {
     console.info(response.getTextContent());
   } catch (err) {
     if (err instanceof ChatModelError) {
-      console.error("Aborted", { err });
+      console.log("Aborted", { err });
     }
   }
 }
@@ -991,7 +991,9 @@ async function langchainStructure() {
 }
 
 async function langchainToolCalling() {
-  const userMessage = new UserMessage("What is the weather in Boston?");
+  const userMessage = new UserMessage(
+    `What is the current weather in Boston? Current date is ${new Date().toISOString().split("T")[0]}.`,
+  );
   const weatherTool = new OpenMeteoTool({ retryOptions: { maxRetries: 3 } });
   const response = await llm.create({ messages: [userMessage], tools: [weatherTool] });
   const toolCallMsg = response.getToolCalls()[0];
