@@ -45,8 +45,8 @@ The simplest way to use a tool is to instantiate it directly and call its `run()
 {/* <!-- embedme python/examples/tools/base.py --> */}
 ```py Python [expandable]
 import asyncio
+import datetime
 import sys
-from datetime import date
 
 from beeai_framework.errors import FrameworkError
 from beeai_framework.middleware.trajectory import GlobalTrajectoryMiddleware
@@ -56,7 +56,9 @@ from beeai_framework.tools.weather import OpenMeteoTool, OpenMeteoToolInput
 async def main() -> None:
     tool = OpenMeteoTool()
     result = await tool.run(
-        input=OpenMeteoToolInput(location_name="New York", start_date=date(2025, 1, 1), end_date=date(2025, 2, 1))
+        input=OpenMeteoToolInput(
+            location_name="New York", start_date=datetime.date.today(), end_date=datetime.date.today()
+        )
     ).middleware(GlobalTrajectoryMiddleware())
     print(result.get_text_content())
 
@@ -94,9 +96,9 @@ Tools often support additional configuration options to customize their behavior
 {/* <!-- embedme python/examples/tools/advanced.py --> */}
 ```py Python [expandable]
 import asyncio
+import datetime
 import sys
 import traceback
-from datetime import date
 
 from beeai_framework.errors import FrameworkError
 from beeai_framework.tools.weather import OpenMeteoTool, OpenMeteoToolInput
@@ -106,7 +108,10 @@ async def main() -> None:
     tool = OpenMeteoTool()
     result = await tool.run(
         input=OpenMeteoToolInput(
-            location_name="New York", start_date=date(2025, 1, 1), end_date=date(2025, 1, 2), temperature_unit="celsius"
+            location_name="New York",
+            start_date=datetime.date.today(),
+            end_date=datetime.date.today(),
+            temperature_unit="celsius",
         )
     )
     print(result.get_text_content())
@@ -489,9 +494,6 @@ from dotenv import load_dotenv
 from mcp import StdioServerParameters
 from mcp.client.stdio import stdio_client
 
-from beeai_framework.adapters.ollama import OllamaChatModel
-from beeai_framework.agents.react import ReActAgent
-from beeai_framework.memory import UnconstrainedMemory
 from beeai_framework.tools.mcp import MCPTool
 
 load_dotenv()
@@ -508,15 +510,18 @@ server_params = StdioServerParameters(
 )
 
 
-async def slack_tool() -> MCPTool:
-    # Discover Slack tools via MCP client
-    slacktools = await MCPTool.from_client(stdio_client(server_params))
-    filter_tool = filter(lambda tool: tool.name == "slack_post_message", slacktools)
-    slack = list(filter_tool)
-    return slack[0]
+async def slack_post_message_tool() -> MCPTool:
+    slack_tools = await MCPTool.from_client(stdio_client(server_params))
+    return next(filter(lambda tool: tool.name == "slack_post_message", slack_tools))
 
 
-agent = ReActAgent(llm=OllamaChatModel("llama3.1"), tools=[asyncio.run(slack_tool())], memory=UnconstrainedMemory())
+async def main() -> None:
+    tool = await slack_post_message_tool()
+    print(tool.name, tool.description)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
 
 ```
 

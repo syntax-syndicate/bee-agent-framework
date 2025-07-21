@@ -1,3 +1,25 @@
+## python_v0.1.31 (2025-07-18)
+
+### Bug Fixes
+
+- **internals**: avoid recursion errors when handling empty JSON Schema objects (#929)
+- **tools**: handle MCPTool termination (#927)
+- MCP client unpacking error (#922)
+- remove mypy path in project config (#925)
+- **backend**: correctly propagate api_base/base_url in OllamaEmbeddingModel
+- **internals**: omit top-level undefines in to_json
+- **internals**: prevent piping nested events
+- **tools**: correctly serialize the tool's input in events
+- **adapters**: fix MCP server (#917)
+
+### Features
+
+- **backend**: update tool choice support for OpenAI compatible endpoints (#933)
+- **tools**: switch from duckduckgo-search to ddgs (#932)
+- **agents**: add init event to the Requirement class, extend RequirementAgent interfaces (#930)
+- prevent sorting keys for JSON schemas
+- improve JSONSchemaModel parsing capabilities (#918)
+
 ## python_v0.1.30 (2025-07-09)
 
 ### Bug Fixes

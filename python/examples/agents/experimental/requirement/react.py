@@ -17,7 +17,7 @@ async def main() -> None:
         requirements=[ConditionalRequirement(ThinkTool, force_at_step=1, force_after=Tool, consecutive_allowed=False)],
     )
 
-    response = await agent.run("What to do in Boston?").middleware(GlobalTrajectoryMiddleware(included=[Tool]))
+    response = await agent.run("What to do in Boston today?").middleware(GlobalTrajectoryMiddleware(included=[Tool]))
     print(response.answer.text)
 
 
