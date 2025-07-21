@@ -17,7 +17,6 @@ from litellm import (  # type: ignore
     ModelResponse,
     ModelResponseStream,
     acompletion,
-    completion_cost,
     get_supported_openai_params,
 )
 from litellm.types.utils import StreamingChoices
@@ -236,12 +235,7 @@ class LiteLLMChatModel(ChatModel, ABC):
         finish_reason = choice.finish_reason
         usage = chunk.get("usage")  # type: ignore
         update = choice.delta if isinstance(choice, StreamingChoices) else choice.message
-
-        cost = None
-        try:
-            cost = completion_cost(completion_response=chunk)
-        except Exception as e:
-            logger.warning(f"Failed to estimate cost: {e}")
+        cost = chunk._hidden_params.get("response_cost")
 
         return ChatModelOutput(
             messages=(
