@@ -11,8 +11,11 @@ from pydantic import ConfigDict, Field, RootModel, create_model
 
 from beeai_framework.backend.constants import (
     BackendProviders,
+    ModelTypes,
+    ModuleTypes,
     ProviderDef,
     ProviderModelDef,
+    ProviderModuleDef,
     ProviderName,
 )
 from beeai_framework.backend.errors import BackendError
@@ -52,7 +55,27 @@ def parse_model(name: str) -> ProviderModelDef:
     )
 
 
-def load_model(name: ProviderName | str, model_type: Literal["embedding", "chat"] = "chat") -> type[T]:
+def parse_module(name: str) -> ProviderModuleDef:
+    if not name:
+        raise BackendError("Neither 'provider' nor 'provider:model' was specified.")
+
+    # provider_id:model_id
+    # e.g., ollama:llama3.1
+    # keep remainder of string intact (maxsplit=1) because model name can also have colons
+    name_parts = name.split(":", maxsplit=1)
+    provider_def = find_provider_def(name_parts[0])
+
+    if not provider_def:
+        raise BackendError("Model does not contain provider name!")
+
+    return ProviderModuleDef(
+        provider_id=name_parts[0],
+        entity_id=name_parts[1] if len(name_parts) > 1 else None,
+        provider_def=provider_def,
+    )
+
+
+def load_model(name: ProviderName | str, model_type: ModelTypes = "chat") -> type[T]:
     parsed = parse_model(name)
     provider_def = parsed.provider_def
 
@@ -60,6 +83,21 @@ def load_model(name: ProviderName | str, model_type: Literal["embedding", "chat"
     module = import_module(module_path)
 
     class_name = f"{provider_def.name}{model_type.capitalize()}Model"
+    return getattr(module, class_name)  # type: ignore
+
+
+def load_module(name: ProviderName | str, module_type: ModuleTypes = "vector_store") -> type[T]:
+    def get_class_suffix(module_type: str) -> str:
+        words = module_type.split("_")
+        return "".join(word.capitalize() for word in words)
+
+    parsed = parse_module(name)
+    provider_def = parsed.provider_def
+
+    module_path = f"beeai_framework.adapters.{provider_def.module}.backend.{module_type.lower()}"
+    module = import_module(module_path)
+
+    class_name = f"{provider_def.name}{get_class_suffix(module_type)}"
     return getattr(module, class_name)  # type: ignore
 
 

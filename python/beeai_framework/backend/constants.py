@@ -6,11 +6,38 @@ from typing import Literal
 from pydantic import BaseModel
 
 ProviderName = Literal[
-    "ollama", "openai", "watsonx", "groq", "xai", "vertexai", "amazon_bedrock", "anthropic", "azure_openai", "mistralai"
+    "beeai",
+    "ollama",
+    "openai",
+    "watsonx",
+    "groq",
+    "xai",
+    "vertexai",
+    "amazon_bedrock",
+    "anthropic",
+    "azure_openai",
+    "mistralai",
+    "langchain",
+    "llamaindex",
 ]
 ProviderHumanName = Literal[
-    "Ollama", "OpenAI", "Watsonx", "Groq", "XAI", "VertexAI", "AmazonBedrock", "Anthropic", "AzureOpenAI", "MistralAI"
+    "BeeAI",
+    "Ollama",
+    "OpenAI",
+    "Watsonx",
+    "Groq",
+    "XAI",
+    "VertexAI",
+    "AmazonBedrock",
+    "Anthropic",
+    "AzureOpenAI",
+    "MistralAI",
+    "LangChain",
+    "LlamaIndex",
 ]
+
+ModelTypes = Literal["embedding", "chat"]
+ModuleTypes = Literal["vector_store"]
 
 
 class ProviderDef(BaseModel):
@@ -22,6 +49,12 @@ class ProviderDef(BaseModel):
 class ProviderModelDef(BaseModel):
     provider_id: str
     model_id: str | None = None
+    provider_def: ProviderDef
+
+
+class ProviderModuleDef(BaseModel):
+    provider_id: str
+    entity_id: str | None = None
     provider_def: ProviderDef
 
 
@@ -44,4 +77,7 @@ BackendProviders = {
         aliases=["azure_openai", "azure"],
     ),
     "mistralAI": ProviderDef(name="MistralAI", module="mistralai", aliases=["mistral"]),
+    "Langchain": ProviderDef(name="LangChain", module="langchain", aliases=["langchain", "LangChain"]),
+    "Llamaindex": ProviderDef(name="LlamaIndex", module="llamaindex", aliases=["llamaindex", "LlamaIndex"]),
+    "BeeAI": ProviderDef(name="BeeAI", module="beeai", aliases=["BeeAI", "Beeai", "BAI"]),
 }
