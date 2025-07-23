@@ -1,3 +1,14 @@
+## python_v0.1.32 (2025-07-23)
+
+### Bug Fixes
+
+- **adapters**: correctly propagate watsonx orchestrate events (#947)
+
+### Features
+
+- **backend**: initialize RAG module and agent (#890)
+- **adapters**: add state support for Watsonx integration (#948)
+
 ## python_v0.1.31 (2025-07-18)
 
 ### Bug Fixes
