@@ -5,9 +5,9 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@ai-sdk/amazon-bedrock@npm:^2.2.8":
-  version: 2.2.10
-  resolution: "@ai-sdk/amazon-bedrock@npm:2.2.10"
+"@ai-sdk/amazon-bedrock@npm:^2.2.12":
+  version: 2.2.12
+  resolution: "@ai-sdk/amazon-bedrock@npm:2.2.12"
   dependencies:
     "@ai-sdk/provider": "npm:1.1.3"
     "@ai-sdk/provider-utils": "npm:2.2.8"
@@ -16,11 +16,11 @@ __metadata:
     aws4fetch: "npm:^1.0.20"
   peerDependencies:
     zod: ^3.0.0
-  checksum: 10c0/ca066cc4dd94146374492e18e313b7664b661562e7fa3c94ad55c731564744281d62662337718fe107c99d7d2ebf8fd655c8e2cb3dcbcd30b2e33cbc248c962e
+  checksum: 10c0/37e4bfd2fcf84fc3fa4cdbc011165f4f77e81be2afa4b10a3f0d2e703ad89b3e1b946f8f24e6ea0193d68f53f4138054adfbfe6919ffcce8cdf58caffd5bd7da
   languageName: node
   linkType: hard
 
-"@ai-sdk/anthropic@npm:1.2.12, @ai-sdk/anthropic@npm:^1.2.10":
+"@ai-sdk/anthropic@npm:1.2.12, @ai-sdk/anthropic@npm:^1.2.12":
   version: 1.2.12
   resolution: "@ai-sdk/anthropic@npm:1.2.12"
   dependencies:
@@ -32,47 +32,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ai-sdk/azure@npm:^1.3.14":
-  version: 1.3.23
-  resolution: "@ai-sdk/azure@npm:1.3.23"
+"@ai-sdk/azure@npm:^1.3.24":
+  version: 1.3.24
+  resolution: "@ai-sdk/azure@npm:1.3.24"
   dependencies:
-    "@ai-sdk/openai": "npm:1.3.22"
+    "@ai-sdk/openai": "npm:1.3.23"
     "@ai-sdk/provider": "npm:1.1.3"
     "@ai-sdk/provider-utils": "npm:2.2.8"
   peerDependencies:
     zod: ^3.0.0
-  checksum: 10c0/18fcd3271e316edffe1b289b1c148e3bf6e0e51e57440d6a5aa4d76b53831dd5219fffcedb92d7dddebac81add46151a00bf70bd9e14509421e3bb0e359fd6bf
+  checksum: 10c0/37e50512fb8124245540e421a9b78ab39681548e4fdf2cd4831a53416a52c423b2ddad0d2b30c92270c435af7bfef39a3a8f96a528470748f0ae14a648a2b938
   languageName: node
   linkType: hard
 
-"@ai-sdk/google-vertex@npm:^2.2.15":
-  version: 2.2.24
-  resolution: "@ai-sdk/google-vertex@npm:2.2.24"
+"@ai-sdk/google-vertex@npm:^2.2.27":
+  version: 2.2.27
+  resolution: "@ai-sdk/google-vertex@npm:2.2.27"
   dependencies:
     "@ai-sdk/anthropic": "npm:1.2.12"
-    "@ai-sdk/google": "npm:1.2.19"
+    "@ai-sdk/google": "npm:1.2.22"
     "@ai-sdk/provider": "npm:1.1.3"
     "@ai-sdk/provider-utils": "npm:2.2.8"
     google-auth-library: "npm:^9.15.0"
   peerDependencies:
     zod: ^3.0.0
-  checksum: 10c0/720139b34e8b395d52517abdc81b54f8c6eac1334879f76c07515701bfc2c0dfec7aefb0aee3851e1ec9721462b02a3caffecc5803fd267604f5b1548b352ae3
+  checksum: 10c0/5c2aa9f97418556ecdfcf00e0e1115bad41a025baea4a4a3fceec13e2091adf6faa8602ce2ca45bcbd842306eb67f538e1d66db596774f7c992459790922bd49
   languageName: node
   linkType: hard
 
-"@ai-sdk/google@npm:1.2.19":
-  version: 1.2.19
-  resolution: "@ai-sdk/google@npm:1.2.19"
+"@ai-sdk/google@npm:1.2.22":
+  version: 1.2.22
+  resolution: "@ai-sdk/google@npm:1.2.22"
   dependencies:
     "@ai-sdk/provider": "npm:1.1.3"
     "@ai-sdk/provider-utils": "npm:2.2.8"
   peerDependencies:
     zod: ^3.0.0
-  checksum: 10c0/b40d62ce822ce00850492e4a41c8b6b1ba2ddaaaa8f8d9b8381c198781adb23000fc4f434ef7edf5ba356a4455f8afbbdc5cbecbb0f66b7bcabbcd25758fc6b8
+  checksum: 10c0/662005cb4d972e4048d496e9713cd0ff2828f8363c9f1449e5a8580523c34f9ab57126ad3129e4d535561aa1bac0ae0d68bb471c379be80f5a23d455eea49987
   languageName: node
   linkType: hard
 
-"@ai-sdk/groq@npm:^1.2.8":
+"@ai-sdk/groq@npm:^1.2.9":
   version: 1.2.9
   resolution: "@ai-sdk/groq@npm:1.2.9"
   dependencies:
@@ -84,27 +84,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ai-sdk/openai-compatible@npm:0.2.14":
-  version: 0.2.14
-  resolution: "@ai-sdk/openai-compatible@npm:0.2.14"
+"@ai-sdk/openai-compatible@npm:0.2.16":
+  version: 0.2.16
+  resolution: "@ai-sdk/openai-compatible@npm:0.2.16"
   dependencies:
     "@ai-sdk/provider": "npm:1.1.3"
     "@ai-sdk/provider-utils": "npm:2.2.8"
   peerDependencies:
     zod: ^3.0.0
-  checksum: 10c0/60980df8507c1e5d04ac51123bc15ea5cbf29eb88485f63da28d64ab5d9c3b335d2a2c9155a383605972ef5fa636929c8e2d360bf799153acf2b358e1af1fd47
+  checksum: 10c0/03054b7d6960be64cd9788cc7ecde324a6c70b8d51df4c3252deba8f6c5b641fce1058ab89c4793bbb4f2237e4fe09d1f4966205015b75b04bb49931d49a4253
   languageName: node
   linkType: hard
 
-"@ai-sdk/openai@npm:1.3.22, @ai-sdk/openai@npm:^1.3.13":
-  version: 1.3.22
-  resolution: "@ai-sdk/openai@npm:1.3.22"
+"@ai-sdk/openai@npm:1.3.23, @ai-sdk/openai@npm:^1.3.23":
+  version: 1.3.23
+  resolution: "@ai-sdk/openai@npm:1.3.23"
   dependencies:
     "@ai-sdk/provider": "npm:1.1.3"
     "@ai-sdk/provider-utils": "npm:2.2.8"
   peerDependencies:
     zod: ^3.0.0
-  checksum: 10c0/bcc73a84bebd15aa54568c3c77cedd5f999e282c5be180d5e28ebc789f8873dd0a74d87f1ec4a0f16e3e61b658c3b0734835daf176ed910966246db73c72b468
+  checksum: 10c0/4fefd458488ac9d35bd7a096f738254b737747bc33a72e31ae16fbb89a2c759602e8bb5ef0f6f61bf4e33b3060c7a0b65a1f6d46f01db5657528e15dadf9c134
   languageName: node
   linkType: hard
 
@@ -161,16 +161,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ai-sdk/xai@npm:^1.2.16":
-  version: 1.2.16
-  resolution: "@ai-sdk/xai@npm:1.2.16"
+"@ai-sdk/xai@npm:^1.2.18":
+  version: 1.2.18
+  resolution: "@ai-sdk/xai@npm:1.2.18"
   dependencies:
-    "@ai-sdk/openai-compatible": "npm:0.2.14"
+    "@ai-sdk/openai-compatible": "npm:0.2.16"
     "@ai-sdk/provider": "npm:1.1.3"
     "@ai-sdk/provider-utils": "npm:2.2.8"
   peerDependencies:
     zod: ^3.0.0
-  checksum: 10c0/5418f42506679c49f8c6127b0cdf8185622ccb844d6cf928efe1f819b20cbb4eae631eb7dc534468c790fa7087438b4ebd3b4072c13fb28e0c947ebdd6628ec2
+  checksum: 10c0/caf92d750e4e0aecd598d3ebe2fdf4da56e2113d81d11bc4a965412e78186552ed7175f68f3f5584c27ba2b8f74e5d9f31c553d47a6989cbfacbdb2ceef1a332
   languageName: node
   linkType: hard
 
@@ -1039,14 +1039,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ibm-cloud/watsonx-ai@npm:^1.6.0":
-  version: 1.6.8
-  resolution: "@ibm-cloud/watsonx-ai@npm:1.6.8"
+"@ibm-cloud/watsonx-ai@npm:^1.6.9":
+  version: 1.6.9
+  resolution: "@ibm-cloud/watsonx-ai@npm:1.6.9"
   dependencies:
     "@types/node": "npm:^18.0.0"
     extend: "npm:3.0.2"
     ibm-cloud-sdk-core: "npm:^5.3.2"
-  checksum: 10c0/a4d4649e96b426acc156af37e1cc680b2e598915e7d4bbe59bf8b6f633ea62341cf03d87dbc6f9298ff688bfd267922ffeb10a840e679ae5191c3bf35b720ae1
+  checksum: 10c0/8812cea05f9a3c9b1eddbdcfa322643a6a418e226ac2fe2d3aadacb9a4943eb3304757de6638db607d578db073550b097b9307138c01f1acbdad8a7fd5bb9031
   languageName: node
   linkType: hard
 
@@ -3177,9 +3177,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ai@npm:^4.3.16":
-  version: 4.3.16
-  resolution: "ai@npm:4.3.16"
+"ai@npm:^4.3.19":
+  version: 4.3.19
+  resolution: "ai@npm:4.3.19"
   dependencies:
     "@ai-sdk/provider": "npm:1.1.3"
     "@ai-sdk/provider-utils": "npm:2.2.8"
@@ -3193,7 +3193,7 @@ __metadata:
   peerDependenciesMeta:
     react:
       optional: true
-  checksum: 10c0/befe761c9386cda6de33370a2590900352b444d81959255c624e2bfd40765f126d29269f0ef3e00bde07daf237004aa0b66d0b253664aa478c148e923ce78c41
+  checksum: 10c0/738ac453b3e61b2f2282941fe8af946c42696fbdcffa5ac213823377bcddf475f26923cf2ca5656d5655e5c351e355e1af62dcb04a6df6139b67bac650b01af2
   languageName: node
   linkType: hard
 
@@ -3417,6 +3417,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^1.11.0":
+  version: 1.11.0
+  resolution: "axios@npm:1.11.0"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.4"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10c0/5de273d33d43058610e4d252f0963cc4f10714da0bfe872e8ef2cbc23c2c999acc300fd357b6bce0fc84a2ca9bd45740fa6bb28199ce2c1266c8b1a393f2b36e
+  languageName: node
+  linkType: hard
+
 "axios@npm:^1.4.0, axios@npm:^1.8.2":
   version: 1.10.0
   resolution: "axios@npm:1.10.0"
@@ -3453,13 +3464,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "beeai-framework@workspace:."
   dependencies:
-    "@ai-sdk/amazon-bedrock": "npm:^2.2.8"
-    "@ai-sdk/anthropic": "npm:^1.2.10"
-    "@ai-sdk/azure": "npm:^1.3.14"
-    "@ai-sdk/google-vertex": "npm:^2.2.15"
-    "@ai-sdk/groq": "npm:^1.2.8"
-    "@ai-sdk/openai": "npm:^1.3.13"
-    "@ai-sdk/xai": "npm:^1.2.16"
+    "@ai-sdk/amazon-bedrock": "npm:^2.2.12"
+    "@ai-sdk/anthropic": "npm:^1.2.12"
+    "@ai-sdk/azure": "npm:^1.3.24"
+    "@ai-sdk/google-vertex": "npm:^2.2.27"
+    "@ai-sdk/groq": "npm:^1.2.9"
+    "@ai-sdk/openai": "npm:^1.3.23"
+    "@ai-sdk/xai": "npm:^1.2.18"
     "@ai-zen/node-fetch-event-source": "npm:^2.1.4"
     "@commitlint/cli": "npm:^19.7.1"
     "@commitlint/config-conventional": "npm:^19.7.1"
@@ -3467,7 +3478,7 @@ __metadata:
     "@eslint/js": "npm:^9.16.0"
     "@eslint/markdown": "npm:^6.2.1"
     "@googleapis/customsearch": "npm:^3.2.0"
-    "@ibm-cloud/watsonx-ai": "npm:^1.6.0"
+    "@ibm-cloud/watsonx-ai": "npm:^1.6.9"
     "@langchain/community": "npm:0.3.34"
     "@langchain/core": "npm:0.3.42"
     "@langchain/langgraph": "npm:0.2.55"
@@ -3491,7 +3502,7 @@ __metadata:
     "@types/object-hash": "npm:^3.0.6"
     "@types/turndown": "npm:^5.0.5"
     "@zilliz/milvus2-sdk-node": "npm:^2.5.1"
-    ai: "npm:^4.3.16"
+    ai: "npm:^4.3.19"
     ajv: "npm:^8.17.1"
     ajv-formats: "npm:^3.0.1"
     dotenv: "npm:^16.4.7"
@@ -3501,12 +3512,12 @@ __metadata:
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-unused-imports: "npm:^4.1.4"
     express: "npm:^5.0.0"
-    fast-xml-parser: "npm:^5.0.8"
+    fast-xml-parser: "npm:^5.2.5"
     glob: "npm:^11.0.0"
-    header-generator: "npm:^2.1.62"
-    ibm-cloud-sdk-core: "npm:^5.3.2"
+    header-generator: "npm:^2.1.69"
+    ibm-cloud-sdk-core: "npm:^5.4.2"
     joplin-turndown-plugin-gfm: "npm:^1.0.12"
-    jsonrepair: "npm:^3.12.0"
+    jsonrepair: "npm:^3.13.0"
     langchain: "npm:0.3.19"
     mathjs: "npm:^14.0.0"
     mustache: "npm:^4.2.0"
@@ -3518,7 +3529,7 @@ __metadata:
     pino: "npm:^9.6.0"
     pino-pretty: "npm:^13.0.0"
     pino-test: "npm:^1.1.0"
-    prettier: "npm:^3.4.2"
+    prettier: "npm:^3.6.2"
     promise-based-task: "npm:^3.1.1"
     release-it: "npm:^17.10.0"
     remeda: "npm:^2.21.0"
@@ -3527,7 +3538,7 @@ __metadata:
     serialize-error-cjs: "npm:^0.2.0"
     sqlite3: "npm:^5.1.7"
     string-comparison: "npm:^1.3.0"
-    string-strip-html: "npm:^13.4.12"
+    string-strip-html: "npm:^13.4.13"
     strip-ansi: "npm:^7.1.0"
     tsup: "npm:^8.4.0"
     tsx: "npm:^4.20.3"
@@ -3538,26 +3549,26 @@ __metadata:
     vitest: "npm:^2.1.9"
     wikipedia: "npm:^2.1.2"
     yaml: "npm:^2.6.1"
-    zod: "npm:^3.24.2"
-    zod-to-json-schema: "npm:^3.24.3"
+    zod: "npm:^3.24.4"
+    zod-to-json-schema: "npm:^3.24.6"
   peerDependencies:
-    "@ai-sdk/amazon-bedrock": ^2.2.10
+    "@ai-sdk/amazon-bedrock": ^2.2.12
     "@ai-sdk/anthropic": ^1.2.12
-    "@ai-sdk/azure": ^1.3.23
-    "@ai-sdk/google-vertex": ^2.2.24
+    "@ai-sdk/azure": ^1.3.24
+    "@ai-sdk/google-vertex": ^2.2.27
     "@ai-sdk/groq": ^1.2.9
-    "@ai-sdk/openai": ^1.3.22
-    "@aws-sdk/client-bedrock-runtime": ^3.835.0
+    "@ai-sdk/openai": ^1.3.23
+    "@aws-sdk/client-bedrock-runtime": ^3.848.0
     "@elastic/elasticsearch": ^8.0.0
     "@googleapis/customsearch": ^3.2.0
     "@langchain/community": ">=0.2.28"
     "@langchain/core": ">=0.2.27"
-    "@modelcontextprotocol/sdk": ^1.12.0
-    "@qdrant/js-client-rest": ^1.14.0
-    "@zilliz/milvus2-sdk-node": ^2.4.9
+    "@modelcontextprotocol/sdk": ^1.17.0
+    "@qdrant/js-client-rest": ^1.15.0
+    "@zilliz/milvus2-sdk-node": ^2.6.0
     express: ^5.0.0
     ollama-ai-provider: ^1.2.0
-    sequelize: ^6.37.3
+    sequelize: ^6.37.7
     yaml: ^2.6.1
   peerDependenciesMeta:
     "@ai-sdk/amazon-bedrock":
@@ -4062,12 +4073,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"codsen-utils@npm:^1.6.7":
-  version: 1.6.7
-  resolution: "codsen-utils@npm:1.6.7"
+"codsen-utils@npm:^1.6.8":
+  version: 1.6.8
+  resolution: "codsen-utils@npm:1.6.8"
   dependencies:
     rfdc: "npm:^1.4.1"
-  checksum: 10c0/e1371ff6e9c1f8aa5918b4cfc4366297c0e90986a208da2abdab19d49dbb29ae2ef42010b12c64d897fc8231c421ed8a3f4ec7e6e9f26acb4440df36233f5b72
+  checksum: 10c0/4a7e7a0f8e3d6c7fad870d54ffd72f06d4432be4f1a2ab280c27bd93270795f923888a10c2cf63ad77910303e2e1937204f1b98ec98db4845a56c7d9e604704b
   languageName: node
   linkType: hard
 
@@ -5601,7 +5612,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-xml-parser@npm:^5.0.8":
+"fast-xml-parser@npm:^5.2.5":
   version: 5.2.5
   resolution: "fast-xml-parser@npm:5.2.5"
   dependencies:
@@ -5844,6 +5855,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"form-data@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "form-data@npm:4.0.4"
+  dependencies:
+    asynckit: "npm:^0.4.0"
+    combined-stream: "npm:^1.0.8"
+    es-set-tostringtag: "npm:^2.1.0"
+    hasown: "npm:^2.0.2"
+    mime-types: "npm:^2.1.12"
+  checksum: 10c0/373525a9a034b9d57073e55eab79e501a714ffac02e7a9b01be1c820780652b16e4101819785e1e18f8d98f0aee866cc654d660a435c378e16a72f2e7cac9695
+  languageName: node
+  linkType: hard
+
 "format@npm:^0.2.0":
   version: 0.2.2
   resolution: "format@npm:0.2.2"
@@ -5980,13 +6004,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"generative-bayesian-network@npm:^2.1.68":
-  version: 2.1.68
-  resolution: "generative-bayesian-network@npm:2.1.68"
+"generative-bayesian-network@npm:^2.1.69":
+  version: 2.1.69
+  resolution: "generative-bayesian-network@npm:2.1.69"
   dependencies:
     adm-zip: "npm:^0.5.9"
     tslib: "npm:^2.4.0"
-  checksum: 10c0/d32a985681b4604cd6f43a1dc5d20db62f99b109badf46205ec45935a6afd1771b352f9cfd53498c51dc934898688bc10422a37793266e964c8cce381c31fa3f
+  checksum: 10c0/3dc56637e253e0a57e91924a03a92b8d98525d47aa6136d1e16334c4b32195169d38c3cd227af4f9097758f9e5ce4adb2c36be6d4a7d096168ea33c9af9308ab
   languageName: node
   linkType: hard
 
@@ -6395,15 +6419,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"header-generator@npm:^2.1.62":
-  version: 2.1.68
-  resolution: "header-generator@npm:2.1.68"
+"header-generator@npm:^2.1.69":
+  version: 2.1.69
+  resolution: "header-generator@npm:2.1.69"
   dependencies:
     browserslist: "npm:^4.21.1"
-    generative-bayesian-network: "npm:^2.1.68"
+    generative-bayesian-network: "npm:^2.1.69"
     ow: "npm:^0.28.1"
     tslib: "npm:^2.4.0"
-  checksum: 10c0/ffcedecd7df46c879abd7395d33a5bdc0711dcc463fd02041646e31df7fe0474db04b5ff72c245a1ed2cad6d8dee0474bf13f5f5cfb57f4c76f6eff7b6c42469
+  checksum: 10c0/0a3f12c7cee265fdcd3e575df3d514b8b94d82ecfa49ff70d1ead31d171191245751c7d6479e39a10c535f4e4451bb1267dd37431e49f79594ef1423cc4f99fb
   languageName: node
   linkType: hard
 
@@ -6430,7 +6454,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"html-entities@npm:^2.3.3, html-entities@npm:^2.5.2":
+"html-entities@npm:^2.3.3, html-entities@npm:^2.6.0":
   version: 2.6.0
   resolution: "html-entities@npm:2.6.0"
   checksum: 10c0/7c8b15d9ea0cd00dc9279f61bab002ba6ca8a7a0f3c36ed2db3530a67a9621c017830d1d2c1c65beb9b8e3436ea663e9cf8b230472e0e413359399413b27c8b7
@@ -6541,6 +6565,29 @@ __metadata:
     retry-axios: "npm:^2.6.0"
     tough-cookie: "npm:^4.1.3"
   checksum: 10c0/e7bc086c40cde68f6763882bf96aebccb66a1654eb8c971f7c7f976913b91231732773e57a55cda38146e17b59a23e4c4e0a444de7f6d7e06f5c5481042532ca
+  languageName: node
+  linkType: hard
+
+"ibm-cloud-sdk-core@npm:^5.4.2":
+  version: 5.4.2
+  resolution: "ibm-cloud-sdk-core@npm:5.4.2"
+  dependencies:
+    "@types/debug": "npm:^4.1.12"
+    "@types/node": "npm:^18.19.80"
+    "@types/tough-cookie": "npm:^4.0.0"
+    axios: "npm:^1.11.0"
+    camelcase: "npm:^6.3.0"
+    debug: "npm:^4.3.4"
+    dotenv: "npm:^16.4.5"
+    extend: "npm:3.0.2"
+    file-type: "npm:16.5.4"
+    form-data: "npm:^4.0.4"
+    isstream: "npm:0.1.2"
+    jsonwebtoken: "npm:^9.0.2"
+    mime-types: "npm:2.1.35"
+    retry-axios: "npm:^2.6.0"
+    tough-cookie: "npm:^4.1.3"
+  checksum: 10c0/709798543611ab31b223c243cc22b99e123e36e57f0cc8c85bd97735c9ea06f7c3b9ff208ac2cf6954efd3b4a6f50d5e0450253ecc1f9a8f508fb798e04d5c9c
   languageName: node
   linkType: hard
 
@@ -7143,12 +7190,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsonrepair@npm:^3.12.0":
-  version: 3.12.0
-  resolution: "jsonrepair@npm:3.12.0"
+"jsonrepair@npm:^3.13.0":
+  version: 3.13.0
+  resolution: "jsonrepair@npm:3.13.0"
   bin:
     jsonrepair: bin/cli.js
-  checksum: 10c0/f61bea017e9675c888dc8087bec6f868595ab0103a211827f9fc6a327abd9c70fa4d3241ee2846b06e229a628d51e5a5448c516d7be3040862863a2f2c3f78cd
+  checksum: 10c0/054206c07492fe3c90d85131859c5336128880915d0a8dca444ce10055613f041eee8a56af62bfc156d96d6e7e46bdee7caf72b28aafeb5e56543e9bde2cbce3
   languageName: node
   linkType: hard
 
@@ -9634,7 +9681,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.4.2":
+"prettier@npm:^3.6.2":
   version: 3.6.2
   resolution: "prettier@npm:3.6.2"
   bin:
@@ -9827,42 +9874,42 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ranges-apply@npm:^7.0.19":
-  version: 7.0.19
-  resolution: "ranges-apply@npm:7.0.19"
+"ranges-apply@npm:^7.0.20":
+  version: 7.0.20
+  resolution: "ranges-apply@npm:7.0.20"
   dependencies:
-    ranges-merge: "npm:^9.0.18"
+    ranges-merge: "npm:^9.0.19"
     tiny-invariant: "npm:^1.3.3"
-  checksum: 10c0/179335d25334a5d6d9869341f3f89f63ef0a309ac1b5c601ca7028228da9bf5e765356f6765c73e6b682de70731020b5339541bcb15959f9e1e72c0c9a48a479
+  checksum: 10c0/57c457687030eef50ef9ae5a8060cdf82d2430fcf15466ce4e39113b600f19368848aaf0ed302acb36a2bdc72fe3796fce00cc9c74c8cf317e8d89dfa548466b
   languageName: node
   linkType: hard
 
-"ranges-merge@npm:^9.0.18":
-  version: 9.0.18
-  resolution: "ranges-merge@npm:9.0.18"
+"ranges-merge@npm:^9.0.19":
+  version: 9.0.19
+  resolution: "ranges-merge@npm:9.0.19"
   dependencies:
-    ranges-push: "npm:^7.0.18"
-    ranges-sort: "npm:^6.0.13"
-  checksum: 10c0/b4de993f81860f2689e24b10af7098ee351d0599658edc788d354ad2cc5f09e84d6e9cc98dc86fa505aa66bf1eb76c4e3886b67f2243d5459671182a8dbb4bab
+    ranges-push: "npm:^7.0.19"
+    ranges-sort: "npm:^6.0.14"
+  checksum: 10c0/b6c8951f30830c680d380ba0e6e9b473f188870f6de3566ed62373fede87ce750af68d37d922df79bc71b401d27b4e35c1f5f09dd5283f44d291de45fb870be1
   languageName: node
   linkType: hard
 
-"ranges-push@npm:^7.0.18":
-  version: 7.0.18
-  resolution: "ranges-push@npm:7.0.18"
+"ranges-push@npm:^7.0.19":
+  version: 7.0.19
+  resolution: "ranges-push@npm:7.0.19"
   dependencies:
-    codsen-utils: "npm:^1.6.7"
-    ranges-sort: "npm:^6.0.13"
+    codsen-utils: "npm:^1.6.8"
+    ranges-sort: "npm:^6.0.14"
     string-collapse-leading-whitespace: "npm:^7.0.9"
-    string-trim-spaces-only: "npm:^5.0.12"
-  checksum: 10c0/6f0137a79472d5ed31d79e191e1fceccda16e8528db5f899fc4842b7a330d7d0a8553f8650c78dfe9f954fcd929e34a33aed3895c989392e314f3991eecf730f
+    string-trim-spaces-only: "npm:^5.0.13"
+  checksum: 10c0/2ec75e397a2ce45b63e0961b2f985cc107435d8b44e524471906c494c8abf2ff3c645ca14962b2041045a29971060c0753b6e1397020b397d0a059591abab339
   languageName: node
   linkType: hard
 
-"ranges-sort@npm:^6.0.13":
-  version: 6.0.13
-  resolution: "ranges-sort@npm:6.0.13"
-  checksum: 10c0/ff57dff6b25a2e969a2753ebf1c9b469a58e8728b138e3a6f92cb2664520607f59cb09132d39769400e08a98dd02b3ef701adc1d06c6019865223c017e2136ef
+"ranges-sort@npm:^6.0.14":
+  version: 6.0.14
+  resolution: "ranges-sort@npm:6.0.14"
+  checksum: 10c0/12a248e6e182663ad67f0c053cbda47fa6a1a58cfa9554328f905fab0d411db97ccb9110490a5500031ce2e2688292e08f0da0c6651a978b7ab0fd877604f747
   languageName: node
   linkType: hard
 
@@ -10829,35 +10876,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"string-left-right@npm:^6.0.20":
-  version: 6.0.20
-  resolution: "string-left-right@npm:6.0.20"
+"string-left-right@npm:^6.0.21":
+  version: 6.0.21
+  resolution: "string-left-right@npm:6.0.21"
   dependencies:
-    codsen-utils: "npm:^1.6.7"
+    codsen-utils: "npm:^1.6.8"
     rfdc: "npm:^1.4.1"
-  checksum: 10c0/5199343a01709e355704ea3866ca51dc7fb07ef35d66227f2439e7c8689b431bc24ea9d753d582f83460dfa461973eff01857949b604deb1298d66ae91cbf4ca
+  checksum: 10c0/7fba14f8369d65d7f4aaffda4826dd44e55ea4df910f1f6ea93a8063cdb9bd9babe22c0960c2744a15d9fd4bbd11c88059d01c82b4708eaefadaa3ccd8664b59
   languageName: node
   linkType: hard
 
-"string-strip-html@npm:^13.4.12":
-  version: 13.4.12
-  resolution: "string-strip-html@npm:13.4.12"
+"string-strip-html@npm:^13.4.13":
+  version: 13.4.13
+  resolution: "string-strip-html@npm:13.4.13"
   dependencies:
     "@types/lodash-es": "npm:^4.17.12"
-    codsen-utils: "npm:^1.6.7"
-    html-entities: "npm:^2.5.2"
+    codsen-utils: "npm:^1.6.8"
+    html-entities: "npm:^2.6.0"
     lodash-es: "npm:^4.17.21"
-    ranges-apply: "npm:^7.0.19"
-    ranges-push: "npm:^7.0.18"
-    string-left-right: "npm:^6.0.20"
-  checksum: 10c0/21218943908f0ea382091ab04b6ab3307e2ae7db8d43bef2e33bdf40d9f7fa617d75f459e2693a62118022b37d0cd29eda73837eddffd12ea64e9cf832582029
+    ranges-apply: "npm:^7.0.20"
+    ranges-push: "npm:^7.0.19"
+    string-left-right: "npm:^6.0.21"
+  checksum: 10c0/184579d534a1d33925cad652bb62eeffd0f7ad845ba31faf9514fcde2bed5bc946bc7939462c020e412187de2e20ed0a93cc64963412316aa4252d449bbf29a8
   languageName: node
   linkType: hard
 
-"string-trim-spaces-only@npm:^5.0.12":
-  version: 5.0.12
-  resolution: "string-trim-spaces-only@npm:5.0.12"
-  checksum: 10c0/c49dc295a0658b2b2b1dc9df241b89b0fd51936a4e5015cf73cb9a468ed99ca31726cafce0bf5f9e41f6a217a2c91d8586b889664abb05d91864a71f429c3b41
+"string-trim-spaces-only@npm:^5.0.13":
+  version: 5.0.13
+  resolution: "string-trim-spaces-only@npm:5.0.13"
+  checksum: 10c0/069e69c86986e18d573f4a62f729f785d3ae368ea37460811de763c1e78b37bec66ac900cef53c37f43c59fd14ac9dd2dde222275c36e163b7d0cc97bea783bf
   languageName: node
   linkType: hard
 
@@ -12249,7 +12296,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod-to-json-schema@npm:^3.22.3, zod-to-json-schema@npm:^3.22.5, zod-to-json-schema@npm:^3.24.1, zod-to-json-schema@npm:^3.24.3":
+"zod-to-json-schema@npm:^3.22.3, zod-to-json-schema@npm:^3.22.5, zod-to-json-schema@npm:^3.24.1, zod-to-json-schema@npm:^3.24.6":
   version: 3.24.6
   resolution: "zod-to-json-schema@npm:3.24.6"
   peerDependencies:
