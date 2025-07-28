@@ -63,6 +63,7 @@ class MonorepoCommitsCz(ConventionalCommitsCz):
                             "deps",
                             "instrumentation",
                             "workflows",
+                            "rag",
                         ]
                     ],
                 }
