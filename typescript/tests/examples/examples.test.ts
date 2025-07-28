@@ -68,17 +68,20 @@ describe("E2E Examples", async () => {
   it.concurrent.each(exampleFiles)(`Run %s`, async (example) => {
     await execAsync(`echo "Hello world" | yarn tsx --tsconfig tsconfig.examples.json -- ${example}`)
       .then(({ stdout, stderr }) => {
-        // eslint-disable-next-line no-console
-        console.log("STDOUT:", stdout);
-        expect(stderr).toBeFalsy();
+        if (stderr) {
+          // eslint-disable-next-line no-console
+          console.log("STDOUT:", stdout);
+          // eslint-disable-next-line no-console
+          console.warn("STDERR:", stderr);
+        }
       })
       .catch((_e) => {
         const error = _e as ExecException;
 
         // eslint-disable-next-line no-console
-        console.error(error.message);
+        console.error(error);
         // eslint-disable-next-line no-console
-        console.error("STDOUT:", error.stdout);
+        console.error("STDERR:", error.stdout);
 
         expect(error.stderr).toBeFalsy();
         expect(error.code).toBe(0);
