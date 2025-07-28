@@ -257,7 +257,7 @@
     "@ibm-cloud/watsonx-ai": "^1.6.9",
     "@langchain/community": "^0.3.49",
     "@langchain/core": "^0.3.59",
-    "@langchain/langgraph": "0.2.55",
+    "@langchain/langgraph": "^0.3.11",
     "@langchain/ollama": "^0.2.0",
     "@modelcontextprotocol/sdk": "^1.12.0",
     "@qdrant/js-client-rest": "^1.14.0",

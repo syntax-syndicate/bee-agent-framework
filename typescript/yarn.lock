@@ -1580,7 +1580,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/langgraph-checkpoint@npm:~0.0.16":
+"@langchain/langgraph-checkpoint@npm:~0.0.18":
   version: 0.0.18
   resolution: "@langchain/langgraph-checkpoint@npm:0.0.18"
   dependencies:
@@ -1591,9 +1591,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/langgraph-sdk@npm:~0.0.32":
-  version: 0.0.86
-  resolution: "@langchain/langgraph-sdk@npm:0.0.86"
+"@langchain/langgraph-sdk@npm:~0.0.100":
+  version: 0.0.102
+  resolution: "@langchain/langgraph-sdk@npm:0.0.102"
   dependencies:
     "@types/json-schema": "npm:^7.0.15"
     p-queue: "npm:^6.6.2"
@@ -1602,26 +1602,33 @@ __metadata:
   peerDependencies:
     "@langchain/core": ">=0.2.31 <0.4.0"
     react: ^18 || ^19
+    react-dom: ^18 || ^19
   peerDependenciesMeta:
     "@langchain/core":
       optional: true
     react:
       optional: true
-  checksum: 10c0/567ff64c2fc0647cb858346e5b3be42917582fae8df4b291d8a1f87f1a1ff935745023478187b6356e2a7327e133fd4d10c81fd2f65bb16649e808e10ab876ae
+    react-dom:
+      optional: true
+  checksum: 10c0/5567fe250e1f90f1d302f1a37dbc109e3a880743788026e35b7e395bd70aab8d8409a4e5b0d2ac09af4d02ffe045e33aed372aa108aa733ad8cfb76889c6bb36
   languageName: node
   linkType: hard
 
-"@langchain/langgraph@npm:0.2.55":
-  version: 0.2.55
-  resolution: "@langchain/langgraph@npm:0.2.55"
+"@langchain/langgraph@npm:^0.3.11":
+  version: 0.3.11
+  resolution: "@langchain/langgraph@npm:0.3.11"
   dependencies:
-    "@langchain/langgraph-checkpoint": "npm:~0.0.16"
-    "@langchain/langgraph-sdk": "npm:~0.0.32"
+    "@langchain/langgraph-checkpoint": "npm:~0.0.18"
+    "@langchain/langgraph-sdk": "npm:~0.0.100"
     uuid: "npm:^10.0.0"
-    zod: "npm:^3.23.8"
+    zod: "npm:^3.25.32"
   peerDependencies:
-    "@langchain/core": ">=0.2.36 <0.3.0 || >=0.3.40 < 0.4.0"
-  checksum: 10c0/ed84cabcf0e9ec12138deb702b9e9407f782cd7ee7b1ae0f031dd1a3eca246d1f3c59015aa612329e34aba724ee3a27b01729a4dadfbd3f61c5a8569a4ca6b36
+    "@langchain/core": ">=0.3.58 < 0.4.0"
+    zod-to-json-schema: ^3.x
+  peerDependenciesMeta:
+    zod-to-json-schema:
+      optional: true
+  checksum: 10c0/55122bcb6e76fd1debafc9e57ecb5cdc47eefa983aba2468649d80abb588f98a9090fbe87bf460ce4a88a4aa9b4250af4fe1e9ed85ca436e22862bd1c2cb6ec8
   languageName: node
   linkType: hard
 
@@ -3548,7 +3555,7 @@ __metadata:
     "@ibm-cloud/watsonx-ai": "npm:^1.6.9"
     "@langchain/community": "npm:^0.3.49"
     "@langchain/core": "npm:^0.3.59"
-    "@langchain/langgraph": "npm:0.2.55"
+    "@langchain/langgraph": "npm:^0.3.11"
     "@langchain/ollama": "npm:^0.2.0"
     "@modelcontextprotocol/sdk": "npm:^1.12.0"
     "@qdrant/js-client-rest": "npm:^1.14.0"
