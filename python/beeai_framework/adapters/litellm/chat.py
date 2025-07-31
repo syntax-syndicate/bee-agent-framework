@@ -17,6 +17,7 @@ from litellm import (  # type: ignore
     ModelResponse,
     ModelResponseStream,
     acompletion,
+    cost_per_token,
     get_supported_openai_params,
 )
 from litellm.types.utils import StreamingChoices
@@ -36,6 +37,7 @@ from beeai_framework.backend.message import (
     ToolMessage,
 )
 from beeai_framework.backend.types import (
+    ChatModelCost,
     ChatModelInput,
     ChatModelOutput,
     ChatModelParameters,
@@ -231,10 +233,20 @@ class LiteLLMChatModel(ChatModel, ABC):
         )
 
     def _transform_output(self, chunk: ModelResponse | ModelResponseStream) -> ChatModelOutput:
-        choice = chunk.choices[0] if chunk.choices else None
-        finish_reason = choice.finish_reason if choice else None
+        choice = chunk.choices[0]
+        finish_reason = choice.finish_reason
+        model = chunk.get("model")  # type: ignore
         usage = chunk.get("usage")  # type: ignore
-        update = None if not choice else choice.delta if isinstance(choice, StreamingChoices) else choice.message
+        update = choice.delta if isinstance(choice, StreamingChoices) else choice.message
+
+        prompt_tokens_cost_usd, completion_tokens_cost_usd = cost_per_token(
+            model=model, prompt_tokens=usage.prompt_tokens, completion_tokens=usage.completion_tokens
+        )
+        cost = ChatModelCost(
+            prompt_tokens_usd=prompt_tokens_cost_usd,
+            completion_tokens_cost_usd=completion_tokens_cost_usd,
+            total_cost_usd=prompt_tokens_cost_usd + completion_tokens_cost_usd,
+        )
 
         return ChatModelOutput(
             messages=(
@@ -254,11 +266,12 @@ class LiteLLMChatModel(ChatModel, ABC):
                         else AssistantMessage(update.content)  # type: ignore
                     )
                 ]
-                if update and update.model_dump(exclude_none=True)
+                if update.model_dump(exclude_none=True)
                 else []
             ),
             finish_reason=finish_reason,
             usage=ChatModelUsage(**usage.model_dump()) if usage else None,
+            cost=cost,
         )
 
     def _format_tool_model(self, model: type[BaseModel]) -> dict[str, Any]:
