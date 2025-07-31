@@ -12,7 +12,7 @@ from beeai_framework.context import RunContext
 from beeai_framework.errors import FrameworkError
 from beeai_framework.tools import AnyTool
 from beeai_framework.tools.tool import Tool
-from beeai_framework.utils.lists import remove_by_reference
+from beeai_framework.utils.lists import _append_if_not_exists, remove_by_reference
 
 
 class RequirementsReasoner:
@@ -100,19 +100,19 @@ class RequirementsReasoner:
                 is_allowed = False
 
             if is_allowed:
-                allowed.append(tool)
+                _append_if_not_exists(allowed, tool)
                 if is_forced and (not forced or forced_level < max_priority):
                     forced = tool
                     forced_level = max_priority
             if is_hidden:
-                hidden.append(tool)
+                _append_if_not_exists(hidden, tool)
             if is_prevent_stop:
                 prevent_stop = True
 
         if forced is not None:
             allowed.clear()
-            allowed.append(forced)
-            allowed.append(self.final_answer)
+            _append_if_not_exists(allowed, forced)
+            _append_if_not_exists(allowed, self.final_answer)
 
         if prevent_stop and not isinstance(forced, FinalAnswerTool):
             with contextlib.suppress(ValueError):

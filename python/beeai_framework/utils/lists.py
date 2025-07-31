@@ -47,3 +47,8 @@ def remove_by_reference(lst: list[Any], obj: Any) -> None:
             del lst[i]
 
     raise ValueError("Object not found in list")
+
+
+def _append_if_not_exists(lst: list[T], item: T) -> None:
+    if item not in lst:
+        lst.append(item)
