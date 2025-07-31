@@ -1,6 +1,6 @@
 # Copyright 2025 © BeeAI a Series of LF Projects, LLC
 # SPDX-License-Identifier: Apache-2.0
-
+import contextlib
 import os
 from abc import ABC
 from collections.abc import AsyncGenerator
@@ -239,14 +239,20 @@ class LiteLLMChatModel(ChatModel, ABC):
         usage = chunk.get("usage")  # type: ignore
         update = choice.delta if isinstance(choice, StreamingChoices) else choice.message
 
-        prompt_tokens_cost_usd, completion_tokens_cost_usd = cost_per_token(
-            model=model, prompt_tokens=usage.prompt_tokens, completion_tokens=usage.completion_tokens
-        )
-        cost = ChatModelCost(
-            prompt_tokens_usd=prompt_tokens_cost_usd,
-            completion_tokens_cost_usd=completion_tokens_cost_usd,
-            total_cost_usd=prompt_tokens_cost_usd + completion_tokens_cost_usd,
-        )
+        cost: ChatModelCost | None = None
+        with contextlib.suppress(Exception):
+            if usage:
+                prompt_tokens_cost_usd, completion_tokens_cost_usd = cost_per_token(
+                    model=model,
+                    custom_llm_provider=self._litellm_provider_id,
+                    prompt_tokens=usage.prompt_tokens,
+                    completion_tokens=usage.completion_tokens,
+                )
+                cost = ChatModelCost(
+                    prompt_tokens_usd=prompt_tokens_cost_usd,
+                    completion_tokens_cost_usd=completion_tokens_cost_usd,
+                    total_cost_usd=prompt_tokens_cost_usd + completion_tokens_cost_usd,
+                )
 
         return ChatModelOutput(
             messages=(
