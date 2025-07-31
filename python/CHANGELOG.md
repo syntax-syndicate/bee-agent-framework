@@ -1,3 +1,24 @@
+## python_v0.1.33 (2025-07-31)
+
+### Bug Fixes
+
+- **backend**: handle costs for non registered models
+- **adapters**: remove completion_cost by _hidden_params['response_cost']
+- **tools**: exclude the last tool call message during handoff (#964)
+- **agents**: copy middlewares when cloning in the RequirementAgent
+- **adapters**: handle empty responses for Google Gemini models (#961)
+
+### Features
+
+- **backend**: add response cost to the ChatModelOutput
+- address issues
+- define the input and output costs on CostBreakdown when returning ChatModelOutput
+- **adapters**: add completion_cost from LiteLLM
+- **rag**: add document loader (#962)
+- **agents**: add abort signal to RequirementAgent #960
+- **adapters**: add Google Gemini backend (#939)
+- **adapters**: upgrade A2A (#951)
+
 ## python_v0.1.32 (2025-07-23)
 
 ### Bug Fixes
