@@ -60,16 +60,16 @@ class ChatModelUsage(BaseModel):
     total_tokens: int
 
 
-class CostBreakdown(BaseModel):
-    prompt_tokens_cost_usd_dollar: float
-    completion_tokens_cost_usd_dollar: float
-    total_cost_usd_dollar: float
+class ChatModelCost(BaseModel):
+    prompt_tokens_usd: float
+    completion_tokens_cost_usd: float
+    total_cost_usd: float
 
 
 class ChatModelOutput(BaseModel):
     messages: list[InstanceOf[AnyMessage]]
     usage: InstanceOf[ChatModelUsage] | None = None
-    cost: CostBreakdown | None = None
+    cost: ChatModelCost | None = None
     finish_reason: str | None = None
 
     @classmethod
@@ -84,15 +84,15 @@ class ChatModelOutput(BaseModel):
         self.finish_reason = other.finish_reason
 
         if self.cost is not None and other.cost is not None:
-            self.cost = CostBreakdown(
-                prompt_tokens_cost_usd_dollar=max(
-                    self.cost.prompt_tokens_cost_usd_dollar, other.cost.prompt_tokens_cost_usd_dollar
+            self.cost = ChatModelCost(
+                prompt_tokens_usd=max(self.cost.prompt_tokens_usd, other.cost.prompt_tokens_usd),
+                completion_tokens_cost_usd=max(
+                    self.cost.completion_tokens_cost_usd, other.cost.completion_tokens_cost_usd
                 ),
-                completion_tokens_cost_usd_dollar=max(
-                    self.cost.completion_tokens_cost_usd_dollar, other.cost.completion_tokens_cost_usd_dollar
-                ),
-                total_cost_usd_dollar=max(self.cost.total_cost_usd_dollar, other.cost.total_cost_usd_dollar),
+                total_cost_usd=max(self.cost.total_cost_usd, other.cost.total_cost_usd),
             )
+        elif self.cost is None and other.cost is not None:
+            self.cost = other.cost.model_copy()
 
         if self.usage and other.usage:
             merged_usage = self.usage.model_copy()

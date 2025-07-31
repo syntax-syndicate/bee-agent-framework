@@ -37,13 +37,13 @@ from beeai_framework.backend.message import (
     ToolMessage,
 )
 from beeai_framework.backend.types import (
+    ChatModelCost,
     ChatModelInput,
     ChatModelOutput,
     ChatModelParameters,
     ChatModelStructureInput,
     ChatModelStructureOutput,
     ChatModelUsage,
-    CostBreakdown,
 )
 from beeai_framework.backend.utils import parse_broken_json
 from beeai_framework.cache.null_cache import NullCache
@@ -239,13 +239,13 @@ class LiteLLMChatModel(ChatModel, ABC):
         usage = chunk.get("usage")  # type: ignore
         update = choice.delta if isinstance(choice, StreamingChoices) else choice.message
 
-        prompt_tokens_cost_usd_dollar, completion_tokens_cost_usd_dollar = cost_per_token(
+        prompt_tokens_cost_usd, completion_tokens_cost_usd = cost_per_token(
             model=model, prompt_tokens=usage.prompt_tokens, completion_tokens=usage.completion_tokens
         )
-        cost = CostBreakdown(
-            prompt_tokens_cost_usd_dollar=prompt_tokens_cost_usd_dollar,
-            completion_tokens_cost_usd_dollar=completion_tokens_cost_usd_dollar,
-            total_cost_usd_dollar=prompt_tokens_cost_usd_dollar + completion_tokens_cost_usd_dollar,
+        cost = ChatModelCost(
+            prompt_tokens_usd=prompt_tokens_cost_usd,
+            completion_tokens_cost_usd=completion_tokens_cost_usd,
+            total_cost_usd=prompt_tokens_cost_usd + completion_tokens_cost_usd,
         )
 
         return ChatModelOutput(
