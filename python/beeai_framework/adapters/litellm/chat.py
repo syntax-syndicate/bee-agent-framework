@@ -17,6 +17,7 @@ from litellm import (  # type: ignore
     ModelResponse,
     ModelResponseStream,
     acompletion,
+    cost_per_token,
     get_supported_openai_params,
 )
 from litellm.types.utils import StreamingChoices
@@ -42,6 +43,7 @@ from beeai_framework.backend.types import (
     ChatModelStructureInput,
     ChatModelStructureOutput,
     ChatModelUsage,
+    CostBreakdown,
 )
 from beeai_framework.backend.utils import parse_broken_json
 from beeai_framework.cache.null_cache import NullCache
@@ -233,9 +235,18 @@ class LiteLLMChatModel(ChatModel, ABC):
     def _transform_output(self, chunk: ModelResponse | ModelResponseStream) -> ChatModelOutput:
         choice = chunk.choices[0]
         finish_reason = choice.finish_reason
+        model = chunk.get("model")  # type: ignore
         usage = chunk.get("usage")  # type: ignore
         update = choice.delta if isinstance(choice, StreamingChoices) else choice.message
-        cost = chunk._hidden_params.get("response_cost")
+
+        prompt_tokens_cost_usd_dollar, completion_tokens_cost_usd_dollar = cost_per_token(
+            model=model, prompt_tokens=usage.prompt_tokens, completion_tokens=usage.completion_tokens
+        )
+        cost = CostBreakdown(
+            prompt_tokens_cost_usd_dollar=prompt_tokens_cost_usd_dollar,
+            completion_tokens_cost_usd_dollar=completion_tokens_cost_usd_dollar,
+            total_cost_usd_dollar=prompt_tokens_cost_usd_dollar + completion_tokens_cost_usd_dollar,
+        )
 
         return ChatModelOutput(
             messages=(
