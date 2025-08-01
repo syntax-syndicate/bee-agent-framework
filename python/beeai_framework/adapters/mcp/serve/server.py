@@ -3,6 +3,9 @@
 
 import contextlib
 from collections.abc import Callable
+from contextlib import (
+    AbstractAsyncContextManager,
+)
 from typing import Any, Literal
 
 from pydantic import BaseModel, Field
@@ -17,8 +20,11 @@ try:
     import mcp.server.fastmcp.prompts as mcp_prompts
     import mcp.server.fastmcp.resources as mcp_resources
     import mcp.server.fastmcp.server as mcp_server
+    from mcp.server.auth.settings import AuthSettings
     from mcp.server.fastmcp.tools.base import Tool as MCPNativeTool
     from mcp.server.fastmcp.utilities.func_metadata import ArgModelBase, FuncMetadata
+    from mcp.server.lowlevel.server import LifespanResultT
+    from mcp.server.transport_security import TransportSecuritySettings
 except ModuleNotFoundError as e:
     raise ModuleNotFoundError(
         "Optional module [mcp] not found.\nRun 'pip install \"beeai-framework[mcp]\"' to install."
@@ -33,13 +39,53 @@ MCPServerTool = MaybeAsync[[Any], ToolOutput]
 MCPServerEntry = mcp_prompts.Prompt | mcp_resources.Resource | MCPServerTool | MCPNativeTool
 
 
+class MCPSettings(mcp_server.Settings[LifespanResultT]):
+    # Server settings
+    debug: bool = Field(False)
+    log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = Field("INFO")
+
+    # HTTP settings
+    host: str = Field("127.0.0.1")
+    port: int = Field(8000)
+    mount_path: str = Field("/")
+    sse_path: str = Field("/sse")
+    message_path: str = Field("/messages/")
+    streamable_http_path: str = Field("/mcp")
+
+    # StreamableHTTP settings
+    json_response: bool = Field(False)
+    stateless_http: bool = Field(False)
+
+    # resource settings
+    warn_on_duplicate_resources: bool = Field(True)
+
+    # tool settings
+    warn_on_duplicate_tools: bool = Field(True)
+
+    # prompt settings
+    warn_on_duplicate_prompts: bool = Field(True)
+
+    dependencies: list[str] = Field(
+        default_factory=list, description="List of dependencies to install in the server environment"
+    )
+
+    lifespan: Callable[[mcp_server.FastMCP], AbstractAsyncContextManager[LifespanResultT]] | None = Field(
+        None, description="Lifespan context manager"
+    )
+
+    auth: AuthSettings | None = None
+
+    # Transport security settings (DNS rebinding protection)
+    transport_security: TransportSecuritySettings | None = None
+
+
 class MCPServerConfig(BaseModel):
     """Configuration for the MCPServer."""
 
     transport: Literal["stdio", "sse"] = "stdio"
     name: str = "MCP Server"
     instructions: str | None = None
-    settings: mcp_server.Settings[Any] = Field(default_factory=lambda: mcp_server.Settings())
+    settings: MCPSettings | mcp_server.Settings = Field(default_factory=lambda: MCPSettings())
 
 
 class MCPServer(
@@ -54,7 +100,7 @@ class MCPServer(
         self._server = mcp_server.FastMCP(
             self._config.name,
             self._config.instructions,
-            **self._config.settings.model_dump(),
+            **self._config.settings.model_dump(exclude_none=True),
         )
 
     def serve(self) -> None:
