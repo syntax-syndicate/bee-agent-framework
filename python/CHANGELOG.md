@@ -1,3 +1,11 @@
+## python_v0.1.34 (2025-08-01)
+
+### Bug Fixes
+
+- **adapters**: handle A2A updates (#968)
+- **adapters**: do not send task_id for multiple runs (#967)
+- **agents**: prevent tool duplication in RequirementAgent rules
+
 ## python_v0.1.33 (2025-07-31)
 
 ### Bug Fixes
