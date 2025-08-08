@@ -1,3 +1,17 @@
+## python_v0.1.36 (2025-08-08)
+
+### Bug Fixes
+
+- **backend**: apply strict schema transformation (#996)
+- **tools**: handle MCP client session cleanup (#990)
+
+### Features
+
+- improve serialization (#1001)
+- introduce runnable interface (#982)
+- **serve**: add memory manager (#983)
+- **backend**: Vector store tool (#991)
+
 ## python_v0.1.35 (2025-08-06)
 
 ### Bug Fixes
