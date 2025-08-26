@@ -1,3 +1,14 @@
+## python_v0.1.37 (2025-08-26)
+
+### Bug Fixes
+
+- **backend**: unify structured generation behavior across providers (#1038)
+- **adapters**: fix trajectory for BeeAI platform (#1036)
+
+### Features
+
+- **serve**: switch BeeAIPlatform agent and server to beeai-sdk and a2a (#1004)
+
 ## python_v0.1.36 (2025-08-08)
 
 ### Bug Fixes
