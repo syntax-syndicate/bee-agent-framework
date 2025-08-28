@@ -1,3 +1,10 @@
+## python_v0.1.39 (2025-08-28)
+
+### Features
+
+- add retry logic to ChatModel (#1043)
+- **tools**: improve Handoff tool (#1051)
+
 ## python_v0.1.38 (2025-08-27)
 
 ### Bug Fixes
