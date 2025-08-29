@@ -1,3 +1,9 @@
+## python_v0.1.40 (2025-08-29)
+
+### Bug Fixes
+
+- match nested events in GlobalTrajectoryMiddleware (#1057)
+
 ## python_v0.1.39 (2025-08-28)
 
 ### Features
