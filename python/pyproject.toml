@@ -5,6 +5,7 @@ license = "Apache-2.0"
 readme = "README.md"
 authors = [{ name = "IBM Corp." }]
 maintainers = [
+    { name = "Fred Araujo", email = "frederico.araujo@ibm.com" },
     { name = "Tomas Dvorak", email = "toomas2d@gmail.com" },
     { name = "Lukáš Janeček", email = "xjacka@gmail.com" },
     { name = "Anton Puzanov", email = "antonp@il.ibm.com" }
