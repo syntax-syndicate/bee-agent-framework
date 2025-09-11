@@ -53,4 +53,4 @@ class BeeAIPlatformIOContext:
                 ],
             )
         )
-        return form_data.values[answer_field_id].value
+        return str(form_data.values[answer_field_id].value)
