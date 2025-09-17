@@ -193,7 +193,7 @@ lint.unfixable = []
 line-length = 120
 
 [tool.ruff.lint.per-file-ignores]
-"*.ipynb" = ["E501"]
+"*.ipynb" = ["E501", "ANN001", "ANN201"]
 "examples/**/*.py" = ["E501"]
 
 [tool.ruff.lint.pydocstyle]
