@@ -2,7 +2,92 @@
 
 ### Features
 
-- convert ChatModel into Runnable (#1111)
+- convert `ChatModel` into `Runnable` (#1111)
+
+**Migration Guide**
+
+The `ChatModel` class has undergone significant refactoring to implement the `Runnable` interface, requiring changes to how you interact with chat models.
+
+Key Changes:
+
+- `ChatModel` now extends `Runnable[ChatModelOutput]` instead of being a standalone class.
+- The `ChatModel.create()` method has been renamed to `ChatModel.run()`. Keyword arguments are defined in `ChatModelOptions` typed dictionary.
+- The `ChatModel.create_structure()` method has been collapsed into `ChatModel.run()`, and it now supports streaming.
+- Method signatures have changed to align with the runnable pattern.
+
+
+**Before**
+
+```python
+from beeai_framework.adapters.ollama import OllamaChatModel
+from beeai_framework.backend import UserMessage
+
+llm = OllamaChatModel("llama3.1")
+
+# Old create method with keyword arguments
+response = await llm.create(
+    messages=[UserMessage("Hello")],
+    tools=None,
+    tool_choice=None,
+    stream=False,
+    max_tokens=1000,
+    temperature=0.7
+)
+```
+
+**After**
+
+```python
+from beeai_framework.adapters.ollama import OllamaChatModel
+from beeai_framework.backend import UserMessage
+
+llm = OllamaChatModel("llama3.1")
+
+# New run method with positional messages argument
+response = await llm.run(
+    [UserMessage("Hello")],  # First positional argument
+    tools=None,
+    tool_choice=None,
+    stream=False,
+    max_tokens=1000,
+    temperature=0.7
+)
+```
+
+#### Structured Generation Changes
+
+**Before**
+
+```python
+class PersonModel(BaseModel):
+    name: str
+    age: int
+
+response = await llm.create_structure(
+    messages=[UserMessage("Generate a person profile")],
+    schema=PersonModel
+)
+person = PersonModel.model_validate(response.output_structured)
+print(response.name, person.age)
+```
+
+**After**
+
+```python
+class PersonModel(BaseModel):
+    name: str
+    age: int
+
+response = await llm.run(
+    [UserMessage("Generate structured data")],
+    response_format=PersonModel
+)
+person = response.output_structured
+print(response.name, person.age)
+```
+
+IMPORTANT: If `response_format` is a Pydantic model, the `output_structured` will be the instance of it. Previously there was no such step.  
+
 
 ## python_v0.1.48 (2025-09-22)
 
