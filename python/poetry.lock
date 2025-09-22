@@ -2,15 +2,15 @@
 
 [[package]]
 name = "a2a-sdk"
-version = "0.3.4"
+version = "0.3.6"
 description = "A2A Python SDK"
 optional = true
 python-versions = ">=3.10"
 groups = ["main"]
 markers = "extra == \"beeai-platform\" or extra == \"a2a\" or extra == \"all\""
 files = [
-    {file = "a2a_sdk-0.3.4-py3-none-any.whl", hash = "sha256:423f72334b4a4b34cb4da07d5db3b786975de2fbc527236e3ca713b0d08c27e1"},
-    {file = "a2a_sdk-0.3.4.tar.gz", hash = "sha256:79db4c287cab1235a0b0c5af9a3a58eedd8a037b51a87bed2e89f5e5e8977f65"},
+    {file = "a2a_sdk-0.3.6-py3-none-any.whl", hash = "sha256:f006c9aee2a2f9b235eb884273e572b7b09e1220d00f5789432a156fcd9dfe4c"},
+    {file = "a2a_sdk-0.3.6.tar.gz", hash = "sha256:d5d1b8de940435b1df9b58e95c3a375a8e53a650b0307a3cf90865b1dec69968"},
 ]
 
 [package.dependencies]
@@ -29,12 +29,13 @@ sse-starlette = {version = "*", optional = true, markers = "extra == \"http-serv
 starlette = {version = "*", optional = true, markers = "extra == \"http-server\""}
 
 [package.extras]
+all = ["cryptography (>=43.0.0)", "fastapi (>=0.115.2)", "grpcio (>=1.60)", "grpcio-reflection (>=1.7.0)", "grpcio-tools (>=1.60)", "opentelemetry-api (>=1.33.0)", "opentelemetry-sdk (>=1.33.0)", "sqlalchemy[aiomysql,asyncio] (>=2.0.0)", "sqlalchemy[aiosqlite,asyncio] (>=2.0.0)", "sqlalchemy[asyncio,postgresql-asyncpg] (>=2.0.0)", "sse-starlette", "starlette"]
 encryption = ["cryptography (>=43.0.0)"]
 grpc = ["grpcio (>=1.60)", "grpcio-reflection (>=1.7.0)", "grpcio-tools (>=1.60)"]
 http-server = ["fastapi (>=0.115.2)", "sse-starlette", "starlette"]
 mysql = ["sqlalchemy[aiomysql,asyncio] (>=2.0.0)"]
 postgresql = ["sqlalchemy[asyncio,postgresql-asyncpg] (>=2.0.0)"]
-sql = ["sqlalchemy[aiomysql,aiosqlite,asyncio,postgresql-asyncpg] (>=2.0.0)"]
+sql = ["sqlalchemy[aiomysql,asyncio] (>=2.0.0)", "sqlalchemy[aiosqlite,asyncio] (>=2.0.0)", "sqlalchemy[asyncio,postgresql-asyncpg] (>=2.0.0)"]
 sqlite = ["sqlalchemy[aiosqlite,asyncio] (>=2.0.0)"]
 telemetry = ["opentelemetry-api (>=1.33.0)", "opentelemetry-sdk (>=1.33.0)"]
 
@@ -464,19 +465,19 @@ lxml = ["lxml"]
 
 [[package]]
 name = "beeai-sdk"
-version = "0.3.3"
+version = "0.3.4"
 description = "BeeAI SDK"
 optional = true
 python-versions = ">=3.11"
 groups = ["main"]
 markers = "extra == \"beeai-platform\" or extra == \"all\""
 files = [
-    {file = "beeai_sdk-0.3.3-py3-none-any.whl", hash = "sha256:e4790f09bf6cec5c747c5b6cf6712fe7dd11ea7973295f8cfc1605ead7d345f0"},
-    {file = "beeai_sdk-0.3.3.tar.gz", hash = "sha256:65967ff78cbcd17709be5996e4956d417b531a3d996bd5c79db45d4aebc3f9d1"},
+    {file = "beeai_sdk-0.3.4-py3-none-any.whl", hash = "sha256:7ac7aab58341f48c998541966712c13d13b50c27e861c01ec0dd7db31c7f3f2a"},
+    {file = "beeai_sdk-0.3.4.tar.gz", hash = "sha256:744b7c12e364e5e190e47aa3b6c4c76b56846e51f2a6e89b5938d3621de7faf3"},
 ]
 
 [package.dependencies]
-a2a-sdk = ">=0.3.4,<0.4.0"
+a2a-sdk = ">=0.3.5,<0.4.0"
 anyio = ">=4.9.0"
 asyncclick = ">=8.1.8"
 fastapi = ">=0.116.1"
@@ -2819,14 +2820,14 @@ pytest = ["pytest (>=7.0.0)", "rich (>=13.9.4,<14.0.0)"]
 
 [[package]]
 name = "litellm"
-version = "1.77.3"
+version = "1.76.1"
 description = "Library to easily interface with LLM API providers"
 optional = false
 python-versions = "!=2.7.*,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,!=3.7.*,>=3.8"
 groups = ["main"]
 files = [
-    {file = "litellm-1.77.3-py3-none-any.whl", hash = "sha256:f0c8c6bcfa2c9cd9e9fa0304f9a94894d252e7c74f118c37a8f2e4e525b2592b"},
-    {file = "litellm-1.77.3.tar.gz", hash = "sha256:d8f9d674ef4e7673b1af02428fde27de5a8e84ca7268f003902340586aac7d96"},
+    {file = "litellm-1.76.1-py3-none-any.whl", hash = "sha256:938f05075372f26098211ea9b3cb0a6bb7b46111330226b70d42d40bd307812f"},
+    {file = "litellm-1.76.1.tar.gz", hash = "sha256:d5a3a3efda04999b60ec0d1c29c1eaaa12f89a7b29db4bda691c7fb55b4fa6ad"},
 ]
 
 [package.dependencies]
@@ -2838,7 +2839,6 @@ importlib-metadata = ">=6.8.0"
 jinja2 = ">=3.1.2,<4.0.0"
 jsonschema = ">=4.22.0,<5.0.0"
 openai = ">=1.99.5"
-pondpond = ">=1.4.1,<2.0.0"
 pydantic = ">=2.5.0,<3.0.0"
 python-dotenv = ">=0.2.0"
 tiktoken = ">=0.7.0"
@@ -2848,7 +2848,7 @@ tokenizers = "*"
 caching = ["diskcache (>=5.6.1,<6.0.0)"]
 extra-proxy = ["azure-identity (>=1.15.0,<2.0.0)", "azure-keyvault-secrets (>=4.8.0,<5.0.0)", "google-cloud-iam (>=2.19.1,<3.0.0)", "google-cloud-kms (>=2.21.3,<3.0.0)", "prisma (==0.11.0)", "redisvl (>=0.4.1,<0.5.0) ; python_version >= \"3.9\" and python_version < \"3.14\"", "resend (>=0.8.0,<0.9.0)"]
 mlflow = ["mlflow (>3.1.4) ; python_version >= \"3.10\""]
-proxy = ["PyJWT (>=2.8.0,<3.0.0)", "apscheduler (>=3.10.4,<4.0.0)", "azure-identity (>=1.15.0,<2.0.0)", "azure-storage-blob (>=12.25.1,<13.0.0)", "backoff", "boto3 (==1.36.0)", "cryptography", "fastapi (>=0.115.5,<0.116.0)", "fastapi-sso (>=0.16.0,<0.17.0)", "gunicorn (>=23.0.0,<24.0.0)", "litellm-enterprise (==0.1.20)", "litellm-proxy-extras (==0.2.19)", "mcp (>=1.10.0,<2.0.0) ; python_version >= \"3.10\"", "orjson (>=3.9.7,<4.0.0)", "polars (>=1.31.0,<2.0.0) ; python_version >= \"3.10\"", "pynacl (>=1.5.0,<2.0.0)", "python-multipart (>=0.0.18,<0.0.19)", "pyyaml (>=6.0.1,<7.0.0)", "rich (==13.7.1)", "rq", "uvicorn (>=0.29.0,<0.30.0)", "uvloop (>=0.21.0,<0.22.0) ; sys_platform != \"win32\"", "websockets (>=13.1.0,<14.0.0)"]
+proxy = ["PyJWT (>=2.8.0,<3.0.0)", "apscheduler (>=3.10.4,<4.0.0)", "azure-identity (>=1.15.0,<2.0.0)", "azure-storage-blob (>=12.25.1,<13.0.0)", "backoff", "boto3 (==1.36.0)", "cryptography (>=43.0.1,<44.0.0)", "fastapi (>=0.115.5,<0.116.0)", "fastapi-sso (>=0.16.0,<0.17.0)", "gunicorn (>=23.0.0,<24.0.0)", "litellm-enterprise (==0.1.19)", "litellm-proxy-extras (==0.2.18)", "mcp (>=1.10.0,<2.0.0) ; python_version >= \"3.10\"", "orjson (>=3.9.7,<4.0.0)", "polars (>=1.31.0,<2.0.0) ; python_version >= \"3.10\"", "pynacl (>=1.5.0,<2.0.0)", "python-multipart (>=0.0.18,<0.0.19)", "pyyaml (>=6.0.1,<7.0.0)", "rich (==13.7.1)", "rq", "uvicorn (>=0.29.0,<0.30.0)", "uvloop (>=0.21.0,<0.22.0) ; sys_platform != \"win32\"", "websockets (>=13.1.0,<14.0.0)"]
 semantic-router = ["semantic-router ; python_version >= \"3.9\""]
 utils = ["numpydoc"]
 
@@ -3235,10 +3235,12 @@ files = [
     {file = "lxml-6.0.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:219e0431ea8006e15005767f0351e3f7f9143e793e58519dc97fe9e07fae5563"},
     {file = "lxml-6.0.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:bd5913b4972681ffc9718bc2d4c53cde39ef81415e1671ff93e9aa30b46595e7"},
     {file = "lxml-6.0.0-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:390240baeb9f415a82eefc2e13285016f9c8b5ad71ec80574ae8fa9605093cd7"},
+    {file = "lxml-6.0.0-cp312-cp312-manylinux_2_27_ppc64le.manylinux_2_28_ppc64le.whl", hash = "sha256:d6e200909a119626744dd81bae409fc44134389e03fbf1d68ed2a55a2fb10991"},
     {file = "lxml-6.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:ca50bd612438258a91b5b3788c6621c1f05c8c478e7951899f492be42defc0da"},
     {file = "lxml-6.0.0-cp312-cp312-manylinux_2_31_armv7l.whl", hash = "sha256:c24b8efd9c0f62bad0439283c2c795ef916c5a6b75f03c17799775c7ae3c0c9e"},
     {file = "lxml-6.0.0-cp312-cp312-musllinux_1_2_aarch64.whl", hash = "sha256:afd27d8629ae94c5d863e32ab0e1d5590371d296b87dae0a751fb22bf3685741"},
     {file = "lxml-6.0.0-cp312-cp312-musllinux_1_2_armv7l.whl", hash = "sha256:54c4855eabd9fc29707d30141be99e5cd1102e7d2258d2892314cf4c110726c3"},
+    {file = "lxml-6.0.0-cp312-cp312-musllinux_1_2_ppc64le.whl", hash = "sha256:c907516d49f77f6cd8ead1322198bdfd902003c3c330c77a1c5f3cc32a0e4d16"},
     {file = "lxml-6.0.0-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:36531f81c8214e293097cd2b7873f178997dae33d3667caaae8bdfb9666b76c0"},
     {file = "lxml-6.0.0-cp312-cp312-win32.whl", hash = "sha256:690b20e3388a7ec98e899fd54c924e50ba6693874aa65ef9cb53de7f7de9d64a"},
     {file = "lxml-6.0.0-cp312-cp312-win_amd64.whl", hash = "sha256:310b719b695b3dd442cdfbbe64936b2f2e231bb91d998e99e6f0daf991a3eba3"},
@@ -3249,10 +3251,12 @@ files = [
     {file = "lxml-6.0.0-cp313-cp313-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:d18a25b19ca7307045581b18b3ec9ead2b1db5ccd8719c291f0cd0a5cec6cb81"},
     {file = "lxml-6.0.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:d4f0c66df4386b75d2ab1e20a489f30dc7fd9a06a896d64980541506086be1f1"},
     {file = "lxml-6.0.0-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:9f4b481b6cc3a897adb4279216695150bbe7a44c03daba3c894f49d2037e0a24"},
+    {file = "lxml-6.0.0-cp313-cp313-manylinux_2_27_ppc64le.manylinux_2_28_ppc64le.whl", hash = "sha256:8a78d6c9168f5bcb20971bf3329c2b83078611fbe1f807baadc64afc70523b3a"},
     {file = "lxml-6.0.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:2ae06fbab4f1bb7db4f7c8ca9897dc8db4447d1a2b9bee78474ad403437bcc29"},
     {file = "lxml-6.0.0-cp313-cp313-manylinux_2_31_armv7l.whl", hash = "sha256:1fa377b827ca2023244a06554c6e7dc6828a10aaf74ca41965c5d8a4925aebb4"},
     {file = "lxml-6.0.0-cp313-cp313-musllinux_1_2_aarch64.whl", hash = "sha256:1676b56d48048a62ef77a250428d1f31f610763636e0784ba67a9740823988ca"},
     {file = "lxml-6.0.0-cp313-cp313-musllinux_1_2_armv7l.whl", hash = "sha256:0e32698462aacc5c1cf6bdfebc9c781821b7e74c79f13e5ffc8bfe27c42b1abf"},
+    {file = "lxml-6.0.0-cp313-cp313-musllinux_1_2_ppc64le.whl", hash = "sha256:4d6036c3a296707357efb375cfc24bb64cd955b9ec731abf11ebb1e40063949f"},
     {file = "lxml-6.0.0-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:7488a43033c958637b1a08cddc9188eb06d3ad36582cebc7d4815980b47e27ef"},
     {file = "lxml-6.0.0-cp313-cp313-win32.whl", hash = "sha256:5fcd7d3b1d8ecb91445bd71b9c88bdbeae528fefee4f379895becfc72298d181"},
     {file = "lxml-6.0.0-cp313-cp313-win_amd64.whl", hash = "sha256:2f34687222b78fff795feeb799a7d44eca2477c3d9d3a46ce17d51a4f383e32e"},
@@ -3298,18 +3302,6 @@ cssselect = ["cssselect (>=0.7)"]
 html-clean = ["lxml_html_clean"]
 html5 = ["html5lib"]
 htmlsoup = ["BeautifulSoup4"]
-
-[[package]]
-name = "madoka"
-version = "0.7.1"
-description = "Memory-efficient CountMin Sketch key-value structure (based on Madoka C++ library)"
-optional = false
-python-versions = "*"
-groups = ["main"]
-files = [
-    {file = "madoka-0.7.1-cp37-cp37m-macosx_10_14_x86_64.whl", hash = "sha256:7521eee9ace30b376bb54fdcb2cb42bf6b7a0346b0d0b612f25f3299aa4a95af"},
-    {file = "madoka-0.7.1.tar.gz", hash = "sha256:e258baa84fc0a3764365993b8bf5e1b065383a6ca8c9f862fb3e3e709843fae7"},
-]
 
 [[package]]
 name = "markdown"
@@ -4667,21 +4659,6 @@ files = [
 [package.extras]
 dev = ["pre-commit", "tox"]
 testing = ["coverage", "pytest", "pytest-benchmark"]
-
-[[package]]
-name = "pondpond"
-version = "1.4.1"
-description = "Pond is a high performance object-pooling library for Python."
-optional = false
-python-versions = ">=3.8"
-groups = ["main"]
-files = [
-    {file = "pondpond-1.4.1-py3-none-any.whl", hash = "sha256:641028ead4e8018ca6de1220c660ddd6d6fbf62a60e72f410655dd0451d82880"},
-    {file = "pondpond-1.4.1.tar.gz", hash = "sha256:8afa34b869d1434d21dd2ec12644abc3b1733fcda8fcf355300338a13a79bb7b"},
-]
-
-[package.dependencies]
-madoka = ">=0.7.1"
 
 [[package]]
 name = "portalocker"
@@ -7865,4 +7842,4 @@ wikipedia = ["wikipedia-api"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">= 3.11,<3.14"
-content-hash = "f1a035ff4a68f3cec0a66bfe4528f9be9a9d44dbabd554bcaa276f2808531514"
+content-hash = "749cd85f9183e5f8f030b8b88d8ba317cfcb46fedefce865301a462f0a756aed"
