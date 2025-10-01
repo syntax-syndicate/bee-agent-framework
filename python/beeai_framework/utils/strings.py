@@ -72,10 +72,6 @@ def to_json(input: Any, *, indent: int | None = None, sort_keys: bool = True, ex
     return json.dumps(fallback(input), ensure_ascii=False, default=fallback, sort_keys=sort_keys, indent=indent)
 
 
-print(None in {1, 2, None})
-print(to_json_serializable({1, 2, None}, exclude_none=True))
-
-
 def to_safe_word(phrase: str) -> str:
     # replace any non-alphanumeric char with _
     return re.sub(r"\W+", "_", phrase).lower()
