@@ -48,19 +48,17 @@ class CustomJsonDump(Protocol):
 
 def to_json_serializable(input: Any, *, exclude_none: bool = False) -> Any:
     def apply_child(value: Any) -> Any:
+        print("handle", value, type(value))
         return to_json_serializable(value, exclude_none=exclude_none)
 
     if isinstance(input, CustomJsonDump):
         return apply_child(input.to_json_safe())
     elif isinstance(input, BaseModel):
         return apply_child(input.model_dump(exclude_none=exclude_none))
-    elif isinstance(input, list):
-        return [apply_child(v) for v in input if input is not None] if exclude_none else input
+    elif isinstance(input, list | set):  # set is not JSON serializable
+        return [apply_child(v) for v in input if v is not None] if exclude_none else [apply_child(v) for v in input]
     elif isinstance(input, dict):
         return {k: apply_child(v) for k, v in input.items() if v is not None} if exclude_none else input
-    elif isinstance(input, set):
-        # set is not JSON serializable, convert to list
-        return [apply_child(v) for v in input]
     elif isinstance(input, str | bool | int | float):
         return input
     else:
@@ -72,6 +70,10 @@ def to_json(input: Any, *, indent: int | None = None, sort_keys: bool = True, ex
         return to_json_serializable(value, exclude_none=exclude_none)
 
     return json.dumps(fallback(input), ensure_ascii=False, default=fallback, sort_keys=sort_keys, indent=indent)
+
+
+print(None in {1, 2, None})
+print(to_json_serializable({1, 2, None}, exclude_none=True))
 
 
 def to_safe_word(phrase: str) -> str:
