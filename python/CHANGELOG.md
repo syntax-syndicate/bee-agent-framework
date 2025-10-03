@@ -1,3 +1,15 @@
+## python_v0.1.53 (2025-10-03)
+
+### Bug Fixes
+
+- **internals**: handle conversion of more complex schemas (#1168)
+
+### Features
+
+- **adapters**: add dynamic registration of BeeAI Platform extensions (#1162)
+- **emitter**: allow to set priorities for listeners (#1170)
+- **adapters**: add tools metadata to BeeAIPlatformServer (#1166)
+
 ## python_v0.1.52 (2025-10-01)
 
 ### Bug Fixes
