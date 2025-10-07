@@ -22,7 +22,7 @@ from beeai_framework.backend import (
     ToolMessage,
     UserMessage,
 )
-from beeai_framework.backend.message import MessageImageContentImageUrl, MessageFileContent
+from beeai_framework.backend.message import MessageFileContent, MessageImageContentImageUrl
 from beeai_framework.tools import AnyTool
 from beeai_framework.utils.lists import cast_list, remove_falsy
 from beeai_framework.utils.strings import to_json
@@ -57,7 +57,7 @@ def to_beeai_message_content(
         if not (file_id or file_data):
             return None
         return MessageFileContent(file_id=file_id, file_data=file_data, format=format_)
-        
+
     else:
         return None
 

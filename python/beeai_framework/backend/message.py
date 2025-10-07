@@ -244,7 +244,9 @@ class UserMessage(Message[UserMessageContent]):
             [
                 MessageTextContent(text=c)
                 if isinstance(c, str)
-                else to_any_model([MessageImageContent, MessageTextContent, MessageFileContent], cast(UserMessageContent, c))
+                else to_any_model(
+                    [MessageImageContent, MessageTextContent, MessageFileContent], cast(UserMessageContent, c)
+                )
                 for c in cast_list(content)
             ],
             meta,
