@@ -1,3 +1,17 @@
+## python_v0.1.55 (2025-10-09)
+
+### Bug Fixes
+
+- **backend**: properly propagate file content type
+- **adapters**: set default timeout for A2A Client (#1184)
+- update uvicorn version (#1180)
+
+### Features
+
+- **agents**: stream final answer in the RequirementAgent (#1178)
+- **agents**: propagate retry parameters to the LLM in the RequirementAgent
+- support more message content types (#1150)
+
 ## python_v0.1.53 (2025-10-03)
 
 ### Bug Fixes
