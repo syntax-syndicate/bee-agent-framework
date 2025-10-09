@@ -30,7 +30,7 @@ llm = WatsonxChatModel(
 
 async def watsonx_from_name() -> None:
     watsonx_llm = ChatModel.from_name(
-        "watsonx:ibm/granite-3-8b-instruct",
+        "watsonx:ibm/granite-3-3-8b-instruct",
         # {
         #     "project_id": "WATSONX_PROJECT_ID",
         #     "api_key": "WATSONX_API_KEY",
