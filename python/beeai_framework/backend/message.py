@@ -9,9 +9,10 @@ from datetime import UTC, datetime
 from enum import Enum
 from typing import Any, Generic, Literal, Required, Self, TypeAlias, TypeVar, cast
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, computed_field
 from typing_extensions import TypedDict
 
+from beeai_framework.utils.dicts import exclude_none
 from beeai_framework.utils.lists import cast_list
 from beeai_framework.utils.models import to_any_model, to_model
 from beeai_framework.utils.strings import to_json
@@ -60,9 +61,18 @@ class MessageFileContent(BaseModel):
     """
 
     type: Literal["file"] = "file"
-    file_id: str | None = None
-    file_data: str | None = None
-    format: str | None = None
+
+    file_id: str | None = Field(None, exclude=True)
+    file_data: str | None = Field(None, exclude=True)
+    filename: str | None = Field(None, exclude=True)
+    format: str | None = Field(None, exclude=True)
+
+    @computed_field
+    @property
+    def file(self) -> dict[str, Any]:
+        return exclude_none(
+            {"file_id": self.file_id, "file_data": self.file_data, "filename": self.filename, "format": self.format}
+        )
 
     def model_post_init(self, __context: Any) -> None:
         if not (self.file_id or self.file_data):
@@ -278,6 +288,7 @@ class UserMessage(Message[UserMessageContent]):
         file_id: str | None = None,
         file_data: str | None = None,
         format: str | None = None,
+        filename: str | None = None,
     ) -> Self:
         """Factory helper to create a user message containing a single file content part.
 
@@ -289,6 +300,7 @@ class UserMessage(Message[UserMessageContent]):
                 file_id=file_id,
                 file_data=file_data,
                 format=format,
+                filename=filename,
             )
         )
 
