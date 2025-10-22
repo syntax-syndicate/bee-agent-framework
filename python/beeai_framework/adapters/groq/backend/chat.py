@@ -86,7 +86,10 @@ class GroqChatModel(LiteLLMChatModel):
         simplify_json_schema(
             json_schema,
             SimplifyJsonSchemaConfig(
-                excluded_properties_by_type={"array": {"minItems", "maxItems"}, "string": {"format"}}
+                excluded_properties_by_type={
+                    "array": {"minItems", "maxItems"},
+                    "string": {"format", "minLength", "maxLength"},
+                }
             ),
         )
         return json_schema
