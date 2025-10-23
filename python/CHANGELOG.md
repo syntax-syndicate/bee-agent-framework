@@ -1,3 +1,18 @@
+## python_v0.1.58 (2025-10-23)
+
+### Bug Fixes
+
+- **serve**: properly serialize a tool output when using MCP (#1219)
+- **adapters**: properly handle BeeAIPlatform LLM provider
+- **adapters**: handle unsupported JSON Schema keywords (#1216)
+
+### Features
+
+- **adapters**: propagate provider specific parameters in BeeAIPlatformChatModel (#1225)
+- **adapters**: add OpenAI Chat Completion / Responses serve module (#1182)
+- **adapters**: add new parameters to A2A Agent (#1224)
+- **backend**: add more excluded JSON Schema keywords to Groq
+
 ## python_v0.1.57 (2025-10-20)
 
 ### Bug Fixes
