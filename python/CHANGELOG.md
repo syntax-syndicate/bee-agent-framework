@@ -1,3 +1,10 @@
+## python_v0.1.61 (2025-10-30)
+
+### Features
+
+- rename BeeAIPlatform to AgentStack (#1256)
+- **adapters**: add default tools settings for the platform agents (#1223)
+
 ## python_v0.1.60 (2025-10-29)
 
 ### Bug Fixes
