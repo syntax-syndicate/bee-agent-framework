@@ -1,6 +1,6 @@
 # Copyright 2025 © BeeAI a Series of LF Projects, LLC
 # SPDX-License-Identifier: Apache-2.0
-from pydantic import ConfigDict
+
 
 try:
     import a2a.client as a2a_client
@@ -14,7 +14,5 @@ except ModuleNotFoundError as e:
 from beeai_framework.agents import AgentOutput
 
 
-class A2AAgentOutput(AgentOutput):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-
+class AgentStackAgentOutput(AgentOutput):
     event: a2a_client.ClientEvent | a2a_types.Message

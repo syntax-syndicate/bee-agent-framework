@@ -1,26 +1,26 @@
 ---
-title: "BeeAI Platform"
+title: "Agent Stack"
 icon: "server"
 ---
 
-[BeeAI Platform](https://beeai.dev/) is an open platform to help you discover, run, and compose AI agents from any framework.
-This tutorial demonstrates how to consume agents from the BeeAI Platform and expose agents built in BeeAI Framework to the BeeAI Platform.
+[Agent Stack](https://beeai.dev/) is an open platform to help you discover, run, and compose AI agents from any framework.
+This tutorial demonstrates how to consume agents from the Agent Stack and expose agents built in BeeAI Framework to the Agent Stack.
 
 **Prerequisites**
 
-- **[BeeAI Platform](https://beeai.dev/)** installed and running locally
-- **BeeAI Framework** installed with `pip install beeai-framework[beeai-platform]`
+- **[Agent Stack](https://beeai.dev/)** installed and running locally
+- **BeeAI Framework** installed with `pip install beeai-framework[agentstack]`
 
 ---
 
 
 ## Consuming from the platform (client)
 
-The `BeeAIPlatformAgent` class allows you to connect to any agent hosted on the BeeAI platform. This means that you can interact with agents built from any framework!
+The `AgentStackAgent` class allows you to connect to any agent hosted on the Agent Stack. This means that you can interact with agents built from any framework!
 
-Use `BeeAIPlatformAgent` when:
-- You're connecting specifically to the BeeAI Platform services.
-- You want forward compatibility for the BeeAI Platform, no matter which protocol it is based on.
+Use `AgentStackAgent` when:
+- You're connecting specifically to the Agent Stack services.
+- You want forward compatibility for the Agent Stack, no matter which protocol it is based on.
 
 
 Here's a simple example that uses the built-in `chat` agent:
@@ -28,14 +28,14 @@ Here's a simple example that uses the built-in `chat` agent:
 
 <CodeGroup>
 
-	{/* <!-- embedme python/examples/agents/providers/beeai_platform.py --> */}
+	{/* <!-- embedme python/examples/agents/providers/agent_stack.py --> */}
 
 	```py Python [expandable]
 	import asyncio
 	import sys
 	import traceback
 	
-	from beeai_framework.adapters.beeai_platform.agents import BeeAIPlatformAgent
+	from beeai_framework.adapters.agentstack.agents import AgentStackAgent
 	from beeai_framework.errors import FrameworkError
 	from beeai_framework.memory.unconstrained_memory import UnconstrainedMemory
 	from examples.helpers.io import ConsoleReader
@@ -44,7 +44,7 @@ Here's a simple example that uses the built-in `chat` agent:
 	async def main() -> None:
 	    reader = ConsoleReader()
 	
-	    agents = await BeeAIPlatformAgent.from_platform(url="http://127.0.0.1:8333", memory=UnconstrainedMemory())
+	    agents = await AgentStackAgent.from_agent_stack(url="http://127.0.0.1:8333", memory=UnconstrainedMemory())
 	    agent_name = "Framework chat agent"
 	    try:
 	        agent = next(agent for agent in agents if agent.name == agent_name)
@@ -70,10 +70,10 @@ Here's a simple example that uses the built-in `chat` agent:
 	
 	```
 
-	{/* <!-- embedme typescript/examples/agents/providers/beeai_platform.ts --> */}
+	{/* <!-- embedme typescript/examples/agents/providers/agent_stack.ts --> */}
 	```ts TypeScript [expandable]
 	import "dotenv/config.js";
-	import { BeeAIPlatformAgent } from "beeai-framework/adapters/beeai_platform/agents/agent";
+	import { AgentStackAgent } from "beeai-framework/adapters/agentstack/agents/agent";
 	import { createConsoleReader } from "examples/helpers/io.js";
 	import { FrameworkError } from "beeai-framework/errors";
 	import { TokenMemory } from "beeai-framework/memory/tokenMemory";
@@ -84,7 +84,7 @@ Here's a simple example that uses the built-in `chat` agent:
 	
 	const agentName = "chat";
 	
-	const instance = new BeeAIPlatformAgent({
+	const instance = new AgentStackAgent({
 	  url: "http://127.0.0.1:8333/api/v1/acp",
 	  agentName,
 	  memory: new TokenMemory(),
@@ -115,7 +115,7 @@ Here's a simple example that uses the built-in `chat` agent:
 
 **Usage in Workflow**
 
-You can compose multiple BeeAI platform agents into advanced workflows using the BeeAI framework's workflow capabilities. This example demonstrates a research and content creation pipeline:
+You can compose multiple Agent Stack agents into advanced workflows using the BeeAI framework's workflow capabilities. This example demonstrates a research and content creation pipeline:
 
 In this example, the `GPT Researcher` agent researches a topic, and the `Podcast creator` takes the research report and produces a podcast transcript.
 
@@ -130,7 +130,7 @@ import traceback
 
 from pydantic import BaseModel
 
-from beeai_framework.adapters.beeai_platform import BeeAIPlatformAgent
+from beeai_framework.adapters.agentstack import AgentStackAgent
 from beeai_framework.errors import FrameworkError
 from beeai_framework.memory.unconstrained_memory import UnconstrainedMemory
 from beeai_framework.workflows import Workflow
@@ -145,7 +145,7 @@ async def main() -> None:
         research: str | None = None
         output: str | None = None
 
-    agents = await BeeAIPlatformAgent.from_platform(url="http://127.0.0.1:8333", memory=UnconstrainedMemory())
+    agents = await AgentStackAgent.from_agent_stack(url="http://127.0.0.1:8333", memory=UnconstrainedMemory())
 
     async def research(state: State) -> None:
         # Run the agent and observe events
@@ -197,7 +197,7 @@ if __name__ == "__main__":
 
 ## Exposing to the platform (server)
 
-The `BeeAIPlatformServer` class exposes an agent or any other runnable (tool/chat model, ...) to the **BeeAI Platform**.
+The `AgentStackServer` class exposes an agent or any other runnable (tool/chat model, ...) to the **Agent Stack**.
 It gets automatically registered to the platform and allows you to access and use the agents directly in the platform.
 
 Key Features:
@@ -209,11 +209,11 @@ Key Features:
 
 <CodeGroup>
 
-	{/* <!-- embedme python/examples/serve/beeai_platform.py --> */}
+	{/* <!-- embedme python/examples/serve/agent_stack.py --> */}
 
 	```py Python [expandable]
-	from beeai_framework.adapters.beeai_platform.backend.chat import BeeAIPlatformChatModel
-	from beeai_framework.adapters.beeai_platform.serve.server import BeeAIPlatformMemoryManager, BeeAIPlatformServer
+	from beeai_framework.adapters.agentstack.backend.chat import AgentStackChatModel
+	from beeai_framework.adapters.agentstack.serve.server import AgentStackMemoryManager, AgentStackServer
 	from beeai_framework.agents.requirement import RequirementAgent
 	from beeai_framework.backend import ChatModelParameters
 	from beeai_framework.memory import UnconstrainedMemory
@@ -222,16 +222,16 @@ Key Features:
 	from beeai_framework.tools.weather import OpenMeteoTool
 	
 	try:
-	    from beeai_sdk.a2a.extensions.ui.agent_detail import AgentDetail
+	    from agentstack_sdk.a2a.extensions.ui.agent_detail import AgentDetail
 	except ModuleNotFoundError as e:
 	    raise ModuleNotFoundError(
-	        "Optional module [beeai-platform] not found.\nRun 'pip install \"beeai-framework[beeai-platform]\"' to install."
+	        "Optional module [agentstack] not found.\nRun 'pip install \"beeai-framework[agentstack]\"' to install."
 	    ) from e
 	
 	
 	def main() -> None:
 	    agent = RequirementAgent(
-	        llm=BeeAIPlatformChatModel(
+	        llm=AgentStackChatModel(
 	            preferred_models=["openai:gpt-4o", "ollama:llama3.1:8b"],
 	            parameters=ChatModelParameters(stream=True),
 	        ),
@@ -240,8 +240,8 @@ Key Features:
 	        middlewares=[GlobalTrajectoryMiddleware()],
 	    )
 	
-	    # Runs HTTP server that registers to BeeAI platform
-	    server = BeeAIPlatformServer(memory_manager=BeeAIPlatformMemoryManager())
+	    # Runs HTTP server that registers to Agent Stack
+	    server = AgentStackServer(memory_manager=AgentStackMemoryManager())
 	    server.register(
 	        agent,
 	        name="Framework chat agent",  # (optional)
@@ -263,27 +263,27 @@ Key Features:
 
 
 <Note>
-	BeeAI Platform supports only one entry per server. To register more, you need to spawn more servers.
+	Agent Stack supports only one entry per server. To register more, you need to spawn more servers.
 </Note>
 
 <Tip>
-	You can use the platform to do LLM inference by using the `BeeAIPlatformChatModel(...)` class.
+	You can use the platform to do LLM inference by using the `AgentStackChatModel(...)` class.
 </Tip>
 
 ### Configuration
 
 **Server**
 
-The server's behavior can be influenced via attributes listed in `BeeAIPlatformServerConfig` class (host, port, self registration, ...).
+The server's behavior can be influenced via attributes listed in `AgentStackServerConfig` class (host, port, self registration, ...).
 Internally the server preserves every conversation, the custom strategy can be used by implementing the base `MemoryManager` class.
 
 ```python
-from beeai_framework.adapters.beeai_platform.serve.server import BeeAIPlatformServer, BeeAIPlatformServerConfig
+from beeai_framework.adapters.agentstack.serve.server import AgentStackServer, AgentStackServerConfig
 from beeai_framework.serve.utils import LRUMemoryManager
 
 memory_manager = LRUMemoryManager(maxsize=64) # keeps max 64 conversations
-config = BeeAIPlatformServerConfig(host="127.0.0.1", port=9999, run_limit=3600, limit_concurrency=10)
-server = BeeAIPlatformServer(config=config, memory_manager=memory_manager)
+config = AgentStackServerConfig(host="127.0.0.1", port=9999, run_limit=3600, limit_concurrency=10)
+server = AgentStackServer(config=config, memory_manager=memory_manager)
 ```
 
 **Agent**
@@ -292,12 +292,12 @@ The agent’s meta information is inferred from its metadata (the `agent.meta` p
 However, this information can be overridden during agent registration. See the following example.
 
 ```python
-from beeai_framework.adapters.beeai_platform.serve.server import BeeAIPlatformServer
-from beeai_framework.adapters.beeai_platform.backend.chat import BeeAIPlatformChatModel
-from beeai_sdk.a2a.extensions.ui.agent_detail import AgentDetail
+from beeai_framework.adapters.agentstack.serve.server import AgentStackServer
+from beeai_framework.adapters.agentstack.backend.chat import AgentStackChatModel
+from agentstack_sdk.a2a.extensions.ui.agent_detail import AgentDetail
 
-server = BeeAIPlatformServer()
-agent = RequirementAgent(llm=BeeAIPlatformChatModel())
+server = AgentStackServer()
+agent = RequirementAgent(llm=AgentStackChatModel())
 server.register(agent,
 	name="SmartAgent",
 	description="Knows everything!",
@@ -311,14 +311,14 @@ server.register(agent,
 
 ### Customization
 
-The BeeAI Platform has a concept of [extensions](https://docs.beeai.dev/concepts/extensions) that enable access to external services and UI components via dependency injection.
+The Agent Stack has a concept of [extensions](https://docs.beeai.dev/concepts/extensions) that enable access to external services and UI components via dependency injection.
 
 The framework internally uses the following extensions:
 
 - **Form Extension:** for displaying prompts and other checks (for instance when using `AskPermissionRequirement`)..
 - **Trajectory Extension:** for showing agent's intermediate steps throughout the execution
 
-<Note>The current entries are listed in the `BaseBeeAIPlatformExtensions` class.</Note>
+<Note>The current entries are listed in the `BaseAgentStackExtensions` class.</Note>
 
 
 **Custom Extensions**
@@ -330,20 +330,20 @@ It does so by leveraging the [Citation Extension](https://docs.beeai.dev/build-a
 
 <CodeGroup>
 
-	{/* <!-- embedme python/examples/serve/beeai_platform_custom.py --> */}
+	{/* <!-- embedme python/examples/serve/agent_stack_custom.py --> */}
 
 	```py Python [expandable]
+	# Copyright 2025 © BeeAI a Series of LF Projects, LLC
+	# SPDX-License-Identifier: Apache-2.0
 	import re
 	import sys
 	import traceback
 	from typing import Annotated
 	
-	from beeai_sdk.a2a.extensions import CitationExtensionServer, CitationExtensionSpec
-	
-	from beeai_framework.adapters.beeai_platform.backend.chat import BeeAIPlatformChatModel
-	from beeai_framework.adapters.beeai_platform.context import BeeAIPlatformContext
-	from beeai_framework.adapters.beeai_platform.serve.server import BeeAIPlatformMemoryManager, BeeAIPlatformServer
-	from beeai_framework.adapters.beeai_platform.serve.types import BaseBeeAIPlatformExtensions
+	from beeai_framework.adapters.agentstack.backend.chat import AgentStackChatModel
+	from beeai_framework.adapters.agentstack.context import AgentStackContext
+	from beeai_framework.adapters.agentstack.serve.server import AgentStackMemoryManager, AgentStackServer
+	from beeai_framework.adapters.agentstack.serve.types import BaseAgentStackExtensions
 	from beeai_framework.agents.requirement import RequirementAgent
 	from beeai_framework.agents.requirement.events import RequirementAgentSuccessEvent
 	from beeai_framework.agents.requirement.requirements.conditional import ConditionalRequirement
@@ -356,21 +356,21 @@ It does so by leveraging the [Citation Extension](https://docs.beeai.dev/build-a
 	from beeai_framework.tools.think import ThinkTool
 	
 	try:
-	    from beeai_sdk.a2a.extensions import Citation
-	    from beeai_sdk.a2a.extensions.ui.agent_detail import AgentDetail
-	    from beeai_sdk.a2a.types import AgentMessage
+	    from agentstack_sdk.a2a.extensions import Citation, CitationExtensionServer, CitationExtensionSpec
+	    from agentstack_sdk.a2a.extensions.ui.agent_detail import AgentDetail
+	    from agentstack_sdk.a2a.types import AgentMessage
 	except ModuleNotFoundError as e:
 	    raise ModuleNotFoundError(
-	        "Optional module [beeai-platform] not found.\nRun 'pip install \"beeai-framework[beeai-platform]\"' to install."
+	        "Optional module [agentstack] not found.\nRun 'pip install \"beeai-framework[agentstack]\"' to install."
 	    ) from e
 	
 	
 	class PlatformCitationMiddleware(RunMiddlewareProtocol):
 	    def __init__(self) -> None:
-	        self._context: BeeAIPlatformContext | None = None
+	        self._context: AgentStackContext | None = None
 	
 	    def bind(self, ctx: RunContext) -> None:
-	        self._context = BeeAIPlatformContext.get()
+	        self._context = AgentStackContext.get()
 	        # add emitter with the highest priority to ensure citations are sent before any other event handling
 	        ctx.emitter.on("success", self._handle_success, options=EmitterOptions(priority=10, is_blocking=True))
 	
@@ -392,7 +392,7 @@ It does so by leveraging the [Citation Extension](https://docs.beeai.dev/build-a
 	
 	def main() -> None:
 	    agent = RequirementAgent(
-	        llm=BeeAIPlatformChatModel(preferred_models=["openai/gpt-5"]),
+	        llm=AgentStackChatModel(preferred_models=["openai/gpt-5"]),
 	        tools=[WikipediaTool(), ThinkTool()],
 	        instructions=(
 	            "You are an AI assistant focused on retrieving information from online sources."
@@ -414,11 +414,11 @@ It does so by leveraging the [Citation Extension](https://docs.beeai.dev/build-a
 	    )
 	
 	    # define custom extensions
-	    class CustomExtensions(BaseBeeAIPlatformExtensions):
+	    class CustomExtensions(BaseAgentStackExtensions):
 	        citation: Annotated[CitationExtensionServer, CitationExtensionSpec()]
 	
-	    # Runs HTTP server that registers to BeeAI platform
-	    server = BeeAIPlatformServer(memory_manager=BeeAIPlatformMemoryManager())  # use platform memory
+	    # Runs HTTP server that registers to Agent Stack
+	    server = AgentStackServer(memory_manager=AgentStackMemoryManager())  # use platform memory
 	    server.register(
 	        agent,
 	        name="Information retrieval",
@@ -466,4 +466,4 @@ It does so by leveraging the [Citation Extension](https://docs.beeai.dev/build-a
 
 </CodeGroup>
 
-<Tip>The `BeeAIPlatformContext.get()` can be called from anywhere if the code is running inside the given context.</Tip>
+<Tip>The `AgentStackContext.get()` can be called from anywhere if the code is running inside the given context.</Tip>
