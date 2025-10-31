@@ -38,7 +38,7 @@ exclude = list(
             "workflows/searx_agent.py",
             "agents/providers/acp.py",
             "agents/providers/a2a_agent.py",
-            "agents/providers/agentstack.py",
+            "agents/providers/agent_stack.py",
             "agents/providers/watsonx_orchestrate.py",
             "workflows/remote.py",
             "serve/acp.py",
