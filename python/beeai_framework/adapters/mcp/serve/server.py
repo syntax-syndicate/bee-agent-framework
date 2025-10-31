@@ -115,6 +115,22 @@ class MCPServer(
         )
 
     def serve(self) -> None:
+        self._register_members()
+        self._server.run(transport=self._config.transport)
+
+    async def aserve(self) -> None:
+        self._register_members()
+        match self._config.transport:
+            case "stdio":
+                return await self._server.run_stdio_async()
+            case "sse":
+                return await self._server.run_sse_async()
+            case "streamable-http":
+                return await self._server.run_streamable_http_async()
+            case _:
+                raise ValueError(f"Transport {self._config.transport} is not supported by this server.")
+
+    def _register_members(self) -> None:
         for member in self.members:
             factory = type(self)._get_factory(member)
             entry = factory(member)
@@ -129,8 +145,6 @@ class MCPServer(
                 self._server.add_tool(fn=member.__name__, name=member.__name__, description=member.__doc__ or "")
             else:
                 raise ValueError(f"Input type {type(member)} is not supported by this server.")
-
-        self._server.run(transport=self._config.transport)
 
     @classmethod
     def _get_factory(
