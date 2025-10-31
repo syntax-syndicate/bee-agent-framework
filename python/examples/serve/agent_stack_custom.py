@@ -30,7 +30,7 @@ except ModuleNotFoundError as e:
     ) from e
 
 
-class PlatformCitationMiddleware(RunMiddlewareProtocol):
+class CitationMiddleware(RunMiddlewareProtocol):
     def __init__(self) -> None:
         self._context: AgentStackContext | None = None
 
@@ -79,7 +79,7 @@ def main() -> None:
         description="Search for information based on a given phrase.",
         middlewares=[
             GlobalTrajectoryMiddleware(),
-            PlatformCitationMiddleware(),
+            CitationMiddleware(),
         ],  # add platform middleware to get citations from the platform
     )
 
