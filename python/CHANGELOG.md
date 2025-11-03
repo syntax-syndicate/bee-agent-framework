@@ -1,3 +1,16 @@
+## python_v0.1.62 (2025-11-03)
+
+### Bug Fixes
+
+- relax version of cachetools dependency
+- **adapters**: prevent importing extra dependencies when using OpenAI Chat Model (#1263)
+
+### Features
+
+- **adapters**: filter agents by state (#1258)
+- **adapters**: support exposing PromptTemplate in the MCP Server (#1260)
+- **adapters**: add aserve method for MCP Server
+
 ## python_v0.1.61 (2025-10-30)
 
 ### Features
