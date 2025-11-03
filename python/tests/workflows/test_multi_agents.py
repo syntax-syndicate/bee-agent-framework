@@ -18,7 +18,7 @@ E2E Tests
 async def test_multi_agents_workflow_basic() -> None:
     chat_model = OllamaChatModel()
 
-    workflow: AgentWorkflow = AgentWorkflow()
+    workflow: AgentWorkflow = AgentWorkflow("ollama:granite4:micro")
     workflow.add_agent(name="Translator assistant", tools=[], llm=chat_model)
 
     memory = UnconstrainedMemory()
@@ -33,7 +33,7 @@ async def test_multi_agents_workflow_basic() -> None:
 async def test_multi_agents_workflow_creation() -> None:
     chat_model = OllamaChatModel()
 
-    workflow: AgentWorkflow = AgentWorkflow()
+    workflow: AgentWorkflow = AgentWorkflow("ollama:granite4:micro")
     workflow.add_agent(name="AgentA", llm=chat_model, instructions="You are a translator agent.")
     workflow.add_agent(name="AgentB", llm=chat_model, instructions="Summarize the final outcome.")
     assert len(workflow.workflow.step_names) == 2
@@ -47,7 +47,7 @@ async def test_multi_agents_workflow_creation() -> None:
 @pytest.mark.e2e
 @pytest.mark.asyncio
 async def test_multi_agents_workflow_agent_delete() -> None:
-    chat_model = OllamaChatModel()
+    chat_model = OllamaChatModel("ollama:granite4:micro")
 
     workflow: AgentWorkflow = AgentWorkflow()
     workflow.add_agent(name="AgentA", llm=chat_model, tools=[])
