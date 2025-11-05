@@ -101,3 +101,11 @@ class HandoffTool(Tool[HandoffSchema, ToolRunOptions, StringToolOutput]):
             namespace=["tool", "handoff"],
             creator=self,
         )
+
+    async def clone(self) -> Self:
+        return type(self)(
+            input=self.input_schema,
+            name=self._name,
+            description=self._description,
+            propagate_inputs=self._propagate_inputs,
+        )
