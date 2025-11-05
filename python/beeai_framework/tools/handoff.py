@@ -1,6 +1,7 @@
 # Copyright 2025 © BeeAI a Series of LF Projects, LLC
 # SPDX-License-Identifier: Apache-2.0
 
+import contextlib
 from functools import cached_property
 from typing import Any
 
@@ -63,9 +64,12 @@ class HandoffTool(Tool[HandoffSchema, ToolRunOptions, StringToolOutput]):
         return HandoffSchema
 
     async def _run(self, input: HandoffSchema, options: ToolRunOptions | None, context: RunContext) -> StringToolOutput:
-        memory: BaseMemory = context.context["state"]["memory"]
+        memory = None
+        with contextlib.suppress(AttributeError):
+            memory: BaseMemory = context.context["state"]["memory"]
+
         if not memory or not isinstance(memory, BaseMemory):
-            raise ToolError("No memory found in context.")
+            raise ToolError("No memory found in the context.")
 
         target: Runnable[Any] = await self._target.clone() if isinstance(self._target, Cloneable) else self._target
 
