@@ -67,9 +67,9 @@ class HandoffTool(Tool[HandoffSchema, ToolRunOptions, StringToolOutput]):
         return HandoffSchema
 
     async def _run(self, input: HandoffSchema, options: ToolRunOptions | None, context: RunContext) -> StringToolOutput:
-        memory = None
+        memory: BaseMemory | None = None
         with contextlib.suppress(AttributeError):
-            memory: BaseMemory = context.context["state"]["memory"]
+            memory = context.context["state"]["memory"]
 
         if not memory or not isinstance(memory, BaseMemory):
             raise ToolError("No memory found in the context.")
@@ -104,7 +104,7 @@ class HandoffTool(Tool[HandoffSchema, ToolRunOptions, StringToolOutput]):
 
     async def clone(self) -> Self:
         return type(self)(
-            input=self.input_schema,
+            target=self._target,
             name=self._name,
             description=self._description,
             propagate_inputs=self._propagate_inputs,
