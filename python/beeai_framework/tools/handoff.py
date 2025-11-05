@@ -3,7 +3,7 @@
 
 import contextlib
 from functools import cached_property
-from typing import Any
+from typing import Any, Self
 
 from pydantic import BaseModel, Field
 
@@ -16,6 +16,7 @@ from beeai_framework.runnable import Runnable
 from beeai_framework.tools import StringToolOutput, Tool, ToolError, ToolRunOptions
 from beeai_framework.utils.cloneable import Cloneable
 from beeai_framework.utils.lists import find_index
+from beeai_framework.utils.strings import to_safe_word
 
 
 class HandoffSchema(BaseModel):
@@ -49,6 +50,8 @@ class HandoffTool(Tool[HandoffSchema, ToolRunOptions, StringToolOutput]):
         else:
             self._name = name or target.__class__.__name__
             self._description = description or (target.__class__.__doc__ or "")
+
+        self._name = to_safe_word(self._name)
         self._propagate_inputs = propagate_inputs
 
     @property
